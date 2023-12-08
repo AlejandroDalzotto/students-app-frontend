@@ -10,7 +10,7 @@ const APP_LINKS = [
   {
     id: 2,
     label: "Iniciar sesión",
-    href: "/login",
+    href: "/signin",
     type: "primary"
   }
 ]

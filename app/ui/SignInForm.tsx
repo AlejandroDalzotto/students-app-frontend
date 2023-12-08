@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function LoginForm() {
+export default function SignInForm() {
   return (
     <section className="relative flex flex-col items-center py-20 px-6 max-w-lg w-screen">
 
@@ -33,7 +33,7 @@ export default function LoginForm() {
           className="bg-blue-500 text-white font-semibold text-xl transition-colors hover:bg-blue-700 duration-100 mx-auto block my-10 py-3 px-6 rounded-lg"
           type="submit">Entrar</button>
 
-        <Link href="/register" className="uppercase font-medium text-neutral-500 text-xs mx-auto block p-2 w-fit hover:text-black">crear cuenta</Link>
+        <Link href="/signup" className="uppercase font-medium text-neutral-500 text-xs mx-auto block p-2 w-fit hover:text-black">crear cuenta</Link>
         <Link href="/" className="uppercase font-medium text-neutral-500 text-xs mx-auto block p-2 w-fit hover:text-black">volver a la pantalla principal</Link>
       </form>
     </section>
