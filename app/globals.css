@@ -2,26 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.nav-link-primary {
+  @apply select-none py-3 px-6 rounded-md bg-blue-500 text-white font-medium shadow transition-all hover:bg-blue-700 hover:shadow-none
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.nav-link-secondary {
+  @apply select-none py-3 px-6 rounded-md bg-black/10 text-black font-medium shadow transition-all hover:bg-black/20 hover:shadow-none
 }
