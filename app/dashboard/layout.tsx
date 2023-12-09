@@ -1,4 +1,4 @@
-import NavbarDashboard from "../ui/NavbarDashboard"
+import NavbarDashboard from "../ui/dashboard/NavbarDashboard"
 
 export default function DashboardLayout({
   children,

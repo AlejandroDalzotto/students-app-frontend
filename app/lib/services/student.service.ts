@@ -1,6 +1,6 @@
 import type { Student } from "../definitions";
 
-const STUDENT_PLACEHOLDER: Student[] = [
+export const STUDENT_PLACEHOLDER: Student[] = [
   {
     code: 1,
     name: "John",
@@ -166,5 +166,16 @@ export const fetchStudents = async () => {
   } catch (error) {
     console.error((error as Error).message)
     throw new Error("Error fetching students")
+  }
+}
+
+export const fetchStudentById = async (id: number) => {
+  try {
+    await new Promise((res) => setTimeout(res, 1000))
+
+    return STUDENT_PLACEHOLDER.find(({ code }) => code == id)
+  } catch (error) {
+    console.error((error as Error).message)
+    throw new Error("Error fetching student " + id)
   }
 }

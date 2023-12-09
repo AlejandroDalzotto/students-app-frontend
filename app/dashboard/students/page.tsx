@@ -1,20 +1,24 @@
-import ListOfStudents from "@/app/ui/ListOfStudents";
-import ListOfStudentsSkeleton from "@/app/ui/skeletons/ListOfStudentsSkeleton";
+import { fetchStudents } from "@/app/lib/services/student.service";
+import ListOfStudents from "@/app/ui/dashboard/ListOfStudents";
 import { Suspense } from "react";
+import LoadingStudentsPage from "./loading";
 
-export default function StudentsPage() {
+export default async function StudentsPage() {
+
+  const students = await fetchStudents()
+
   return (
-    <section className="w-full relative rounded-lg">
-      <div className="w-full">
-        <header className="h-40 flex items-center">
-          <h2 className="text-3xl font-medium">Lista de alumnos</h2>
-        </header>
-        <article className="w-full relative flex">
-          <Suspense fallback={<ListOfStudentsSkeleton />}>
-            <ListOfStudents />
-          </Suspense>
-        </article>
-      </div>
-    </section>
+    <Suspense fallback={<LoadingStudentsPage />}>
+      <section className="w-full relative rounded-lg">
+        <div className="w-full">
+          <header className="h-fit flex items-center">
+            <h2 className="text-3xl my-5 font-medium">Lista de alumnos</h2>
+          </header>
+          <article className="w-full flex">
+            <ListOfStudents students={students} />
+          </article>
+        </div>
+      </section>
+    </Suspense>
   )
 }
