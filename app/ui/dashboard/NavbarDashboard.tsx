@@ -36,9 +36,10 @@ export default function NavbarDashboard() {
         <Image
           src="/logo-app.svg"
           alt="Logo de la aplicación"
-          width={2000}
-          height={1247}
+          width={250}
+          height={156}
           className='w-full h-auto'
+          priority={true}
         />
       </header>
 
@@ -71,9 +72,9 @@ export default function NavbarDashboard() {
           </svg>
           <p className='text-lg -mb-1 font-medium'>Cerrar sesión</p>
         </button>
-        <Link href="/user-profile" className='flex bg-blue-500 fill-white items-center gap-x-4 py-3 px-4 rounded-lg w-fit transition-colors hover:bg-blue-100 hover:fill-blue-500 hover:text-blue-500'>
+        <Link href="/settings" className='flex bg-blue-500 fill-white items-center gap-x-4 py-3 px-4 rounded-lg w-fit transition-colors hover:bg-blue-100 hover:fill-blue-500 hover:text-blue-500'>
           <svg role="img" className='w-8 h-8'>
-            <use xlinkHref="/sprites.svg#user"></use>
+            <use xlinkHref="/sprites.svg#settings"></use>
           </svg>
         </Link>
       </footer>

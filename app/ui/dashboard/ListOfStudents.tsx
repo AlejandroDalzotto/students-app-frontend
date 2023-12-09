@@ -19,7 +19,7 @@ export default function ListOfStudents({ students }: { students: Student[] }) {
         <input
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
-          className="w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 rounded-lg leading-5 outline-none"
+          className="w-full text-lg py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 rounded-lg leading-5 outline-none"
           type="text"
           placeholder="Buscar alumno..."
         />
