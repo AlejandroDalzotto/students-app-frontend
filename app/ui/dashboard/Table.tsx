@@ -1,8 +1,8 @@
-import { getAllStudents } from "@/app/lib/services/student.service"
+import { getAllStudentsByFilter } from "@/app/lib/services/student.service"
 
-export default async function Table() {
+export default async function Table({ query }: { query: string }) {
 
-  const students = await getAllStudents()
+  const students = await getAllStudentsByFilter(query)
 
   return (
     <table className="w-full max-w-5xl p-2 text-gray-900 table rounded-lg">
@@ -32,7 +32,7 @@ export default async function Table() {
         </tr>
       </thead>
       <tbody className="bg-white">
-        {students?.map((student) => (
+        {students instanceof Array ? students.map((student) => (
           <tr
             key={student.id_student}
             className="w-full border-b py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg"
@@ -62,7 +62,9 @@ export default async function Table() {
               </div>
             </td> */}
           </tr>
-        ))}
+        )) : (
+          <p>{students}</p>
+        )}
       </tbody>
     </table>
   )
