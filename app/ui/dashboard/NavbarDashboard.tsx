@@ -1,5 +1,8 @@
+"use client"
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 
 const NAVBAR_LINKS = [
@@ -30,6 +33,9 @@ const NAVBAR_LINKS = [
 ]
 
 export default function NavbarDashboard() {
+
+  const pathname = usePathname()
+
   return (
     <aside className='min-h-full w-80 flex flex-col'>
       <header className='relative h-1/4 w-full bg-blue-500 grid place-content-center p-5 rounded-lg'>
@@ -49,7 +55,10 @@ export default function NavbarDashboard() {
           return (
             <li key={id}>
               <Link
-                className='flex bg-black/5 items-center gap-x-4 py-3 px-4 rounded-lg w-full transition-colors hover:bg-blue-100 hover:fill-blue-500 hover:text-blue-500'
+                className={`flex bg-black/5 items-center gap-x-4 py-3 px-4 rounded-lg 
+                w-full transition-colors hover:bg-blue-100 hover:fill-blue-500 hover:text-blue-500
+                ${pathname === route ? "fill-blue-500 text-blue-500 bg-blue-100" : ""}
+                `}
                 href={route}
               >
                 <svg role="img" className='w-8 h-8'>

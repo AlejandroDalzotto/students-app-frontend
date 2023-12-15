@@ -1,24 +1,14 @@
-import { fetchStudents } from "@/app/lib/services/student.service";
-import ListOfStudents from "@/app/ui/dashboard/ListOfStudents";
-import { Suspense } from "react";
-import LoadingStudentsPage from "./loading";
+import StudentsTable from "@/app/ui/dashboard/StudentsTable";
+import Header from "@/app/ui/dashboard/Header";
 
-export default async function StudentsPage() {
-
-  const students = await fetchStudents()
+export default function StudentsPage() {
 
   return (
-    <Suspense fallback={<LoadingStudentsPage />}>
-      <section className="w-full relative rounded-lg">
-        <div className="w-full">
-          <header className="h-fit flex items-center">
-            <h2 className="text-3xl my-5 font-medium">Lista de alumnos</h2>
-          </header>
-          <article className="w-full flex">
-            <ListOfStudents students={students} />
-          </article>
-        </div>
-      </section>
-    </Suspense>
+    <section className="w-full relative rounded-lg">
+      <Header />
+      <article className="w-full flex">
+        <StudentsTable />
+      </article>
+    </section>
   )
 }
