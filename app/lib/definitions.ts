@@ -1,5 +1,3 @@
-type Gender = "M" | "F"
-
 export interface Module {
   name: string;
   active: boolean;
@@ -14,24 +12,25 @@ export interface Subject {
 }
 
 export interface Student {
-  code: number;
-  name: string;
-  lastname: string;
-  birthdate: string;
-  gender: Gender
-  address: string;
-  dni: number;
-  cellPhone: number;
-  linePhone: number;
-  age: number;
-  mail: string;
-  legajo: number;
-  matricula: number;
-  birthCert: boolean;
-  studyCert: boolean;
-  course: number;
-  disability: boolean;
-  health: boolean;
-  active: boolean;
-  subjects: Subject[] | null
+  id_student: number,
+  name: string,
+  lastName: string,
+  birth: string,
+  sex: string,
+  address: string,
+  dni: number,
+  cellPhone?: number,
+  linePhone?: number,
+  age: number,
+  mail: string,
+  legajo: number,
+  matricula: number,
+  birthCert: boolean,
+  studyCert: boolean,
+  course: number,
+  disability: boolean,
+  health: boolean,
+  active: boolean
 }
+
+export type StudentFromForm = Omit<Student, "id_student" | "age" | "active">

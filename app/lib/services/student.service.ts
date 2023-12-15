@@ -1,181 +1,37 @@
-import type { Student } from "../definitions";
+import type { Student, StudentFromForm } from "../definitions";
 
-export const STUDENT_PLACEHOLDER: Student[] = [
-  {
-    code: 1,
-    name: "John",
-    lastname: "Doe",
-    birthdate: "2000-01-01",
-    gender: "M",
-    address: "123 Main St",
-    dni: 12345678,
-    cellPhone: 987654321,
-    linePhone: 123456789,
-    age: 22,
-    mail: "john.doe@example.com",
-    legajo: 1001,
-    matricula: 2001,
-    birthCert: true,
-    studyCert: true,
-    course: 1,
-    disability: false,
-    health: true,
-    active: true,
-    subjects: null,
-  },
-  {
-    code: 2,
-    name: "Jane",
-    lastname: "Smith",
-    birthdate: "1999-05-15",
-    gender: "F",
-    address: "456 Oak St",
-    dni: 23456789,
-    cellPhone: 987654322,
-    linePhone: 123456790,
-    age: 23,
-    mail: "jane.smith@example.com",
-    legajo: 1002,
-    matricula: 2002,
-    birthCert: true,
-    studyCert: true,
-    course: 2,
-    disability: false,
-    health: false,
-    active: true,
-    subjects: null,
-  },
-  {
-    code: 3,
-    name: "Alice",
-    lastname: "Johnson",
-    birthdate: "2001-03-10",
-    gender: "F",
-    address: "789 Elm St",
-    dni: 34567890,
-    cellPhone: 987654323,
-    linePhone: 123456791,
-    age: 21,
-    mail: "alice.johnson@example.com",
-    legajo: 1003,
-    matricula: 2003,
-    birthCert: true,
-    studyCert: true,
-    course: 3,
-    disability: false,
-    health: true,
-    active: true,
-    subjects: null,
-  },
-  {
-    code: 4,
-    name: "Bob",
-    lastname: "Miller",
-    birthdate: "2000-06-20",
-    gender: "M",
-    address: "101 Pine St",
-    dni: 45678901,
-    cellPhone: 987654324,
-    linePhone: 123456792,
-    age: 22,
-    mail: "bob.miller@example.com",
-    legajo: 1004,
-    matricula: 2004,
-    birthCert: true,
-    studyCert: true,
-    course: 4,
-    disability: true,
-    health: false,
-    active: true,
-    subjects: null,
-  },
-  {
-    code: 5,
-    name: "Eva",
-    lastname: "Williams",
-    birthdate: "1999-11-05",
-    gender: "F",
-    address: "202 Cedar St",
-    dni: 56789012,
-    cellPhone: 987654325,
-    linePhone: 123456793,
-    age: 23,
-    mail: "eva.williams@example.com",
-    legajo: 1005,
-    matricula: 2005,
-    birthCert: true,
-    studyCert: true,
-    course: 5,
-    disability: false,
-    health: true,
-    active: true,
-    subjects: null,
-  },
-  {
-    code: 6,
-    name: "Charlie",
-    lastname: "Davis",
-    birthdate: "2002-08-15",
-    gender: "M",
-    address: "303 Maple St",
-    dni: 67890123,
-    cellPhone: 987654326,
-    linePhone: 123456794,
-    age: 20,
-    mail: "charlie.davis@example.com",
-    legajo: 1006,
-    matricula: 2006,
-    birthCert: true,
-    studyCert: true,
-    course: 6,
-    disability: true,
-    health: false,
-    active: true,
-    subjects: null,
-  },
-  {
-    code: 7,
-    name: "Grace",
-    lastname: "Taylor",
-    birthdate: "2001-01-25",
-    gender: "F",
-    address: "404 Birch St",
-    dni: 78901234,
-    cellPhone: 987654327,
-    linePhone: 123456795,
-    age: 22,
-    mail: "grace.taylor@example.com",
-    legajo: 1007,
-    matricula: 2007,
-    birthCert: true,
-    studyCert: true,
-    course: 7,
-    disability: false,
-    health: true,
-    active: true,
-    subjects: null,
-  },
-]
-
-export const fetchStudents = async () => {
+export const getAllStudents = async () => {
   try {
+    const students = await fetch("http://localhost:8080/api/student/all", {
+      cache: "no-store"
+    }).then(res => res.json()) as Student[]
 
-    await new Promise((res) => setTimeout(res, 2000))
-
-    return STUDENT_PLACEHOLDER
+    return students
   } catch (error) {
     console.error((error as Error).message)
     throw new Error("Error fetching students")
   }
 }
 
-export const fetchStudentById = async (id: number) => {
+export const getStudentById = async (id: number | string) => {
   try {
-    await new Promise((res) => setTimeout(res, 1000))
+    const students = await fetch(`http://localhost:8080/api/student/get/${id}`).then(res => res.json()) as Student
 
-    return STUDENT_PLACEHOLDER.find(({ code }) => code == id)
+    return students
   } catch (error) {
     console.error((error as Error).message)
     throw new Error("Error fetching student " + id)
   }
+}
+
+export const saveStudent = async (student: StudentFromForm) => {
+
+}
+
+export const updateStudent = async (student: StudentFromForm) => {
+
+}
+
+export const disableStudentById = async (id: string | number) => {
+
 }
