@@ -4,21 +4,25 @@ import { Suspense } from "react";
 import { randomUUID } from "crypto";
 import ListOfStudentsSkeleton from "@/app/ui/skeletons/ListOfStudentsSkeleton";
 import Table from "@/app/ui/dashboard/Table";
+import StudentDataPanel from "@/app/ui/dashboard/StudentDataPanel";
+import DataPanelSkeleton from "@/app/ui/skeletons/DataPanelSkeleton";
 
 export default function StudentsPage({
   searchParams
 }: {
   searchParams?: {
-    query?: string
+    query?: string,
+    sid?: string
   }
 }) {
 
   const query = searchParams?.query || ""
+  const idStudent = searchParams?.sid || null
 
   return (
-    <section className="w-full relative rounded-lg">
+    <section className="w-full relative min-h-full rounded-lg flex flex-col">
       <Header />
-      <article className="w-full flex">
+      <article className="w-full flex flex-grow">
         <div className="relative flex flex-col items-center flex-grow self-stretch">
           <div className="flex justify-between py-8 items-center self-stretch">
             <SearchBar />
@@ -28,13 +32,15 @@ export default function StudentsPage({
           {/* Students table */}
           <section className="flex items-center gap-5 flex-grow self-stretch">
             {/* Left panel */}
-            <article className="flex min-w-[64rem] flex-col justify-center items-start gap-5 flex-grow self-stretch max-w-5xl">
+            <article className="flex min-w-[64rem] flex-col justify-start items-start gap-5 flex-grow self-stretch max-w-5xl">
               <Suspense key={randomUUID() + query} fallback={<ListOfStudentsSkeleton />}>
                 <Table query={query} />
               </Suspense>
             </article>
 
-            {/* Right panel go here */}
+            <Suspense key={randomUUID() + query + idStudent} fallback={<DataPanelSkeleton />}>
+              <StudentDataPanel id={idStudent} />
+            </Suspense>
           </section>
         </div>
       </article>

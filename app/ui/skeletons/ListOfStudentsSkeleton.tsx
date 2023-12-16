@@ -1,10 +1,9 @@
 export default function ListOfStudentsSkeleton() {
   return (
-    <div className="w-full relative flex flex-col">
-      {/* Table */}
-      <div className="w-full min-h-[500px] max-h-[512px] p-2 rounded-lg max-w-5xl bg-black/[0.025]">
+    <div className="w-full max-w-[1008px] max-h-[450px] p-2 relative rounded-lg flex flex-col">
 
-        {/* Table heads */}
+      {/* Table heads */}
+      <div className="w-full">
         <div className="h-10 relative flex gap-x-10">
           <div className="h-full w-10 flex items-center">
             <span className="h-2 block w-full rounded-full bg-black/5 animate-pulse"></span>

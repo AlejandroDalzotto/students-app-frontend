@@ -17,7 +17,7 @@ export const getAllStudents = async (): Promise<Student[] | string> => {
 
 export const getAllStudentsByFilter = async (query: string) => {
   try {
-    const students = await fetch(`${BASE_URL}/all/filter?query=${query}`, { cache: "force-cache" }).then(r => r.json()) as Student[]
+    const students = await fetch(`${BASE_URL}/all/filter?query=${query}`, { cache: "no-store" }).then(r => r.json()) as Student[]
 
     return students
 

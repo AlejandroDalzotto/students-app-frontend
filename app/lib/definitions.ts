@@ -1,3 +1,7 @@
+export type RowData = Pick<Student, "id_student" | "name" | "lastName" | "birth" | "address" | "dni" | "legajo">
+
+export type CourseId = 1 | 2 | 3 | 4 | 5
+
 export interface Module {
   name: string;
   active: boolean;
@@ -27,7 +31,7 @@ export interface Student {
   matricula: number,
   birthCert: boolean,
   studyCert: boolean,
-  course: number,
+  course: CourseId,
   disability: boolean,
   health: boolean,
   active: boolean
