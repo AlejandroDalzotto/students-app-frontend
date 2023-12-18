@@ -1,18 +1,23 @@
 import Link from "next/link";
+import { login } from "../lib/actions";
 
 export default function SignInForm() {
+
   return (
     <section className="relative flex flex-col items-center py-20 px-6 max-w-lg w-screen">
 
       <h2 className="text-3xl my-3 font-semibold tracking-tighter">Iniciar sesión</h2>
 
-      <form>
+      <form action={login}>
         <input
+          autoComplete="off"
+          name="username"
           className="my-3 w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 rounded-lg leading-5"
-          type="email"
-          placeholder="Email"
+          type="text"
+          placeholder="Nombre de usuario"
         />
         <input
+          name="password"
           className="my-3 w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 rounded-lg leading-5"
           type="password"
           placeholder="Contraseña"

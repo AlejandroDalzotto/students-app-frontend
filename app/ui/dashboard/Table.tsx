@@ -1,9 +1,10 @@
-import { getAllStudentsByFilter } from "@/app/lib/services/student.service"
+import { fetchFilteredStudents } from "@/app/lib/actions"
 import Row from "./Row"
+import { Student } from "@/app/lib/definitions"
 
 export default async function Table({ query }: { query: string }) {
 
-  const students = await getAllStudentsByFilter(query)
+  const students: Student[] = await fetchFilteredStudents(query)
 
   return (
     <table className="w-full max-w-[1008px] p-2 text-gray-900 table rounded-lg">
@@ -33,7 +34,7 @@ export default async function Table({ query }: { query: string }) {
         </tr>
       </thead>
       <tbody className="bg-white">
-        {students instanceof Array ? students.map(({ id_student: id, name, lastName, birth, address, dni, legajo }) => (
+        {students.map(({ id_student: id, name, lastName, birth, address, dni, legajo }) => (
           <Row key={id} data={{
             id_student: id,
             name,
@@ -43,9 +44,7 @@ export default async function Table({ query }: { query: string }) {
             dni,
             legajo
           }} />
-        )) : (
-          <p>{students}</p>
-        )}
+        ))}
       </tbody>
     </table>
   )

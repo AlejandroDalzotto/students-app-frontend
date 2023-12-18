@@ -14,9 +14,10 @@ export default function SignInPage() {
         <Image
           src="/login-image-desktop.svg"
           alt="Imagen login"
-          width={1122}
-          height={939}
+          width={576}
+          height={612}
           className="hidden lg:block w-screen max-w-xl select-none"
+          priority={true}
         />
       </section>
     </main>

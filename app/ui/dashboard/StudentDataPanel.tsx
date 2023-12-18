@@ -1,10 +1,9 @@
-import { getStudentById } from "@/app/lib/services/student.service"
 import DataPanelPlaceholder from "../skeletons/DataPanelPlaceholder"
-import { type Student } from "@/app/lib/definitions"
 import Image from "next/image"
 import { getCourseStringFromNumber } from "@/app/lib/utils"
 import Divider from "./Divider"
 import StudentData, { StudentDataWithCheck } from "./StudentData"
+import { fetchStudentById } from "@/app/lib/actions"
 
 export default async function StudentDataPanel({ id }: { id?: string | number | null }) {
   if (!id) {
@@ -13,7 +12,7 @@ export default async function StudentDataPanel({ id }: { id?: string | number | 
     )
   }
 
-  const student = await getStudentById(id) as Student
+  const student = await fetchStudentById(id)
 
   return (
     <section className="relative rounded-lg gap-y-5 p-5 w-full h-full bg-black/5">
