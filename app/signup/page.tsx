@@ -1,9 +1,11 @@
 import Image from "next/image";
 import SignUpForm from "../ui/SignUpForm";
 import type { Metadata } from "next";
+import { APP_NAME } from "../lib/constants";
 
 export const metadata: Metadata = {
-  title: "Crear cuenta"
+  title: `Crear cuenta | ${APP_NAME}`,
+  description: "Puedes crear una cuenta a partir de una serie de datos que debes ingresar.",
 }
 
 export default function SignUpPage() {

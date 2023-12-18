@@ -1,9 +1,11 @@
 import Image from "next/image";
 import SignInForm from "../ui/SignInForm";
 import type { Metadata } from "next";
+import { APP_NAME } from "../lib/constants";
 
 export const metadata: Metadata = {
-  title: "Iniciar sesión"
+  title: `Iniciar sesión | ${APP_NAME}`,
+  description: `Inicia sesión en ${APP_NAME}`
 }
 
 export default function SignInPage() {

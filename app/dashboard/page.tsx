@@ -1,5 +1,12 @@
+import { type Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { APP_NAME } from "../lib/constants";
+
+export const metadata: Metadata = {
+  title: `Panel principal | ${APP_NAME}`,
+  description: `A partir de aquí puedes visitar casi cualquier apartado de ${APP_NAME}`
+}
 
 export default function DashboardPage() {
   return (

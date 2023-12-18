@@ -6,6 +6,13 @@ import ListOfStudentsSkeleton from "@/app/ui/skeletons/ListOfStudentsSkeleton";
 import Table from "@/app/ui/dashboard/Table";
 import StudentDataPanel from "@/app/ui/dashboard/StudentDataPanel";
 import DataPanelSkeleton from "@/app/ui/skeletons/DataPanelSkeleton";
+import { type Metadata } from "next";
+import { APP_NAME } from "@/app/lib/constants";
+
+export const metadata: Metadata = {
+  title: `Lista de Alumnos ${APP_NAME}`,
+  description: "Aquí puedes ver toda la información de los alumnos en el sistema, aparte de modificarla.",
+}
 
 export default function StudentsPage({
   searchParams

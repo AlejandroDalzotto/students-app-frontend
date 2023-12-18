@@ -39,8 +39,8 @@ export default async function StudentDataPanel({ id }: { id?: string | number | 
           <StudentData title="Correo electronico" icon="mail" text={student.mail} />
         </div>
         <div className="flex justify-between items-center w-full">
-          <StudentData title="Teléfono fijo" icon="call" text={student.linePhone ?? "--"} />
-          <StudentData title="Número de Celudar" icon="smartphone" text={student.cellPhone ?? "--"} />
+          <StudentData title="Teléfono fijo" icon="call" text={student.linePhone} />
+          <StudentData title="Número de Celudar" icon="smartphone" text={student.cellPhone} />
         </div>
         <Divider text="Información técnica" />
         <div className="flex justify-between items-center w-full">
