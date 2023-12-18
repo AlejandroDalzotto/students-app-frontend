@@ -1,5 +1,26 @@
 export type RowData = Pick<Student, "id_student" | "name" | "lastName" | "birth" | "address" | "dni" | "legajo">
 
+interface Authority {
+  authority: string
+}
+
+export interface User {
+  token: string,
+  username: string,
+  authorities: Authority[]
+}
+
+export interface UserSignIn {
+  username: string,
+  password: string
+}
+
+export interface UserSignUp extends UserSignIn {
+  email: string,
+  name: string,
+  lastname: string
+}
+
 export type CourseId = 1 | 2 | 3 | 4 | 5
 
 export interface Module {
