@@ -3,6 +3,7 @@
 import type { Student, User } from "./definitions"
 import { redirect } from "next/navigation"
 import { cookies } from "next/headers"
+import { revalidatePath } from "next/cache"
 
 const BASE_AUTH_URL = "http://localhost:8080/auth"
 const BASE_STUDENT_URL = "http://localhost:8080/api/student"
@@ -74,4 +75,60 @@ export async function fetchStudentById(id: number | string) {
     console.log((error as Error).message)
     throw new Error(`Error al buscar al alumno ${id}.`)
   }
+}
+
+export async function createStudent(formData: FormData) {
+
+  const token = cookies().get("token")?.value ?? ""
+
+  const rawStudent = {
+    name: formData.get("name"),
+    lastName: formData.get("lastName"),
+    birth: formData.get("birth"),
+    sex: formData.get("sex"),
+    address: formData.get("address"),
+    dni: formData.get("dni"),
+    cellPhone: formData.get("cellPhone"),
+    linePhone: formData.get("linePhone"),
+    age: 20,
+    mail: formData.get("mail"),
+    legajo: formData.get("legajo"),
+    matricula: formData.get("matricula"),
+    birthCert: formData.get("birthCert") === "on" ? true : false,
+    studyCert: formData.get("studyCert") === "on" ? true : false,
+    disability: formData.get("disability") === "on" ? true : false,
+    health: formData.get("health") === "on" ? true : false,
+    course: formData.get("course"),
+    active: true,
+    subjects: [],
+  }
+
+  console.log({data: rawStudent})
+
+  // try {
+
+  //   await fetch(`${BASE_STUDENT_URL}/add`, {
+  //     method: "POST",
+  //     headers: {
+  //       'Authorization': `Bearer ${token}`,
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(rawStudent)
+  //   })
+  // } catch (error) {
+  //   console.error((error as Error).message)
+  //   throw new Error("Error al agregar al nuevo alumno.")
+  // }
+
+  // revalidatePath("/dashboard/students")
+  // redirect("/dashboard/students")
+
+}
+
+export async function updateStudent(formData: FormData) {
+
+}
+
+export async function deleteStudent(id: string | number) {
+
 }

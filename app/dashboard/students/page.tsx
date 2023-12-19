@@ -8,9 +8,10 @@ import StudentDataPanel from "@/app/ui/dashboard/StudentDataPanel";
 import DataPanelSkeleton from "@/app/ui/skeletons/DataPanelSkeleton";
 import { type Metadata } from "next";
 import { APP_NAME } from "@/app/lib/constants";
+import AddButton from "@/app/ui/dashboard/AddButton";
 
 export const metadata: Metadata = {
-  title: `Lista de Alumnos ${APP_NAME}`,
+  title: `Lista de Alumnos | ${APP_NAME}`,
   description: "Aquí puedes ver toda la información de los alumnos en el sistema, aparte de modificarla.",
 }
 
@@ -33,7 +34,9 @@ export default function StudentsPage({
         <div className="relative flex flex-col items-center flex-grow self-stretch">
           <div className="flex justify-between py-8 items-center self-stretch">
             <SearchBar />
-            {/* Action buttons go here */}
+            <div>
+              <AddButton nagivateTo="/dashboard/students/add" />
+            </div>
           </div>
 
           {/* Students table */}

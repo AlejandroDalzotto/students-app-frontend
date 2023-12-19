@@ -56,8 +56,9 @@ export default function NavbarDashboard() {
             <li key={id}>
               <Link
                 className={`flex bg-black/5 items-center gap-x-4 py-3 px-4 rounded-lg 
-                w-full transition-colors hover:bg-blue-100 hover:fill-blue-500 hover:text-blue-500
-                ${pathname === route ? "fill-blue-500 text-blue-500 bg-blue-100" : ""}
+                w-full transition-all hover:bg-blue-100 hover:fill-blue-800 hover:text-blue-800
+                active:scale-90 active:shadow-inner
+                ${pathname === route ? "fill-blue-800 text-blue-800 bg-blue-100" : ""}
                 `}
                 href={route}
               >

@@ -32,8 +32,8 @@ export default function Row({ data }: Props) {
       className={`w-full border-b py-3 text-sm last-of-type:border-none 
       [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg 
       [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg
-      transition-colors hover:text-blue-500 hover:bg-blue-200 cursor-pointer
-      ${isSelected ? "text-blue-500 bg-blue-200" : ""}
+      transition-colors hover:text-blue-800 hover:bg-blue-100 cursor-pointer
+      ${isSelected ? "text-blue-800 bg-blue-100" : ""}
       `}
     >
       <td className="whitespace-nowrap text-lg text-center px-3 py-3">
@@ -51,7 +51,7 @@ export default function Row({ data }: Props) {
       <td className="whitespace-nowrap text-lg text-center px-3 py-3">
         {data.dni}
       </td>
-      <td className="whitespace-nowrap  text-lg text-center px-3 py-3">
+      <td className="whitespace-nowrap text-lg text-center px-3 py-3">
         {data.legajo}
       </td>
     </tr>
