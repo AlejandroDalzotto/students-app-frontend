@@ -103,25 +103,27 @@ export async function createStudent(formData: FormData) {
     subjects: [],
   }
 
-  console.log({data: rawStudent})
+  console.log({ data: rawStudent, token })
 
-  // try {
+  try {
 
-  //   await fetch(`${BASE_STUDENT_URL}/add`, {
-  //     method: "POST",
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`,
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(rawStudent)
-  //   })
-  // } catch (error) {
-  //   console.error((error as Error).message)
-  //   throw new Error("Error al agregar al nuevo alumno.")
-  // }
+    const result = await fetch(`${BASE_STUDENT_URL}/add`, {
+      method: "POST",
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(rawStudent)
+    }).then(r => r.json())
 
-  // revalidatePath("/dashboard/students")
-  // redirect("/dashboard/students")
+    console.log({ result })
+  } catch (error) {
+    console.error((error as Error).message)
+    throw new Error("Error al agregar al nuevo alumno.")
+  }
+
+  revalidatePath("/dashboard/students")
+  redirect("/dashboard/students")
 
 }
 
