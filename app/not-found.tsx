@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import React from 'react'
+import IconLink from './ui/Links/link-with-icon'
 
 export default function Page404() {
   return (
@@ -8,12 +8,7 @@ export default function Page404() {
         <p className='text-4xl font-bold text-blue-500'>404</p>
         <h2 className='text-7xl text-center font-extrabold'>Página no encontrada</h2>
         <p className='text-xl'>Lo sentimos, no pudimos encontrar la página que estas buscando.</p>
-        <Link href="/" className='flex gap-x-2 items-center justify-center rounded-lg text-lg py-3 px-6 transition-colors hover:bg-black/10'>
-          <svg role="img" className='w-5 h-5'>
-            <use xlinkHref="/sprites.svg#arrow-back"></use>
-          </svg>
-          <p>Volver al inicio</p>
-        </Link>
+        <IconLink icon='arrow-back'  href="/" text='volver al inicio' color='gray' />
       </div>
     </main>
   )

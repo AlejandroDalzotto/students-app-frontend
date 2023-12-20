@@ -1,17 +1,28 @@
-import Link from 'next/link'
+import type { color, variant } from '@material-tailwind/react/types/components/button';
+import DefaultLink from './Links/default-link'
 
-const APP_LINKS = [
+interface LinkProps {
+  id: number;
+  text: string;
+  href: string;
+  color?: color;
+  variant?: variant
+}
+
+const APP_LINKS: LinkProps[] = [
   {
     id: 1,
-    label: "Sobre nosotros",
+    text: "Sobre nosotros",
     href: "/about",
-    type: "secondary"
+    color: "gray",
+    variant: 'outlined'
   },
   {
     id: 2,
-    label: "Iniciar sesión",
+    text: "Iniciar sesión",
     href: "/signin",
-    type: "primary"
+    color: "blue",
+    variant: 'filled'
   }
 ]
 
@@ -20,10 +31,10 @@ export default function NavLinks() {
     <nav>
 
       <ul className='flex gap-x-7'>
-        {APP_LINKS.map(({label, href, id, type}) => {
+        {APP_LINKS.map(({text, href, id, color, variant}) => {
           return (
             <li key={id}>
-              <Link href={href} className={`nav-link-${type}`}>{label}</Link>
+              <DefaultLink href={href} text={text} color={color} variant={variant} />
             </li>
           )
         })}

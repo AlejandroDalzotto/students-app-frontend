@@ -1,4 +1,3 @@
-import Header from "@/app/ui/dashboard/Header";
 import SearchBar from "@/app/ui/dashboard/SearchBar";
 import { Suspense } from "react";
 import { randomUUID } from "crypto";
@@ -28,8 +27,7 @@ export default function StudentsPage({
   const idStudent = searchParams?.sid || null
 
   return (
-    <section className="w-full relative min-h-full rounded-lg flex flex-col">
-      <Header />
+    <section className="w-full relative min-h-full rounded-lg flex flex-col p-4">
       <article className="w-full flex flex-grow">
         <div className="relative flex flex-col items-center flex-grow self-stretch">
           <div className="flex justify-between py-8 items-center self-stretch">
