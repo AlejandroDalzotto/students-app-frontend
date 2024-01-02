@@ -28,7 +28,7 @@ export default async function StudentDataPanel({ id }: { id?: string | number | 
 
         <span className="text-3xl font-semibold text-blue-500 whitespace-nowrap">{getCourseStringFromNumber(student.course)}</span>
       </header>
-      <article className="flex flex-col flex-grow w-full gap-y-5 mt-10">
+      <article className="flex flex-col flex-grow w-full gap-y-6 mt-10">
         <Divider text="Información personal" />
         <div className="flex justify-between items-center w-full">
           <StudentData title="Edad" icon="calendar_clock" text={student.age} />

@@ -1,7 +1,7 @@
 import Image from "next/image";
-import SignInForm from "../ui/SignInForm";
 import type { Metadata } from "next";
-import { APP_NAME } from "../lib/constants";
+import SignInForm from "@/app/ui/SignInForm";
+import { APP_NAME } from "@/app/lib/constants";
 
 export const metadata: Metadata = {
   title: `Iniciar sesión | ${APP_NAME}`,

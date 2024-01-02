@@ -1,9 +1,8 @@
 "use client"
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import SidebarLink from '../Links/sidebar-link'
 import MenuButton from '../buttons/menu-button'
 import clsx from 'clsx'
@@ -73,14 +72,14 @@ export default function Sidebar() {
           {NAVBAR_LINKS.map(({ id, label, route, icon_id: iconId }) => {
             return (
               <li key={id} className={clsx({ "w-fit": !isOpen })}>
-                <SidebarLink isSidebarOpen={isOpen} href={route} icon={iconId} isActive={pathname === route} text={label} color={"white"} variant={'filled'} />
+                <SidebarLink isSidebarOpen={isOpen} href={route} icon={iconId} isActive={pathname === route} text={label} />
               </li>
             )
           })}
         </div>
         <div className='flex flex-col gap-y-3'>
-          <SidebarLink href="/settings" icon='settings' isActive={pathname === "/settings"} isSidebarOpen={isOpen} text='Configuraciones' color='white' variant='filled' />
-          <LogoutButton action={() => console.log("logout")} isSidebarOpen={isOpen} color='white' variant='filled' />
+          <SidebarLink href="/settings" icon='settings' isActive={pathname === "/settings"} isSidebarOpen={isOpen} text='Configuraciones' />
+          <LogoutButton action={() => console.log("logout")} isSidebarOpen={isOpen} />
         </div>
       </ul>
 

@@ -1,6 +1,7 @@
 "use client"
 
 import { RowData } from "@/app/lib/definitions"
+import { formatDateString } from "@/app/lib/utils"
 import { useSearchParams, usePathname, useRouter } from "next/navigation"
 import { type Key } from "react"
 
@@ -43,7 +44,7 @@ export default function Row({ data }: Props) {
         {data.name}, {data.lastName}
       </td>
       <td className="whitespace-nowrap text-lg text-center px-3 py-3">
-        {new Date(data.birth).toLocaleDateString()}
+        {formatDateString(data.birth)}
       </td>
       <td className="whitespace-nowrap text-lg text-center px-3 py-3">
         {data.address}

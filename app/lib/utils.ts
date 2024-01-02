@@ -9,3 +9,10 @@ const COURSES = {
 export const getCourseStringFromNumber = (num: 1 | 2 | 3 | 4 | 5): string => {
   return COURSES[num]
 }
+
+export const formatDateString = (date: string) => {
+
+  const [year, month, day] = date.split("-")
+
+  return `${day}/${month}/${year}`
+}

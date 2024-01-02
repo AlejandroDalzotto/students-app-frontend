@@ -1,6 +1,6 @@
 import Image from "next/image";
-import TitleNav from "./ui/TitleNav";
-import NavLinks from "./ui/nav-links";
+import TitleNav from "@/app/ui/TitleNav";
+import NavLinks from "@/app/ui/nav-links";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -8,14 +8,14 @@ export default function HomePage() {
   return (
     <main className="p-6 container mx-auto relative">
 
-      <header className="flex justify-between items-center py-10 px-20">
+      <header className="flex flex-col md:flex-row gap-y-5 w-full justify-between items-center py-10">
         <TitleNav />
         <NavLinks />
       </header>
 
-      <section className="flex w-full justify-between pt-20 px-20">
-        <article>
-          <p className="text-7xl font-extrabold" style={{ textWrap: "balance" }}>Lleve sus datos de la <span className="text-blue-500">mejor manera</span></p>
+      <section className="flex w-full relative justify-between mt-10 md:px-10 lg:px-20">
+        <article className="w-full">
+          <p className="text-5xl lg:text-7xl font-extrabold [text-wrap:balance]">Lleve sus datos de la <span className="text-blue-500">mejor manera</span></p>
 
           <ul className="flex flex-col gap-y-4 text-lg font-medium mt-10">
             <li>✔ Trabaje con seguridad y confianza</li>
@@ -34,7 +34,8 @@ export default function HomePage() {
             alt="Imagen ilustrativa para escritorio"
             width={1122}
             height={939}
-            className="w-screen max-w-lg select-none"
+            className="w-screen max-w-lg select-none hidden lg:block"
+            priority
           />
         </article>
       </section>

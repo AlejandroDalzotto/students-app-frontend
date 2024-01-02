@@ -1,7 +1,7 @@
+import { APP_NAME } from "@/app/lib/constants";
 import { type Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { APP_NAME } from "../lib/constants";
 
 export const metadata: Metadata = {
   title: `Panel principal | ${APP_NAME}`,

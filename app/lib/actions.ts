@@ -103,8 +103,6 @@ export async function createStudent(formData: FormData) {
     subjects: [],
   }
 
-  console.log({ data: rawStudent, token })
-
   try {
 
     const result = await fetch(`${BASE_STUDENT_URL}/add`, {
@@ -115,8 +113,6 @@ export async function createStudent(formData: FormData) {
       },
       body: JSON.stringify(rawStudent)
     }).then(r => r.json())
-
-    console.log({ result })
   } catch (error) {
     console.error((error as Error).message)
     throw new Error("Error al agregar al nuevo alumno.")

@@ -1,7 +1,7 @@
 import Image from "next/image";
-import SignUpForm from "../ui/SignUpForm";
 import type { Metadata } from "next";
-import { APP_NAME } from "../lib/constants";
+import SignUpForm from "@/app/ui/SignUpForm";
+import { APP_NAME } from "@/app/lib/constants";
 
 export const metadata: Metadata = {
   title: `Crear cuenta | ${APP_NAME}`,
