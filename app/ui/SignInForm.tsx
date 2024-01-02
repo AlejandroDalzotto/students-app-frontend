@@ -27,8 +27,8 @@ export default function SignInForm() {
           className="bg-blue-500 text-white font-semibold text-xl transition-colors hover:bg-blue-700 duration-100 mx-auto block my-10 py-3 px-6 rounded-lg"
           type="submit">Entrar</button>
 
-        <Link href="/signup" className="uppercase font-medium text-neutral-500 text-xs mx-auto block p-2 w-fit hover:text-black">crear cuenta</Link>
-        <Link href="/" className="uppercase font-medium text-neutral-500 text-xs mx-auto block p-2 w-fit hover:text-black">volver a la pantalla principal</Link>
+        <Link href="/signup" className="uppercase font-medium text-neutral-500 text-xs mx-auto block p-4 md:p-3 w-fit hover:text-black">crear cuenta</Link>
+        <Link href="/" className="uppercase font-medium text-neutral-500 text-xs mx-auto block p-4 md:p-3 w-fit hover:text-black">volver a la pantalla principal</Link>
       </form>
     </section>
   )
