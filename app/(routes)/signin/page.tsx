@@ -18,7 +18,7 @@ export default function SignInPage() {
           alt="Imagen login"
           width={576}
           height={612}
-          className="hidden lg:block w-screen max-w-xl select-none"
+          className="hidden lg:block select-none"
           priority={true}
         />
       </section>
