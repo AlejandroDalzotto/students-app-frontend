@@ -41,14 +41,11 @@ export default function Sidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className={clsx(
-      "min-h-full w-80 flex flex-col transition-all",
-      {
-        "w-fit": !isOpen
-      }
+    <aside style={{ width: isOpen ? '20rem' : '6rem' }} className={clsx(
+      "min-h-full flex flex-col transition-all gap-y-2 relative",
     )}>
       <header className={clsx(
-        'relative h-28 w-full bg-blue-500 flex items-center px-8 justify-between'
+        'relative h-36 w-full px-6 rounded-lg bg-blue-500 flex items-center justify-between'
       )}>
         <MenuButton toggle={() => setIsOpen(!isOpen)} />
         <Image
@@ -57,7 +54,7 @@ export default function Sidebar() {
           width={250}
           height={156}
           className={clsx(
-            "w-auto h-20",
+            "w-auto h-28",
             {
               "hidden": !isOpen
             }
@@ -66,12 +63,15 @@ export default function Sidebar() {
         />
       </header>
 
-      <ul className={clsx('relative mt-3 w-full h-full flex flex-col justify-between bg-white p-2', { "items-center": !isOpen })}>
-
-        <div className='flex flex-col gap-y-3'>
+      <ul className={
+        clsx(
+          'relative w-full h-full flex flex-col justify-between bg-white'
+        )
+      }>
+        <div className='flex flex-col gap-y-3 h-full'>
           {NAVBAR_LINKS.map(({ id, label, route, icon_id: iconId }) => {
             return (
-              <li key={id} className={clsx({ "w-fit": !isOpen })}>
+              <li key={id} className={clsx({ "w-fit": !isOpen }, { "w-full": isOpen })}>
                 <SidebarLink isSidebarOpen={isOpen} href={route} icon={iconId} isActive={pathname === route} text={label} />
               </li>
             )
