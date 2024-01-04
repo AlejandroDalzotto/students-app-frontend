@@ -4,6 +4,7 @@ import type { Student, User } from "./definitions"
 import { redirect } from "next/navigation"
 import { cookies } from "next/headers"
 import { revalidatePath } from "next/cache"
+import { calculateAge } from "./utils"
 
 const BASE_AUTH_URL = "http://localhost:8080/auth"
 const BASE_STUDENT_URL = "http://localhost:8080/api/student"
@@ -81,6 +82,8 @@ export async function createStudent(formData: FormData) {
 
   const token = cookies().get("token")?.value ?? ""
 
+  const studentAge = calculateAge(formData.get("birth")?.toString())
+
   const rawStudent = {
     name: formData.get("name"),
     lastName: formData.get("lastName"),
@@ -90,7 +93,7 @@ export async function createStudent(formData: FormData) {
     dni: formData.get("dni"),
     cellPhone: formData.get("cellPhone"),
     linePhone: formData.get("linePhone"),
-    age: 20,
+    age: studentAge,
     mail: formData.get("mail"),
     legajo: formData.get("legajo"),
     matricula: formData.get("matricula"),
@@ -105,7 +108,7 @@ export async function createStudent(formData: FormData) {
 
   try {
 
-    const result = await fetch(`${BASE_STUDENT_URL}/add`, {
+    await fetch(`${BASE_STUDENT_URL}/add`, {
       method: "POST",
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -129,4 +132,10 @@ export async function updateStudent(formData: FormData) {
 
 export async function deleteStudent(id: string | number) {
 
+  try {
+
+  } catch (error) {
+    console.error((error as Error).message)
+    throw new Error(`Error al eliminar alumno ${id}.`)
+  }
 }

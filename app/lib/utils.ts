@@ -16,3 +16,20 @@ export const formatDateString = (date: string) => {
 
   return `${day}/${month}/${year}`
 }
+
+export const calculateAge = (date: string | undefined): number => {
+
+  if (date === undefined) {
+    return 0
+  }
+
+  const today = new Date();
+  const birthDate = new Date(date);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+
+  return age;
+}
