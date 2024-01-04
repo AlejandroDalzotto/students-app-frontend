@@ -7,23 +7,29 @@ import DataPanelSkeleton from "@/app/ui/skeletons/DataPanelSkeleton";
 import { type Metadata } from "next";
 import { APP_NAME } from "@/app/lib/constants";
 import AddButton from "@/app/ui/dashboard/AddButton";
+import { fetchStudentsPages } from "@/app/lib/actions";
+import Pagination from "@/app/ui/dashboard/Pagination";
 
 export const metadata: Metadata = {
   title: `Lista de Alumnos | ${APP_NAME}`,
   description: "Aquí puedes ver toda la información de los alumnos en el sistema, aparte de modificarla.",
 }
 
-export default function StudentsPage({
+export default async function StudentsPage({
   searchParams
 }: {
   searchParams?: {
     query?: string,
-    sid?: string
+    sid?: string,
+    page?: string,
   }
 }) {
 
   const query = searchParams?.query || ""
   const idStudent = searchParams?.sid || null
+  const currentPage = Number(searchParams?.page) || 1
+
+  const totalPages = await fetchStudentsPages(query)
 
   return (
     <section className="w-full relative min-h-full rounded-lg flex flex-col p-4">
@@ -41,8 +47,12 @@ export default function StudentsPage({
             {/* Left panel */}
             <article className="flex min-w-[64rem] flex-col justify-start items-start gap-5 flex-grow self-stretch">
               <Suspense key={query} fallback={<ListOfStudentsSkeleton />}>
-                <Table query={query} />
+                <Table query={query} currentPage={currentPage} />
               </Suspense>
+
+              <div className="mt-5 flex w-full justify-center">
+                <Pagination totalPages={totalPages} />
+              </div>
             </article>
 
             <Suspense key={query + idStudent} fallback={<DataPanelSkeleton />}>

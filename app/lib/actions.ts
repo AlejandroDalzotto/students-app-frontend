@@ -9,6 +9,8 @@ import { calculateAge } from "./utils"
 const BASE_AUTH_URL = "http://localhost:8080/auth"
 const BASE_STUDENT_URL = "http://localhost:8080/api/student"
 
+const ITEMS_PER_PAGE = 10
+
 // Auth actions
 
 export async function login(formData: FormData) {
@@ -38,12 +40,14 @@ export async function login(formData: FormData) {
 
 // Student actions
 
-export async function fetchFilteredStudents(query: string = "", limit: number = 10, offset: number = 0) {
+export async function fetchFilteredStudents(query: string = "", currentPage: number = 1) {
 
   const token = cookies().get("token")?.value ?? ""
 
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+
   try {
-    const students: Student[] = await fetch(`${BASE_STUDENT_URL}/all/filter?query=${query}&limit=${limit}&offset=${offset}`, {
+    const students: Student[] = await fetch(`${BASE_STUDENT_URL}/all/filter?query=${query}&limit=${ITEMS_PER_PAGE}&offset=${offset}`, {
       cache: "no-store",
       headers: {
         'Authorization': `Bearer ${token}`
@@ -137,5 +141,32 @@ export async function deleteStudent(id: string | number) {
   } catch (error) {
     console.error((error as Error).message)
     throw new Error(`Error al eliminar alumno ${id}.`)
+  }
+}
+
+// Pagination
+
+export async function fetchStudentsPages(query: string = ""): Promise<number> {
+
+  const token = cookies().get("token")?.value ?? ""
+
+  try {
+    const response = await fetch(`${BASE_STUDENT_URL}/all/pages?query=${query}`,
+      {
+        cache: "no-store",
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    )
+
+    const count = await response.json() as number
+
+    const totalPages = Math.ceil(count / ITEMS_PER_PAGE);
+
+    return totalPages;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch total number of invoices.');
   }
 }
