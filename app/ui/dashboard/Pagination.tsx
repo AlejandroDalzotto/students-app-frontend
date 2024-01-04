@@ -77,11 +77,11 @@ function PaginationNumber({
   isActive: boolean;
 }) {
   const className = clsx(
-    `flex h-10 w-10 items-center justify-center text-sm border ${(!isActive && position !== 'middle')}`,
+    `flex h-14 w-14 items-center justify-center text-lg font-medium border-2 border-neutral-950z ${(!isActive && position !== 'middle')}`,
     {
       'rounded-l-md': position === 'first' || position === 'single',
       'rounded-r-md': position === 'last' || position === 'single',
-      'z-10 bg-blue-600 border-blue-600 text-white': isActive,
+      'z-10 bg-blue-500 border-blue-500 text-white': isActive,
       'hover:bg-gray-100': !isActive && position !== 'middle',
       'text-gray-300': position === 'middle',
     },
@@ -106,10 +106,10 @@ function PaginationArrow({
   isDisabled?: boolean;
 }) {
   const className = clsx(
-    "flex h-10 w-10 items-center justify-center rounded-md border",
+    "flex h-14 w-14 items-center justify-center rounded-md border-2",
     {
       'pointer-events-none text-gray-300 fill-neutral-300': isDisabled,
-      'hover:bg-gray-100': !isDisabled,
+      'hover:bg-gray-100 fill-neutral-950': !isDisabled,
       'mr-2 md:mr-4': direction === 'left',
       'ml-2 md:ml-4': direction === 'right',
     },
@@ -117,11 +117,11 @@ function PaginationArrow({
 
   const icon =
     direction === 'left' ? (
-      <svg className="w-4 h-4">
+      <svg className="w-6 h-6">
         <use xlinkHref="/sprites.svg#arrow-left"></use>
       </svg>
     ) : (
-      <svg className="w-4 h-4">
+      <svg className="w-6 h-6">
         <use xlinkHref="/sprites.svg#arrow-right"></use>
       </svg>
     );
