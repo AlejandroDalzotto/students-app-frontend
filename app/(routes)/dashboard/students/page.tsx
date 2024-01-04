@@ -9,6 +9,7 @@ import { APP_NAME } from "@/app/lib/constants";
 import AddButton from "@/app/ui/dashboard/AddButton";
 import { fetchStudentsPages } from "@/app/lib/actions";
 import Pagination from "@/app/ui/dashboard/Pagination";
+import EditButtom from "@/app/ui/dashboard/EditButtom";
 
 export const metadata: Metadata = {
   title: `Lista de Alumnos | ${APP_NAME}`,
@@ -37,7 +38,8 @@ export default async function StudentsPage({
         <div className="relative flex flex-col items-center flex-grow self-stretch">
           <div className="flex justify-between py-8 items-center self-stretch">
             <SearchBar />
-            <div>
+            <div className="flex items-center gap-x-5">
+              <EditButtom active={Boolean(idStudent)} nagivateTo={`/dashboard/students/edit?sid=${idStudent}`} />
               <AddButton nagivateTo="/dashboard/students/add" />
             </div>
           </div>
@@ -55,6 +57,7 @@ export default async function StudentsPage({
               </div>
             </article>
 
+            {/* Right panel */}
             <Suspense key={query + idStudent} fallback={<DataPanelSkeleton />}>
               <StudentDataPanel id={idStudent} />
             </Suspense>

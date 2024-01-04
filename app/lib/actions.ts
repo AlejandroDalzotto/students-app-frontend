@@ -130,8 +130,48 @@ export async function createStudent(formData: FormData) {
 
 }
 
-export async function updateStudent(formData: FormData) {
+export async function updateStudent(formData: FormData, id: string | number) {
 
+  const token = cookies().get("token")?.value ?? ""
+
+  const studentAge = calculateAge(formData.get("birth")?.toString())
+
+  const rawStudent = {
+    name: formData.get("name"),
+    lastName: formData.get("lastName"),
+    birth: formData.get("birth"),
+    sex: formData.get("sex"),
+    address: formData.get("address"),
+    dni: formData.get("dni"),
+    cellPhone: formData.get("cellPhone"),
+    linePhone: formData.get("linePhone"),
+    age: studentAge,
+    mail: formData.get("mail"),
+    legajo: formData.get("legajo"),
+    matricula: formData.get("matricula"),
+    birthCert: formData.get("birthCert") === "on" ? true : false,
+    studyCert: formData.get("studyCert") === "on" ? true : false,
+    disability: formData.get("disability") === "on" ? true : false,
+    health: formData.get("health") === "on" ? true : false,
+    course: formData.get("course"),
+    active: true,
+    subjects: [],
+  }
+
+  try {
+
+    await fetch(`${BASE_STUDENT_URL}/edit/${id}`, {
+      method: "PUT",
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(rawStudent)
+    }).then(r => r.json())
+  } catch (error) {
+    console.error((error as Error).message)
+    throw new Error("Error al agregar al nuevo alumno.")
+  }
 }
 
 export async function deleteStudent(id: string | number) {

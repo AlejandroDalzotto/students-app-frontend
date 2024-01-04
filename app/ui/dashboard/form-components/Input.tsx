@@ -6,6 +6,7 @@ interface DefaultProps {
   label?: string;
   placeholder?: string;
   required?: boolean;
+  defaultValue?: string | number | readonly string[] | undefined;
 }
 
 interface RadioProps extends Omit<DefaultProps, "type" | "placeholder" | "required"> {
@@ -13,14 +14,16 @@ interface RadioProps extends Omit<DefaultProps, "type" | "placeholder" | "requir
   value: string;
 }
 
-interface CheckboxProps extends Omit<DefaultProps, "type" | "placeholder" | "required"> { }
+interface CheckboxProps extends Omit<DefaultProps, "type" | "placeholder" | "required"> {
+  checked?: boolean | undefined
+}
 
-export function InputCheckbox({ name, label }: CheckboxProps) {
+export function InputCheckbox({ name, label, checked }: CheckboxProps) {
   const id = useId()
   return (
     <div className="inline-flex items-center">
       <label className="relative flex w-fit items-center p-3 rounded-full cursor-pointer" htmlFor={`${id}-${name}`}>
-        <input type="checkbox"
+        <input type="checkbox" defaultChecked={checked}
           name={name}
           className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-gray-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:bg-gray-900 checked:before:bg-gray-900 hover:before:opacity-10"
           id={`${id}-${name}`} />
@@ -63,11 +66,12 @@ export function InputRadio({ name, value, defaultChecked, label }: RadioProps) {
   )
 }
 
-export default function Input({ name, placeholder, type, label, required }: DefaultProps) {
+export default function Input({ name, placeholder, type, label, required, defaultValue }: DefaultProps) {
   const id = useId()
   return (
     <div className="relative h-full w-full min-w-[200px] my-10">
       <input type={type} placeholder={placeholder}
+        defaultValue={defaultValue}
         name={name}
         required={required}
         id={`${id}-${name}`}
