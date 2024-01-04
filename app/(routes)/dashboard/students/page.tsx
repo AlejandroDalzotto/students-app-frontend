@@ -1,6 +1,5 @@
 import SearchBar from "@/app/ui/dashboard/SearchBar";
 import { Suspense } from "react";
-import { randomUUID } from "crypto";
 import ListOfStudentsSkeleton from "@/app/ui/skeletons/ListOfStudentsSkeleton";
 import Table from "@/app/ui/dashboard/Table";
 import StudentDataPanel from "@/app/ui/dashboard/StudentDataPanel";
@@ -40,13 +39,13 @@ export default function StudentsPage({
           {/* Students table */}
           <section className="flex items-center gap-5 flex-grow self-stretch">
             {/* Left panel */}
-            <article className="flex min-w-[64rem] flex-col justify-start items-start gap-5 flex-grow self-stretch max-w-5xl">
-              <Suspense key={randomUUID() + query} fallback={<ListOfStudentsSkeleton />}>
+            <article className="flex min-w-[64rem] flex-col justify-start items-start gap-5 flex-grow self-stretch">
+              <Suspense key={query} fallback={<ListOfStudentsSkeleton />}>
                 <Table query={query} />
               </Suspense>
             </article>
 
-            <Suspense key={randomUUID() + query + idStudent} fallback={<DataPanelSkeleton />}>
+            <Suspense key={query + idStudent} fallback={<DataPanelSkeleton />}>
               <StudentDataPanel id={idStudent} />
             </Suspense>
           </section>

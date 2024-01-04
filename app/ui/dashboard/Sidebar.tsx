@@ -7,6 +7,7 @@ import SidebarLink from '../Links/sidebar-link'
 import MenuButton from '../buttons/menu-button'
 import clsx from 'clsx'
 import LogoutButton from '../buttons/logout-button'
+import Link from 'next/link'
 
 const NAVBAR_LINKS = [
   {
@@ -63,7 +64,7 @@ export default function Sidebar() {
         />
       </header>
 
-      <ul className={
+      <section className={
         clsx(
           'relative w-full h-full flex flex-col justify-between bg-white'
         )
@@ -71,17 +72,28 @@ export default function Sidebar() {
         <div className='flex flex-col gap-y-3 h-full'>
           {NAVBAR_LINKS.map(({ id, label, route, icon_id: iconId }) => {
             return (
-              <li key={id} className={clsx({ "w-fit": !isOpen }, { "w-full": isOpen })}>
-                <SidebarLink isSidebarOpen={isOpen} href={route} icon={iconId} isActive={pathname === route} text={label} />
-              </li>
+              <SidebarLink key={id} isSidebarOpen={isOpen} href={route} icon={iconId} isActive={pathname === route} text={label} />
             )
           })}
         </div>
         <div className='flex flex-col gap-y-3'>
-          <SidebarLink href="/settings" icon='settings' isActive={pathname === "/settings"} isSidebarOpen={isOpen} text='Configuraciones' />
+          <Link
+            href={"/settings"}
+            className={
+              clsx(
+                "relative py-2 px-6 text-lg font-medium rounded-lg flex justify-start items-center gap-3 fill-black text-black transition-all hover:fill-blue-800 hover:bg-blue-100 hover:text-blue-800 active:scale-90",
+                { "fill-blue-800 bg-blue-100 text-blue-800": pathname === "/settings" }
+              )} title={`Ir a ${"Configuraciones".toLowerCase()}`}>
+
+            <svg className="h-10 w-10">
+              <use xlinkHref={"/sprites.svg#settings"}></use>
+            </svg>
+
+            {isOpen && <p>Configuraciones</p>}
+          </Link>
           <LogoutButton action={() => console.log("logout")} isSidebarOpen={isOpen} />
         </div>
-      </ul>
+      </section>
 
     </aside>
   )

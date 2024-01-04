@@ -15,8 +15,8 @@ export default async function StudentDataPanel({ id }: { id?: string | number | 
   const student = await fetchStudentById(id)
 
   return (
-    <section className="relative rounded-lg gap-y-5 p-5 w-full h-full bg-black/5">
-      <header className="w-full h-fit gap-5 items-center justify-between flex">
+    <section className="relative rounded-lg gap-y-5 p-5 w-full max-w-lg h-full bg-black/5">
+      <header className="w-full h-fit gap-5 items-center flex">
         <Image
           width={120}
           height={120}
@@ -24,15 +24,16 @@ export default async function StudentDataPanel({ id }: { id?: string | number | 
           src={student.sex.toLowerCase() === "m" ? "/male_avatar.svg" : "/female_avatar.svg"}
         />
 
-        <p className="text-3xl font-semibold text-start whitespace-nowrap">{student.name}, {student.lastName}</p>
-
-        <span className="text-3xl font-semibold text-blue-500 whitespace-nowrap">{getCourseStringFromNumber(student.course)}</span>
+        <div className="flex flex-col">
+          <p className="text-3xl font-semibold text-start whitespace-nowrap">{student.name}, {student.lastName}</p>
+          <span className="text-2xl font-semibold text-blue-500 whitespace-nowrap">{getCourseStringFromNumber(student.course)}</span>
+        </div>
       </header>
       <article className="flex flex-col flex-grow w-full gap-y-6 mt-10">
         <Divider text="Información personal" />
         <div className="flex justify-between items-center w-full">
           <StudentData title="Edad" icon="calendar_clock" text={student.age} />
-          <StudentData title="Dirección" icon="description" text={student.address} />
+          <StudentData title="Dirección" icon="home" text={student.address} />
         </div>
         <Divider text="Contácto" />
         <div className="flex justify-between items-center w-full">

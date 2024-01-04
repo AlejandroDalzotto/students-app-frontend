@@ -2,6 +2,7 @@
 
 import { RowData } from "@/app/lib/definitions"
 import { formatDateString } from "@/app/lib/utils"
+import clsx from "clsx"
 import { useSearchParams, usePathname, useRouter } from "next/navigation"
 import { type Key } from "react"
 
@@ -25,6 +26,8 @@ export default function Row({ data }: Props) {
   }
 
   const isSelected = Number(params.get("sid")) === data.id_student
+
+  const hasLegajo = data.legajo ? "completo" : "incompleto"
 
   return (
     <tr
@@ -52,8 +55,16 @@ export default function Row({ data }: Props) {
       <td className="whitespace-nowrap text-lg text-center px-3 py-3">
         {data.dni}
       </td>
-      <td className="whitespace-nowrap text-lg text-center px-3 py-3">
-        {data.legajo}
+      <td className={clsx(
+        "whitespace-nowrap text-lg text-center px-3 py-3 capitalize",
+        {
+          "text-green-600": hasLegajo === "completo"
+        },
+        {
+          "text-red-600": hasLegajo === "incompleto"
+        }
+      )}>
+        {hasLegajo}
       </td>
     </tr>
   )
