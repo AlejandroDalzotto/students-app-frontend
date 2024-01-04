@@ -15,7 +15,7 @@ export default async function StudentDataPanel({ id }: { id?: string | number | 
   const student = await fetchStudentById(id)
 
   return (
-    <section className="relative rounded-lg gap-y-5 p-5 w-full max-w-lg h-full bg-black/5">
+    <section className="relative rounded-lg flex flex-col items-center gap-y-5 p-5 w-full max-w-lg h-full bg-black/5">
       <header className="w-full h-fit gap-5 items-center flex">
         <Image
           width={120}

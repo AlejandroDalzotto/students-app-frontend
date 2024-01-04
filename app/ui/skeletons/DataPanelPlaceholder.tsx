@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function DataPanelPlaceholder() {
   return (
-    <div className="flex p-5 flex-col items-center justify-center gap-5 flex-grow bg-black/5 h-full rounded-lg">
+    <div className="relative rounded-lg flex flex-col justify-center items-center gap-y-5 p-5 w-full max-w-lg h-full bg-black/5">
       <Image
         src="/no_data.svg"
         alt="Imagen de la carta de info"
