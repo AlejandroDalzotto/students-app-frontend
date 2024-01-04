@@ -66,16 +66,16 @@ export function InputRadio({ name, value, defaultChecked, label }: RadioProps) {
 export default function Input({ name, placeholder, type, label, required }: DefaultProps) {
   const id = useId()
   return (
-    <div className="relative h-auto w-full min-w-[200px] my-10">
+    <div className="relative h-full w-full min-w-[200px] my-10">
       <input type={type} placeholder={placeholder}
         name={name}
         required={required}
         id={`${id}-${name}`}
         autoComplete="off"
-        className="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100" />
+        className="peer h-full w-full text-xl text-neutral-950 border-b border-gray-200 bg-transparent pt-4 pb-1.5 font-normal outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100" />
       <label
         htmlFor={`${id}-${name}`}
-        className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-gray-700 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-500">
+        className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-xl peer-placeholder-shown:leading-[2.95] peer-placeholder-shown:text-gray-500 peer-focus:text-[14px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-500">
         {label}
       </label>
     </div>
