@@ -176,12 +176,21 @@ export async function updateStudent(formData: FormData, id: string | number) {
 
 export async function deleteStudent(id: string | number) {
 
-  try {
+  const token = cookies().get("token")?.value ?? ""
 
+  try {
+    await fetch(`${BASE_STUDENT_URL}/inactive/${id}`, {
+      method: "PUT",
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    })
   } catch (error) {
     console.error((error as Error).message)
     throw new Error(`Error al eliminar alumno ${id}.`)
   }
+
+  revalidatePath("/dashboard/students")
 }
 
 // Pagination

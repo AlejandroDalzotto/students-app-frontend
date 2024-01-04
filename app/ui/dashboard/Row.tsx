@@ -4,10 +4,8 @@ import { RowData } from "@/app/lib/definitions"
 import { formatDateString } from "@/app/lib/utils"
 import clsx from "clsx"
 import { useSearchParams, usePathname, useRouter } from "next/navigation"
-import { type Key } from "react"
 
 interface Props {
-  key?: Key | null | undefined
   data: RowData
 }
 

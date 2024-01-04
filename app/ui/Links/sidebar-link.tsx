@@ -1,21 +1,18 @@
 import clsx from "clsx";
 import Link from "next/link";
-import type { Key } from "react";
 
 interface Props {
   text: string;
   href: string;
   icon: string;
-  key?: Key | null;
   isActive: boolean;
   isSidebarOpen: boolean;
 }
 
-export default function SidebarLink({ href, text, key, icon, isActive, isSidebarOpen }: Props) {
+export default function SidebarLink({ href, text, icon, isActive, isSidebarOpen }: Props) {
   return (
     <Link
       href={href}
-      key={key}
       className={
         clsx(
           "relative py-2 px-6 text-lg font-medium rounded-lg flex justify-start items-center gap-3 fill-black text-black transition-all hover:fill-blue-800 hover:bg-blue-100 hover:text-blue-800 active:scale-90",

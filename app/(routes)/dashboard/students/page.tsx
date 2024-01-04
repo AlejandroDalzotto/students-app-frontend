@@ -10,6 +10,7 @@ import AddButton from "@/app/ui/dashboard/AddButton";
 import { fetchStudentsPages } from "@/app/lib/actions";
 import Pagination from "@/app/ui/dashboard/Pagination";
 import EditButtom from "@/app/ui/dashboard/EditButtom";
+import DeleteButton from "@/app/ui/dashboard/DeleteButton";
 
 export const metadata: Metadata = {
   title: `Lista de Alumnos | ${APP_NAME}`,
@@ -40,6 +41,7 @@ export default async function StudentsPage({
             <SearchBar />
             <div className="flex items-center gap-x-5">
               <EditButtom active={Boolean(idStudent)} nagivateTo={`/dashboard/students/edit?sid=${idStudent}`} />
+              <DeleteButton />
               <AddButton nagivateTo="/dashboard/students/add" />
             </div>
           </div>

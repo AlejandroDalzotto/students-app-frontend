@@ -72,7 +72,7 @@ export default function Sidebar() {
         <div className='flex flex-col gap-y-3 h-full'>
           {NAVBAR_LINKS.map(({ id, label, route, icon_id: iconId }) => {
             return (
-              <SidebarLink key={id} isSidebarOpen={isOpen} href={route} icon={iconId} isActive={pathname === route} text={label} />
+              <SidebarLink key={id + label + route} isSidebarOpen={isOpen} href={route} icon={iconId} isActive={pathname === route} text={label} />
             )
           })}
         </div>

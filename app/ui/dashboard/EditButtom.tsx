@@ -9,6 +9,8 @@ interface Props {
 export default function EditButtom({ nagivateTo, active }: Props) {
   return (
     <Link
+      aria-label="Editar información del alumno"
+      title="Editar información del alumno"
       aria-disabled={!active}
       href={nagivateTo}
       className={clsx(

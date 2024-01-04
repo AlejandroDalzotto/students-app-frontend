@@ -7,6 +7,8 @@ interface Props {
 export default function AddButton({ nagivateTo }: Props) {
   return (
     <Link
+      aria-label="Agregar un nuevo alumno al sistema"
+      title="Agregar un nuevo alumno"
       href={nagivateTo}
       className='flex gap-2 items-center justify-center py-3 px-5 rounded-lg text-xl font-medium fill-white bg-blue-500 text-white transition-all hover:bg-blue-700 active:shadow-inner active:scale-90'
     >
