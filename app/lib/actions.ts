@@ -1,41 +1,93 @@
 "use server"
 
-import type { Student, User } from "./definitions"
+import type { Student } from "./definitions"
 import { redirect } from "next/navigation"
 import { cookies } from "next/headers"
 import { revalidatePath } from "next/cache"
 import { calculateAge } from "./utils"
-
-const BASE_AUTH_URL = "http://localhost:8080/auth"
-const BASE_STUDENT_URL = "http://localhost:8080/api/student"
+import { BASE_AUTH_URL, BASE_STUDENT_URL } from "./constants"
+import { signIn, signOut } from "@/auth"
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
+import { z } from "zod"
+import { LoginSchema, RegisterSchema } from "@/schemas"
+import { AuthError } from "next-auth"
 
 const ITEMS_PER_PAGE = 10
 
 // Auth actions
 
 export async function login(formData: FormData) {
-  try {
-    const rawFormData = {
-      username: formData.get("username"),
-      password: formData.get("password"),
-    }
 
-    const user = await fetch(`${BASE_AUTH_URL}/login`, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username: rawFormData.username, password: rawFormData.password })
-    }).then(response => response.json()) as User
-    cookies().set("token", user.token)
-    cookies().set("username", user.username)
-  } catch (error) {
-    console.error((error as Error).message)
-    throw new Error("Error al iniciar sesión")
+  const rawUser = {
+    username: formData.get("username"),
+    password: formData.get("password"),
   }
 
-  redirect("/dashboard")
+  const validatedFields = LoginSchema.safeParse(rawUser);
+  if (!validatedFields.success) {
+    return { error: "Algunos campos son incorrectos!" };
+  }
 
+  const { username, password } = validatedFields.data
+
+  try {
+    await signIn("credentials", { username, password, redirectTo: DEFAULT_LOGIN_REDIRECT })
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case "CredentialsSignin":
+          return { error: "Credenciales incorrectas!" }
+        default:
+          return { error: "Algo a ido mal!" }
+      }
+    }
+
+    throw error;
+  }
+
+}
+
+export async function logout() {
+
+  cookies().delete("username")
+  cookies().delete("token")
+
+  await signOut({ redirectTo: "/" });
+}
+
+export async function register(formData: FormData) {
+
+  const rawUser = {
+    name: formData.get("name"),
+    lastname: formData.get("lastname"),
+    username: formData.get("username"),
+    email: formData.get("email"),
+    password: formData.get("password"),
+  }
+
+  const validatedFields = RegisterSchema.safeParse(rawUser);
+  if (!validatedFields.success) {
+    return { error: "Algunos campos son incorrectos!" };
+  }
+
+  const { username, password, email, lastname, name } = validatedFields.data
+
+  try {
+
+    await fetch(`${BASE_AUTH_URL}/register`, {
+      method: "POST",
+      headers: {
+        'Content-Type': "application/json"
+      },
+      body: JSON.stringify({ username, password, email, lastname, name }),
+    })
+
+  } catch (error) {
+    console.error({ error })
+    throw error;
+  }
+
+  redirect("/signin")
 }
 
 // Student actions

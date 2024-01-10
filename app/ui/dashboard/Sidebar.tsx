@@ -91,7 +91,7 @@ export default function Sidebar() {
 
             {isOpen && <p>Configuraciones</p>}
           </Link>
-          <LogoutButton action={() => console.log("logout")} isSidebarOpen={isOpen} />
+          <LogoutButton isSidebarOpen={isOpen} />
         </div>
       </section>
 
