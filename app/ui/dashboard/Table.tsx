@@ -8,30 +8,30 @@ export default async function Table({ query, currentPage }: { query: string, cur
 
   return (
     <div className="w-full relative h-[597px]">
-      <table className="w-full p-2 text-gray-900 table rounded-lg">
+      <table className="w-full p-2 text-neutral-900 table rounded-lg">
         <thead className="rounded-lg text-left text-sm font-normal">
           <tr>
-            <th scope="col" className="px-4 py-5 text-lg text-center font-medium sm:pl-6">
+            <th scope="col" className="dark:text-white px-4 py-5 text-lg text-center font-medium sm:pl-6">
               Código
             </th>
-            <th scope="col" className="px-3 py-5 text-lg text-center font-medium">
+            <th scope="col" className="dark:text-white px-3 py-5 text-lg text-center font-medium">
               Nombre y apellido
             </th>
-            <th scope="col" className="px-3 py-5 text-lg text-center font-medium">
+            <th scope="col" className="dark:text-white px-3 py-5 text-lg text-center font-medium">
               Fec. de Nacimiento
             </th>
-            <th scope="col" className="px-3 py-5 text-lg text-center  font-medium">
+            <th scope="col" className="dark:text-white px-3 py-5 text-lg text-center  font-medium">
               Dirección
             </th>
-            <th scope="col" className="px-3 py-5 text-lg text-center font-medium">
+            <th scope="col" className="dark:text-white px-3 py-5 text-lg text-center font-medium">
               DNI
             </th>
-            <th scope="col" className="px-3 py-5 text-lg text-center font-medium">
+            <th scope="col" className="dark:text-white px-3 py-5 text-lg text-center font-medium">
               Legajo
             </th>
           </tr>
         </thead>
-        <tbody className="bg-white w-full">
+        <tbody className="bg-transparent w-full">
           {students.map(({ id_student: id, name, lastName, birth, address, dni, legajo }) => (
             <Row key={id} data={{
               id_student: id,

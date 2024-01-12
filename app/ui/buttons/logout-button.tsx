@@ -19,7 +19,7 @@ export default function LogoutButton({ isSidebarOpen }: Props) {
       title="Cerrar sesión"
       onClick={onClick}
       className={clsx(
-        "relative py-2 px-6 text-lg font-medium rounded-lg flex items-center gap-3 fill-black text-black transition-all hover:fill-blue-800 hover:bg-blue-100 hover:text-blue-800",
+        "relative py-2 px-6 text-lg font-medium rounded-lg flex items-center gap-3 fill-black dark:fill-white dark:text-white transition-all active:scale-90 hover:fill-blue-800 hover:bg-blue-100 hover:text-blue-800 dark:hover:bg-white/10",
         { "w-full": isSidebarOpen },
         { "w-fit": !isSidebarOpen },
       )}

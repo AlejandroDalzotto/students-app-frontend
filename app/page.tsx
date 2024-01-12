@@ -24,8 +24,8 @@ export default function HomePage() {
           </ul>
 
           <div className="flex gap-x-5 mt-10">
-            <Link href="/more-info" className="text-xl select-none py-3 px-6 rounded-md bg-transparent text-black font-medium shadow-black/50 shadow transition-all hover:bg-black/5 hover:shadow-none">Más información</Link>
-            <Link href="/dashboard" className="text-xl select-none py-3 px-6 rounded-md bg-blue-500 text-white font-medium shadow transition-all hover:bg-blue-700 hover:shadow-none">Empezar</Link>
+            <Link href="/more-info" className="text-xl select-none py-3 px-6 rounded-md bg-transparent dark:bg-white text-black font-medium shadow-black/50 shadow transition-all active:scale-90 hover:bg-black/5 dark:hover:bg-neutral-200 hover:shadow-none">Más información</Link>
+            <Link href="/dashboard" className="text-xl select-none py-3 px-6 rounded-md bg-blue-500 text-white font-medium shadow transition-all active:scale-90 hover:bg-blue-700 hover:shadow-none">Empezar</Link>
           </div>
         </article>
         <article>

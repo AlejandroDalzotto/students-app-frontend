@@ -16,6 +16,7 @@ const config: Config = {
     },
   },
   plugins: [],
+  darkMode: ['class', '[data-theme="dark"]']
 };
 
 export default config

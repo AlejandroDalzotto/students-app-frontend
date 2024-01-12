@@ -37,7 +37,7 @@ export default function NavLinks() {
                   "text-white bg-blue-500 hover:bg-blue-700 active:scale-90": isPrimary
                 },
                 {
-                  "shadow shadow-black/40 active:shadow-inner active:scale-90": !isPrimary
+                  "shadow shadow-black/40 active:shadow-inner active:scale-90 dark:bg-white dark:text-black dark:hover:bg-neutral-200": !isPrimary
                 }
               )}>
                 {text}

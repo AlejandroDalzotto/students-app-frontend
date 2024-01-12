@@ -8,7 +8,7 @@ interface Props {
 
 export default function IconLink({ href, icon, text }: Props) {
   return (
-    <Link href={href} className="flex items-center gap-3 py-2 px-4 rounded shadow shadow-black/40 fill-black text-black">
+    <Link href={href} className="flex active:scale-90 transition-transform items-center gap-3 py-2 px-4 rounded shadow shadow-black/40 fill-black dark:text-black dark:bg-white">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

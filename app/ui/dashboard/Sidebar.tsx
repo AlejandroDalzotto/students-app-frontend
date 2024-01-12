@@ -64,9 +64,10 @@ export default function Sidebar() {
         />
       </header>
 
+      {/* Links */}
       <section className={
         clsx(
-          'relative w-full h-full flex flex-col justify-between bg-white'
+          'relative w-full h-full flex flex-col justify-between bg-transparent'
         )
       }>
         <div className='flex flex-col gap-y-3 h-full'>
@@ -78,12 +79,12 @@ export default function Sidebar() {
         </div>
         <div className='flex flex-col gap-y-3'>
           <Link
-            href={"/settings"}
+            href={"/dashboard/settings"}
             className={
               clsx(
-                "relative py-2 px-6 text-lg font-medium rounded-lg flex justify-start items-center gap-3 fill-black text-black transition-all hover:fill-blue-800 hover:bg-blue-100 hover:text-blue-800 active:scale-90",
-                { "fill-blue-800 bg-blue-100 text-blue-800": pathname === "/settings" }
-              )} title={`Ir a ${"Configuraciones".toLowerCase()}`}>
+                "relative py-2 px-6 text-lg font-medium rounded-lg flex items-center gap-3 fill-black dark:fill-white dark:text-white transition-all active:scale-90 hover:fill-blue-800 hover:bg-blue-100 hover:text-blue-800 dark:hover:bg-white/10",
+                { "fill-blue-800 dark:fill-blue-500 bg-blue-100 dark:bg-white/5 text-blue-800 dark:text-blue-500": pathname === "/dashboard/settings" }
+              )} title={"Ir a configuraciones"}>
 
             <svg className="h-10 w-10">
               <use xlinkHref={"/sprites.svg#settings"}></use>

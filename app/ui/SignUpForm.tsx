@@ -10,7 +10,7 @@ export default function SignUpForm() {
       <form action={register} className="relative">
         <div className="w-full flex gap-x-6">
           <input
-            className="my-3 w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 rounded-lg leading-5"
+            className="my-3 w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 dark:bg-white dark:text-black rounded-lg"
             type="text"
             placeholder="Nombre"
             name="name"
@@ -18,7 +18,7 @@ export default function SignUpForm() {
             required
           />
           <input
-            className="my-3 w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 rounded-lg leading-5"
+            className="my-3 w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 dark:bg-white dark:text-black rounded-lg"
             type="text"
             placeholder="Apellido"
             name="lastname"
@@ -27,7 +27,7 @@ export default function SignUpForm() {
           />
         </div>
         <input
-          className="my-3 w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 rounded-lg leading-5"
+          className="my-3 w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 dark:bg-white dark:text-black rounded-lg"
           type="text"
           placeholder="Nombre de usuario"
           name="username"
@@ -35,7 +35,7 @@ export default function SignUpForm() {
           required
         />
         <input
-          className="my-3 w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 rounded-lg leading-5"
+          className="my-3 w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 dark:bg-white dark:text-black rounded-lg"
           type="email"
           placeholder="Email"
           name="email"
@@ -43,7 +43,7 @@ export default function SignUpForm() {
           required
         />
         <input
-          className="my-3 w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 rounded-lg leading-5"
+          className="my-3 w-full py-3 px-6 placeholder:text-neutral-500 bg-neutral-200 dark:bg-white dark:text-black rounded-lg"
           type="password"
           placeholder="Contraseña"
           name="password"
@@ -52,11 +52,11 @@ export default function SignUpForm() {
         />
 
         <button
-          className="bg-blue-500 text-white font-semibold text-xl transition-colors hover:bg-blue-700 duration-100 mx-auto block my-10 py-3 px-6 rounded-lg"
+          className="bg-blue-500 text-white font-semibold text-xl transition-colors hover:bg-blue-700 duration-100 mx-auto block mt-10 mb-5 py-3 px-6 rounded-lg"
           type="submit">Crear</button>
 
-        <Link href="/signin" className="uppercase font-medium text-neutral-500 text-xs mx-auto block p-4 md:p-3 w-fit hover:text-black">¿ya tienes una cuenta?</Link>
-        <Link href="/" className="uppercase font-medium text-neutral-500 text-xs mx-auto block p-4 md:p-3 w-fit hover:text-black">volver a la pantalla principal</Link>
+        <Link href="/signin" className="uppercase font-medium text-neutral-500 dark:text-white text-xs mx-auto block p-4 md:p-2 w-fit hover:text-black dark:hover:text-neutral-200">¿ya tienes una cuenta?</Link>
+        <Link href="/" className="uppercase font-medium text-neutral-500 dark:text-white text-xs mx-auto block p-4 md:p-2 w-fit hover:text-black dark:hover:text-neutral-200">volver a la pantalla principal</Link>
       </form>
     </section>
   )

@@ -20,7 +20,7 @@ export default function DashboardPage() {
       />
       <div className="w-full max-w-xl flex flex-col items-center gap-y-5 mt-10">
         <p className="text-3xl font-medium">Este es el panel principal</p>
-        <Link href="/" className="uppercase font-medium text-neutral-500 text-xs p-2 w-fit hover:text-black">volver a la inicio</Link>
+        <Link href="/" className="uppercase font-medium text-neutral-500 dark:text-neutral-300 text-xs p-2 w-fit hover:text-black dark:hover:text-neutral-500">volver a la inicio</Link>
       </div>
     </section>
   )

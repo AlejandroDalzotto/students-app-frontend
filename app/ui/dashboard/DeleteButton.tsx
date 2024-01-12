@@ -26,9 +26,9 @@ export default function DeleteButton() {
       aria-disabled={!active}
       disabled={!active}
       className={clsx(
-        "flex items-center justify-center p-3 rounded-lg transition-all active:shadow-inner",
-        { "fill-white bg-red-500 hover:bg-red-700 active:scale-90": active },
-        { "bg-neutral-300 fill-neutral-600": !active },
+        "flex items-center justify-center p-3 rounded-lg transition-all active:shadow-inner active:scale-90",
+        { "fill-white bg-red-500 hover:bg-red-700": active },
+        { "pointer-events-none bg-neutral-300 fill-neutral-600 dark:bg-neutral-800": !active },
       )}
     >
       <svg className='w-8 h-8'>

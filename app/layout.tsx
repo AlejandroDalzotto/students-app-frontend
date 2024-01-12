@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { League_Spartan as LeagueSpartan } from 'next/font/google'
 import './globals.css'
 import { APP_NAME } from './lib/constants'
+import Providers from '@/providers/theme'
 
 const fontLeagueSpartan = LeagueSpartan({ subsets: ['latin'] })
 
@@ -16,10 +17,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es">
-      <body className={`${fontLeagueSpartan.className} antialiased`}>
-        {children}
+    <html lang="es" suppressHydrationWarning>
+      <body className={`${fontLeagueSpartan.className} antialiased bg-neutral-100 dark:bg-neutral-900`}>
+        <Providers>
+          {children}
+        </Providers>
       </body>
-    </html>
+    </html >
   )
 }

@@ -31,12 +31,8 @@ export default function Row({ data }: Props) {
     <tr
       onClick={() => handleClick(data.id_student)}
       key={data.id_student}
-      className={`w-full border-b py-3 text-sm last-of-type:border-none 
-      [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg 
-      [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg
-      transition-colors hover:text-blue-800 hover:bg-blue-100 cursor-pointer
-      ${isSelected ? "text-blue-800 bg-blue-100" : ""}
-      `}
+      className={clsx("w-full dark:text-neutral-300 border-b dark:border-neutral-700 py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg transition-colors hover:text-blue-800 dark:hover:text-blue-500 hover:bg-blue-100 dark:hover:bg-white/5 cursor-pointer",
+        { "text-blue-800 dark:text-blue-500 bg-blue-100 dark:bg-white/5": isSelected })}
     >
       <td className="whitespace-nowrap text-lg text-center px-3 py-3">
         {data.id_student}
@@ -56,10 +52,10 @@ export default function Row({ data }: Props) {
       <td className={clsx(
         "whitespace-nowrap text-lg text-center px-3 py-3 capitalize",
         {
-          "text-green-600": hasLegajo === "completo"
+          "text-green-600 dark:text-green-400": hasLegajo === "completo"
         },
         {
-          "text-red-600": hasLegajo === "incompleto"
+          "text-red-600 dark:text-red-400": hasLegajo === "incompleto"
         }
       )}>
         {hasLegajo}

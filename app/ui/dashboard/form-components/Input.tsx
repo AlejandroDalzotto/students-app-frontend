@@ -25,7 +25,7 @@ export function InputCheckbox({ name, label, checked }: CheckboxProps) {
       <label className="relative flex w-fit items-center p-3 rounded-full cursor-pointer" htmlFor={`${id}-${name}`}>
         <input type="checkbox" defaultChecked={checked}
           name={name}
-          className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-gray-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:bg-gray-900 checked:before:bg-gray-900 hover:before:opacity-10"
+          className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-neutral-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-neutral-500 before:opacity-0 before:transition-opacity checked:border-neutral-900 checked:bg-neutral-900 checked:before:bg-neutral-900 hover:before:opacity-10"
           id={`${id}-${name}`} />
         <span
           className="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
@@ -37,7 +37,7 @@ export function InputCheckbox({ name, label, checked }: CheckboxProps) {
           </svg>
         </span>
       </label>
-      <label className="mt-px w-fit whitespace-nowrap text-gray-700 cursor-pointer select-none" htmlFor={`${id}-${name}`}>
+      <label className="mt-px w-fit whitespace-nowrap text-neutral-700 cursor-pointer select-none" htmlFor={`${id}-${name}`}>
         {label}
       </label>
     </div>
@@ -50,16 +50,16 @@ export function InputRadio({ name, value, defaultChecked, label }: RadioProps) {
     <div className="inline-flex items-center w-full">
       <label className="relative flex items-center p-3 rounded-full cursor-pointer" htmlFor={`${id}-${name}`}>
         <input name={name} type="radio" defaultChecked={defaultChecked} value={value}
-          className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-gray-400 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:before:bg-gray-900 hover:before:opacity-10"
+          className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-neutral-400 text-neutral-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-neutral-500 before:opacity-0 before:transition-opacity checked:border-neutral-900 checked:before:bg-neutral-900 hover:before:opacity-10"
           id={`${id}-${name}`} />
         <span
-          className="absolute text-gray-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+          className="absolute text-neutral-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 16 16" fill="currentColor">
             <circle cx="8" cy="8" r="8"></circle>
           </svg>
         </span>
       </label>
-      <label className="mt-px font-light text-gray-700 cursor-pointer select-none" htmlFor={`${id}-${name}`}>
+      <label className="mt-px font-light text-neutral-700 cursor-pointer select-none" htmlFor={`${id}-${name}`}>
         {label}
       </label>
     </div>
@@ -76,10 +76,10 @@ export default function Input({ name, placeholder, type, label, required, defaul
         required={required}
         id={`${id}-${name}`}
         autoComplete="off"
-        className="peer h-full w-full text-xl text-neutral-950 border-b border-gray-200 bg-transparent pt-4 pb-1.5 font-normal outline outline-0 transition-all placeholder-shown:border-gray-300 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100" />
+        className="peer h-full w-full text-xl text-neutral-900 dark:text-white border-b border-neutral-200 bg-transparent pt-4 pb-1.5 font-normal outline outline-0 transition-all placeholder-shown:border-neutral-300 focus:border-neutral-500 focus:outline-0 disabled:border-0 disabled:bg-neutral-50 placeholder:opacity-0 focus:placeholder:opacity-100" />
       <label
         htmlFor={`${id}-${name}`}
-        className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-xl peer-placeholder-shown:leading-[2.95] peer-placeholder-shown:text-gray-500 peer-focus:text-[14px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-500">
+        className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-neutral-500 dark:text-neutral-300 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-neutral-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-xl peer-placeholder-shown:leading-[2.95] peer-placeholder-shown:text-neutral-700 dark:peer-placeholder-shown:text-neutral-400 peer-focus:text-[14px] peer-focus:leading-tight peer-focus:text-neutral-900 dark:peer-focus:text-neutral-600 peer-focus:after:scale-x-100 peer-focus:after:border-neutral-900 dark:peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-neutral-500">
         {label}
       </label>
     </div>
