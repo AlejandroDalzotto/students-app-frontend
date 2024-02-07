@@ -25,10 +25,10 @@ export function InputCheckbox({ name, label, checked }: CheckboxProps) {
       <label className="relative flex w-fit items-center p-3 rounded-full cursor-pointer" htmlFor={`${id}-${name}`}>
         <input type="checkbox" defaultChecked={checked}
           name={name}
-          className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-neutral-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-neutral-500 before:opacity-0 before:transition-opacity checked:border-neutral-900 checked:bg-neutral-900 checked:before:bg-neutral-900 hover:before:opacity-10"
+          className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-neutral-400 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-neutral-500 before:opacity-0 before:transition-opacity checked:border-neutral-900 dark:checked:border-neutral-50 checked:bg-neutral-900 dark:checked:bg-neutral-50 checked:before:bg-neutral-900 dark:checked:before:bg-neutral-50 hover:before:opacity-10"
           id={`${id}-${name}`} />
         <span
-          className="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+          className="absolute text-white dark:text-black transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
             stroke="currentColor" strokeWidth="1">
             <path fillRule="evenodd"
@@ -37,7 +37,7 @@ export function InputCheckbox({ name, label, checked }: CheckboxProps) {
           </svg>
         </span>
       </label>
-      <label className="mt-px w-fit whitespace-nowrap text-neutral-700 cursor-pointer select-none" htmlFor={`${id}-${name}`}>
+      <label className="mt-px w-fit whitespace-nowrap text-neutral-700 dark:text-neutral-100 cursor-pointer select-none" htmlFor={`${id}-${name}`}>
         {label}
       </label>
     </div>
@@ -50,16 +50,16 @@ export function InputRadio({ name, value, defaultChecked, label }: RadioProps) {
     <div className="inline-flex items-center w-full">
       <label className="relative flex items-center p-3 rounded-full cursor-pointer" htmlFor={`${id}-${name}`}>
         <input name={name} type="radio" defaultChecked={defaultChecked} value={value}
-          className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-neutral-400 text-neutral-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-neutral-500 before:opacity-0 before:transition-opacity checked:border-neutral-900 checked:before:bg-neutral-900 hover:before:opacity-10"
+          className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-neutral-400 text-neutral-900 dark:text-neutral-50 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-neutral-600 dark:before:bg-neutral-50 before:opacity-0 before:transition-opacity checked:border-neutral-900 dark:checked:border-neutral-50 checked:before:bg-neutral-900 dark:checked:before:bg-neutral-50 hover:before:opacity-10"
           id={`${id}-${name}`} />
         <span
-          className="absolute text-neutral-900 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+          className="absolute text-neutral-900 dark:text-neutral-50 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 16 16" fill="currentColor">
             <circle cx="8" cy="8" r="8"></circle>
           </svg>
         </span>
       </label>
-      <label className="mt-px font-light text-neutral-700 cursor-pointer select-none" htmlFor={`${id}-${name}`}>
+      <label className="mt-px font-light text-neutral-700 dark:text-neutral-100 cursor-pointer select-none" htmlFor={`${id}-${name}`}>
         {label}
       </label>
     </div>
