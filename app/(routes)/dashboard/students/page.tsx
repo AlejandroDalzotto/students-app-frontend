@@ -28,7 +28,7 @@ export default async function StudentsPage({
 }) {
 
   const query = searchParams?.query || ""
-  const idStudent = searchParams?.sid || null
+  const dniStudent = searchParams?.sid || null
   const currentPage = Number(searchParams?.page) || 1
 
   const totalPages = await fetchStudentsPages(query)
@@ -40,7 +40,7 @@ export default async function StudentsPage({
           <div className="flex justify-between py-8 items-center self-stretch">
             <SearchBar />
             <div className="flex items-center gap-x-5">
-              <EditButtom active={Boolean(idStudent)} nagivateTo={`/dashboard/students/edit?sid=${idStudent}`} />
+              <EditButtom active={Boolean(dniStudent)} nagivateTo={`/dashboard/students/edit?sid=${dniStudent}`} />
               <DeleteButton />
               <AddButton nagivateTo="/dashboard/students/add" />
             </div>
@@ -60,8 +60,8 @@ export default async function StudentsPage({
             </article>
 
             {/* Right panel */}
-            <Suspense key={query + idStudent} fallback={<DataPanelSkeleton />}>
-              <StudentDataPanel id={idStudent} />
+            <Suspense key={query + dniStudent} fallback={<DataPanelSkeleton />}>
+              <StudentDataPanel dni={dniStudent} />
             </Suspense>
           </section>
         </div>

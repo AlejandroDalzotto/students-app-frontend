@@ -8,7 +8,6 @@ import { calculateAge } from "./utils"
 import { BASE_AUTH_URL, BASE_STUDENT_URL } from "./constants"
 import { signIn, signOut } from "@/auth"
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
-import { z } from "zod"
 import { LoginSchema, RegisterSchema } from "@/schemas"
 import { AuthError } from "next-auth"
 
@@ -114,13 +113,13 @@ export async function fetchFilteredStudents(query: string = "", currentPage: num
   }
 }
 
-export async function fetchStudentById(id: number | string) {
+export async function fetchStudentById(dni: number | string) {
 
   const token = cookies().get("token")?.value ?? ""
 
   try {
 
-    const student: Student = await fetch(`${BASE_STUDENT_URL}/get/${id}`, {
+    const student: Student = await fetch(`${BASE_STUDENT_URL}/get/dni/${dni}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -130,7 +129,7 @@ export async function fetchStudentById(id: number | string) {
 
   } catch (error) {
     console.log((error as Error).message)
-    throw new Error(`Error al buscar al alumno ${id}.`)
+    throw new Error(`Error al buscar al alumno ${dni}.`)
   }
 }
 
@@ -158,7 +157,6 @@ export async function createStudent(formData: FormData) {
     disability: formData.get("disability") === "on" ? true : false,
     health: formData.get("health") === "on" ? true : false,
     course: formData.get("course"),
-    active: true,
     subjects: [],
   }
 
@@ -182,7 +180,7 @@ export async function createStudent(formData: FormData) {
 
 }
 
-export async function updateStudent(formData: FormData, id: string | number) {
+export async function updateStudent(formData: FormData, dni: string | number) {
 
   const token = cookies().get("token")?.value ?? ""
 
@@ -205,14 +203,12 @@ export async function updateStudent(formData: FormData, id: string | number) {
     studyCert: formData.get("studyCert") === "on" ? true : false,
     disability: formData.get("disability") === "on" ? true : false,
     health: formData.get("health") === "on" ? true : false,
-    course: formData.get("course"),
-    active: true,
-    subjects: [],
+    course: formData.get("course")
   }
 
   try {
 
-    await fetch(`${BASE_STUDENT_URL}/edit/${id}`, {
+    await fetch(`${BASE_STUDENT_URL}/edit/${dni}`, {
       method: "PUT",
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -222,16 +218,16 @@ export async function updateStudent(formData: FormData, id: string | number) {
     }).then(r => r.json())
   } catch (error) {
     console.error((error as Error).message)
-    throw new Error("Error al agregar al nuevo alumno.")
+    throw new Error(`Error al editar al alumno ${rawStudent.name + ", " + rawStudent.lastName}.`)
   }
 }
 
-export async function deleteStudent(id: string | number) {
+export async function deleteStudent(dni: string | number) {
 
   const token = cookies().get("token")?.value ?? ""
 
   try {
-    await fetch(`${BASE_STUDENT_URL}/inactive/${id}`, {
+    await fetch(`${BASE_STUDENT_URL}/inactive/${dni}`, {
       method: "PUT",
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -239,7 +235,7 @@ export async function deleteStudent(id: string | number) {
     })
   } catch (error) {
     console.error((error as Error).message)
-    throw new Error(`Error al eliminar alumno ${id}.`)
+    throw new Error(`Error al eliminar alumno con DNI: ${dni}.`)
   }
 
   revalidatePath("/dashboard/students")

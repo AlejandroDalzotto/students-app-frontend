@@ -1,4 +1,4 @@
-export type RowData = Pick<Student, "id_student" | "name" | "lastName" | "birth" | "address" | "dni" | "legajo">
+export type RowData = Pick<Student, "name" | "lastName" | "birth" | "address" | "dni" | "legajo">
 
 interface Authority {
   authority: string
@@ -37,7 +37,6 @@ export interface Subject {
 }
 
 export interface Student {
-  id_student: number,
   name: string,
   lastName: string,
   birth: string,
@@ -54,8 +53,7 @@ export interface Student {
   studyCert: boolean,
   course: CourseId,
   disability: boolean,
-  health: boolean,
-  active: boolean
+  health: boolean
 }
 
 export type StudentFromForm = Omit<Student, "id_student" | "age" | "active">

@@ -5,7 +5,7 @@ import Divider from "./Divider"
 import StudentData, { StudentDataWithCheck } from "./StudentData"
 import { fetchStudentById } from "@/app/lib/actions"
 
-export default async function StudentDataPanel({ id }: { id?: string | number | null }) {
+export default async function StudentDataPanel({ dni: id }: { dni?: string | number | null }) {
   if (!id) {
     return (
       <DataPanelPlaceholder />
