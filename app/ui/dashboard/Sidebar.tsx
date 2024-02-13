@@ -33,6 +33,18 @@ const NAVBAR_LINKS = [
     label: "Examenes finales",
     route: "/dashboard/final-exams",
     icon_id: "description"
+  },
+  {
+    id: 5,
+    label: "Modulos",
+    route: "modules",
+    icon_id: "description"
+  },
+  {
+    id: 6,
+    label: "Materias",
+    route: "subjects",
+    icon_id: "description"
   }
 ]
 
