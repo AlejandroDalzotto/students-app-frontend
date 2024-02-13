@@ -37,14 +37,14 @@ const NAVBAR_LINKS = [
   {
     id: 5,
     label: "Modulos",
-    route: "modules",
-    icon_id: "description"
+    route: "/dashboard/modules",
+    icon_id: "module"
   },
   {
     id: 6,
     label: "Materias",
-    route: "subjects",
-    icon_id: "description"
+    route: "/dashboard/subjects",
+    icon_id: "subject"
   }
 ]
 

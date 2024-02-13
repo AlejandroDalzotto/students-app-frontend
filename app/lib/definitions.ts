@@ -62,3 +62,10 @@ export interface Grade {
   student: string;
   subject: string;
 }
+
+export interface DefaultError {
+  message: string;
+  reason?: string;
+  status: number;
+  redirectTo: string;
+}

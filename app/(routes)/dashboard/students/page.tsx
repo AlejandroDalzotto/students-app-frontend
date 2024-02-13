@@ -42,7 +42,7 @@ export default async function StudentsPage({
             <div className="flex items-center gap-x-5">
               <EditButtom active={Boolean(dniStudent)} nagivateTo={`/dashboard/students/edit?sid=${dniStudent}`} />
               <DeleteButton />
-              <AddButton nagivateTo="/dashboard/students/add" />
+              <AddButton nagivateTo="/dashboard/students/add" title="Agregar un nuevo alumno al sistema" />
             </div>
           </div>
 

@@ -1,10 +1,14 @@
 import type { Metadata } from 'next'
-import { League_Spartan as LeagueSpartan } from 'next/font/google'
+import { Work_Sans as WorkSans } from 'next/font/google'
 import './globals.css'
 import { APP_NAME } from './lib/constants'
 import Providers from '@/providers/theme'
 
-const fontLeagueSpartan = LeagueSpartan({ subsets: ['latin'] })
+const fontWorkSans = WorkSans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  preload: true
+})
 
 export const metadata: Metadata = {
   title: `Página principal | ${APP_NAME}`,
@@ -18,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${fontLeagueSpartan.className} antialiased bg-neutral-100 dark:bg-neutral-900`}>
+      <body className={`${fontWorkSans.className} antialiased bg-neutral-100 dark:bg-neutral-900`}>
         <Providers>
           {children}
         </Providers>

@@ -105,7 +105,8 @@
     </g>
   </symbol>
 
-  <symbol id="smartphone" height="100%" width="100%" viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="smartphone" height="100%" width="100%" viewBox="0 0 32 32" fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg">
     <g>
       <mask id="mask0_57_677" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
         <rect id="Bounding box" width="32" height="32" fill="#D9D9D9" />
@@ -181,6 +182,15 @@
 
   <symbol id="arrow-right" xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 -960 960 960">
     <path d="m560-240-56-58 142-142H160v-80h486L504-662l56-58 240 240-240 240Z" />
+  </symbol>
+
+  <symbol id="subject" xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 -960 960 960">
+    <path d="M160-200v-80h400v80H160Zm0-160v-80h640v80H160Zm0-160v-80h640v80H160Zm0-160v-80h640v80H160Z" />
+  </symbol>
+
+  <symbol id="module" xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="0 -960 960 960">
+    <path
+      d="M627-520h133v-160H627v160Zm-214 0h133v-160H413v160Zm-213 0h133v-160H200v160Zm0 240h133v-160H200v160Zm213 0h133v-160H413v160Zm214 0h133v-160H627v160Zm-507 0v-400q0-33 23.5-56.5T200-760h560q33 0 56.5 23.5T840-680v400q0 33-23.5 56.5T760-200H200q-33 0-56.5-23.5T120-280Z" />
   </symbol>
 
 </svg>
