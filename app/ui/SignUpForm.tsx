@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { register } from "@/app/lib/actions";
+import { register } from "../lib/actions/auth.actions";
 
 export default function SignUpForm() {
   return (

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { login } from "../lib/actions";
+import { login } from "../lib/actions/auth.actions";
 
 export default function SignInForm() {
 

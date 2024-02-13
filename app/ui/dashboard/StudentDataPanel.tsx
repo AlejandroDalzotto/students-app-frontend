@@ -1,9 +1,9 @@
 import DataPanelPlaceholder from "../skeletons/DataPanelPlaceholder"
 import Image from "next/image"
-import { getCourseStringFromNumber } from "@/app/lib/utils"
+import { calculateAge, getCourseStringFromNumber } from "@/app/lib/utils"
 import Divider from "./Divider"
 import StudentData, { StudentDataWithCheck } from "./StudentData"
-import { fetchStudentById } from "@/app/lib/actions"
+import { fetchStudentById } from "@/app/lib/actions/student.actions"
 
 export default async function StudentDataPanel({ dni: id }: { dni?: string | number | null }) {
   if (!id) {
@@ -32,7 +32,7 @@ export default async function StudentDataPanel({ dni: id }: { dni?: string | num
       <article className="flex flex-col flex-grow w-full gap-y-6 mt-10">
         <Divider text="Información personal" />
         <div className="flex justify-between items-center w-full">
-          <StudentData title="Edad" icon="calendar_clock" text={student.age} />
+          <StudentData title="Edad" icon="calendar_clock" text={calculateAge(student.birth)} />
           <StudentData title="Dirección" icon="home" text={student.address} />
         </div>
         <Divider text="Contácto" />

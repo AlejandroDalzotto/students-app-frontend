@@ -7,10 +7,10 @@ import DataPanelSkeleton from "@/app/ui/skeletons/DataPanelSkeleton";
 import { type Metadata } from "next";
 import { APP_NAME } from "@/app/lib/constants";
 import AddButton from "@/app/ui/dashboard/AddButton";
-import { fetchStudentsPages } from "@/app/lib/actions";
 import Pagination from "@/app/ui/dashboard/Pagination";
 import EditButtom from "@/app/ui/dashboard/EditButtom";
 import DeleteButton from "@/app/ui/dashboard/DeleteButton";
+import { fetchStudentsPages } from "@/app/lib/actions/student.actions";
 
 export const metadata: Metadata = {
   title: `Lista de Alumnos | ${APP_NAME}`,

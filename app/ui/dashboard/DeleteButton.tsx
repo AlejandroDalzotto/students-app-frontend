@@ -1,6 +1,6 @@
 "use client"
 
-import { deleteStudent } from "@/app/lib/actions";
+import { deleteStudent } from "@/app/lib/actions/student.actions";
 import clsx from "clsx";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 

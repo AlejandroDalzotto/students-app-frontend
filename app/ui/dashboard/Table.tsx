@@ -1,4 +1,4 @@
-import { fetchFilteredStudents } from "@/app/lib/actions"
+import { fetchFilteredStudents } from "@/app/lib/actions/student.actions"
 import Row from "./Row"
 
 export default async function Table({ query, currentPage }: { query: string, currentPage: number }) {

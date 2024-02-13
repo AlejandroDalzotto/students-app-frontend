@@ -1,4 +1,4 @@
-import { createStudent, fetchStudentById, updateStudent } from '@/app/lib/actions'
+import { fetchStudentById, updateStudent } from '@/app/lib/actions/student.actions'
 import { APP_NAME } from '@/app/lib/constants'
 import Input, { InputCheckbox, InputRadio } from '@/app/ui/dashboard/form-components/Input'
 import { type Metadata } from 'next'

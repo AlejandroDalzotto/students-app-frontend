@@ -1,6 +1,6 @@
 "use client";
 
-import { logout } from "@/app/lib/actions";
+import { logout } from "@/app/lib/actions/auth.actions";
 import clsx from "clsx"
 
 interface Props {
