@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { BASE_MODULE_URL } from "../constants";
 import type { Module, ModuleRequest } from "../definitions";
+import { revalidatePath } from "next/cache";
 
 export const getModules = async (): Promise<Module[]> => {
 
@@ -19,7 +20,7 @@ export const getModules = async (): Promise<Module[]> => {
   return modules;
 }
 
-export const createModule = async (formData: FormData): Promise<Module> => {
+export const createModule = async (formData: FormData): Promise<void> => {
 
   const token = cookies().get("token")?.value ?? ""
 
@@ -36,7 +37,5 @@ export const createModule = async (formData: FormData): Promise<Module> => {
     body: JSON.stringify(rawModule)
   });
 
-  const moduleResponse: Module = await response.json()
-
-  return moduleResponse
+  revalidatePath("/dashboard/modules")
 }

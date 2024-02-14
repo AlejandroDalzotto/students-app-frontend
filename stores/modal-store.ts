@@ -1,6 +1,6 @@
 import { create } from "zustand"
 
-type ModalName = "create-module" | "delete-student"
+type ModalName = "create-module"
 
 interface State {
   isOpen: boolean;

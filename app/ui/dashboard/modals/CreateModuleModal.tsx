@@ -22,7 +22,10 @@ export default function CreateModuleModal() {
         </header>
 
         <article>
-          <form action={createModule}>
+          <form action={(d) => {
+            createModule(d);
+            closeModal();
+          }}>
             <Input name="name" type="text" placeholder="Primer año" label="Nombre del modulo" required />
 
             <button

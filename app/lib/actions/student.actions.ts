@@ -163,7 +163,7 @@ export async function fetchStudentsPages(query: string = ""): Promise<number> {
   try {
     const response = await fetch(`${BASE_STUDENT_URL}/all/pages?query=${query}`,
       {
-        cache: "no-store",
+        cache: "no-cache",
         headers: {
           'Authorization': `Bearer ${token}`
         }
