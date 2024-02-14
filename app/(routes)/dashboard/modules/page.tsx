@@ -1,5 +1,5 @@
 import { APP_NAME } from "@/app/lib/constants";
-import AddButton from "@/app/ui/dashboard/AddButton";
+import CreateModuleButton from "@/app/ui/buttons/create-module-button";
 import Modules from "@/app/ui/dashboard/Modules";
 import type { Metadata } from "next";
 import { Suspense } from "react";
@@ -17,9 +17,9 @@ export default function ModulePage() {
         <h2 className='text-2xl font-semibold'>Modulos</h2>
         <p className='text-neutral-900 dark:text-neutral-300 text-lg'>En esta página verás toda la información sobre los modulos actuales que hay en el sistema.</p>
       </header>
-
+      
       <article className="mb-5 w-full flex items-center justify-start">
-        <AddButton nagivateTo="/dashboard/modules/add" title="Agregar un nuevo modulo al sistema" />
+        <CreateModuleButton />
       </article>
 
       <Suspense fallback={<h1>Cargando...</h1>}>

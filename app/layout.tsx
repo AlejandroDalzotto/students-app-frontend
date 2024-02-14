@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Work_Sans as WorkSans } from 'next/font/google'
 import './globals.css'
 import { APP_NAME } from './lib/constants'
-import Providers from '@/providers/theme'
+import Providers from '@/providers/providers'
 
 const fontWorkSans = WorkSans({
   subsets: ['latin'],

@@ -2,12 +2,12 @@
 
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
 import SidebarLink from '../Links/sidebar-link'
 import MenuButton from '../buttons/menu-button'
 import clsx from 'clsx'
 import LogoutButton from '../buttons/logout-button'
 import Link from 'next/link'
+import { useUIStore } from '@/stores'
 
 const NAVBAR_LINKS = [
   {
@@ -50,17 +50,17 @@ const NAVBAR_LINKS = [
 
 export default function Sidebar() {
 
-  const [isOpen, setIsOpen] = useState(true)
+  const { isSideMenuOpen, toggle } = useUIStore()
   const pathname = usePathname()
 
   return (
-    <aside style={{ width: isOpen ? '20rem' : '6rem' }} className={clsx(
+    <aside style={{ width: isSideMenuOpen ? '20rem' : '6rem' }} className={clsx(
       "min-h-full flex flex-col transition-all gap-y-2 relative",
     )}>
       <header className={clsx(
         'relative h-36 w-full px-6 rounded-lg bg-blue-500 flex items-center justify-between'
       )}>
-        <MenuButton toggle={() => setIsOpen(!isOpen)} />
+        <MenuButton toggle={toggle} />
         <Image
           src="/logo-app.svg"
           alt="Logo de la aplicación"
@@ -69,7 +69,7 @@ export default function Sidebar() {
           className={clsx(
             "w-auto h-28",
             {
-              "hidden": !isOpen
+              "hidden": !isSideMenuOpen
             }
           )}
           priority={true}
@@ -85,7 +85,7 @@ export default function Sidebar() {
         <div className='flex flex-col gap-y-3 h-full'>
           {NAVBAR_LINKS.map(({ id, label, route, icon_id: iconId }) => {
             return (
-              <SidebarLink key={id + label + route} isSidebarOpen={isOpen} href={route} icon={iconId} isActive={pathname === route} text={label} />
+              <SidebarLink key={id + label + route} isSidebarOpen={isSideMenuOpen} href={route} icon={iconId} isActive={pathname === route} text={label} />
             )
           })}
         </div>
@@ -102,9 +102,9 @@ export default function Sidebar() {
               <use xlinkHref={"/sprites.svg#settings"}></use>
             </svg>
 
-            {isOpen && <p>Configuraciones</p>}
+            {isSideMenuOpen && <p>Configuraciones</p>}
           </Link>
-          <LogoutButton isSidebarOpen={isOpen} />
+          <LogoutButton isSidebarOpen={isSideMenuOpen} />
         </div>
       </section>
 

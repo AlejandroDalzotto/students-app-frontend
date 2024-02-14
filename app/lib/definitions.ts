@@ -30,6 +30,10 @@ export interface Module {
   subjects: Subject[]
 }
 
+export interface ModuleRequest {
+  name: string;
+}
+
 export interface Subject {
   name: string;
   students: Student[]
