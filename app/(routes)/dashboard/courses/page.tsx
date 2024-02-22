@@ -1,12 +1,12 @@
 import { APP_NAME } from "@/app/lib/constants";
 import CreateModuleButton from "@/app/ui/buttons/create-module-button";
-import Modules from "@/app/ui/dashboard/Modules";
+import Modules from "@/app/ui/dashboard/Courses";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: `Modulos | ${APP_NAME}`,
-  description: `Todos los modulos cargados en el sistema de Varano.`,
+  title: `Cursos | ${APP_NAME}`,
+  description: `Todos los cursos cargados en el sistema de Varano.`,
 }
 
 

@@ -53,8 +53,6 @@ export async function createStudent(formData: FormData) {
 
   const token = cookies().get("token")?.value ?? ""
 
-  const studentAge = calculateAge(formData.get("birth")?.toString())
-
   const rawStudent = {
     name: formData.get("name"),
     lastName: formData.get("lastName"),
@@ -64,7 +62,6 @@ export async function createStudent(formData: FormData) {
     dni: formData.get("dni"),
     cellPhone: formData.get("cellPhone"),
     linePhone: formData.get("linePhone"),
-    age: studentAge,
     mail: formData.get("mail"),
     legajo: formData.get("legajo"),
     matricula: formData.get("matricula"),
@@ -72,8 +69,7 @@ export async function createStudent(formData: FormData) {
     studyCert: formData.get("studyCert") === "on" ? true : false,
     disability: formData.get("disability") === "on" ? true : false,
     health: formData.get("health") === "on" ? true : false,
-    course: formData.get("course"),
-    subjects: [],
+    course_name: formData.get("course"),
   }
 
   try {
@@ -116,7 +112,7 @@ export async function updateStudent(formData: FormData, dni: string | number) {
     studyCert: formData.get("studyCert") === "on" ? true : false,
     disability: formData.get("disability") === "on" ? true : false,
     health: formData.get("health") === "on" ? true : false,
-    course: formData.get("course")
+    course_name: formData.get("course"),
   }
 
   try {

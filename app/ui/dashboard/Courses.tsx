@@ -1,28 +1,28 @@
-import { getModules } from "@/app/lib/actions/module.actions"
+import { getCourses } from "@/app/lib/actions/course.actions"
 import Link from "next/link";
 
 export default async function Modules() {
 
-  const modules = await getModules();
+  const courses = await getCourses();
 
   return (
     <article className="grid gap-5 grid-cols-1">
       {
-        modules.map(({ name: moduleName, subjects }) => {
+        courses.map(({ name: courseName, subjects }) => {
           return (
-            <Link href={"#"} className="group/box flex justify-between items-center py-4 px-12 w-full border rounded-lg shadow dark:border-neutral-700 transition-colors dark:hover:border-neutral-400" key={moduleName}>
-              <p className="font-medium">{moduleName}</p>
+            <Link href={"#"} className="group/box flex justify-between items-center py-4 px-12 w-full border rounded-lg shadow dark:border-neutral-700 transition-colors dark:hover:border-neutral-400" key={courseName}>
+              <p className="font-medium">{courseName}</p>
 
               {subjects.length ? (
                 <div className="ml-5">
                   <p className="dark:text-neutral-700 dark:group-hover/box:text-neutral-200 transition-colors">
-                    Cantidad de materias en el modulo: {subjects.length}
+                    Cantidad de materias en el curso: {subjects.length}
                   </p>
                 </div>
               ) : (
                 <div className="ml-5">
                   <p className="dark:text-neutral-700 dark:group-hover/box:text-neutral-200 transition-colors">
-                    No hay materias asignadas a este modulo
+                    No hay materias asignadas a este curso
                   </p>
                 </div>
               )}

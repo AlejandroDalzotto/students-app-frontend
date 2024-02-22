@@ -36,8 +36,8 @@ const NAVBAR_LINKS = [
   },
   {
     id: 5,
-    label: "Modulos",
-    route: "/dashboard/modules",
+    label: "Cursos",
+    route: "/dashboard/courses",
     icon_id: "module"
   },
   {

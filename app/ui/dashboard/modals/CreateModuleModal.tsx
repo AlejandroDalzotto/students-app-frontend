@@ -1,4 +1,4 @@
-import { createModule } from "@/app/lib/actions/module.actions";
+import { createCourse } from "@/app/lib/actions/course.actions";
 import { useModalStore } from "@/stores";
 import Input from "../form-components/Input";
 
@@ -23,7 +23,7 @@ export default function CreateModuleModal() {
 
         <article>
           <form action={(d) => {
-            createModule(d);
+            createCourse(d);
             closeModal();
           }}>
             <Input name="name" type="text" placeholder="Primer año" label="Nombre del modulo" required />

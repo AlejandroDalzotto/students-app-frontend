@@ -23,14 +23,16 @@ export interface UserSignUp extends UserSignIn {
   lastname: string
 }
 
-export type CourseId = 1 | 2 | 3 | 4 | 5
+export interface SimpleCourse {
+  course_name: string;
+}
 
-export interface Module {
+export interface Course {
   name: string;
   subjects: Subject[]
 }
 
-export interface ModuleRequest {
+export interface CourseRequest {
   name: string;
 }
 
@@ -54,7 +56,7 @@ export interface Student {
   matricula: number;
   birthCert: boolean;
   studyCert: boolean;
-  course: CourseId;
+  course: string;
   disability: boolean;
   health: boolean
 }
