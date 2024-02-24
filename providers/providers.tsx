@@ -1,6 +1,6 @@
 "use client";
 
-import CreateModuleModal from '@/app/ui/dashboard/modals/CreateModuleModal';
+import CreateCourseModal from '@/app/ui/dashboard/modals/CreateCourseModal';
 import { useModalStore } from '@/stores';
 import { ThemeProvider } from 'next-themes'
 
@@ -14,7 +14,7 @@ export default function Providers({
 
   return (
     <ThemeProvider>
-      {isOpen && modal === "create-module" && <CreateModuleModal />}
+      {isOpen && modal === "create-course" && <CreateCourseModal />}
       {children}
     </ThemeProvider>
   )

@@ -25,6 +25,9 @@ export interface UserSignUp extends UserSignIn {
 
 export interface SimpleCourse {
   course_name: string;
+  count_subjects: number;
+  last_subjects_record: SimpleSubject[];
+  count_students: number;
 }
 
 export interface Course {
@@ -34,6 +37,11 @@ export interface Course {
 
 export interface CourseRequest {
   name: string;
+}
+
+export interface SimpleSubject {
+  subject_name: string;
+  count_students: number;
 }
 
 export interface Subject {

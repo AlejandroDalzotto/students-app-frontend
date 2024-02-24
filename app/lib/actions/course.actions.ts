@@ -29,7 +29,22 @@ export const getSimpleCourses = async (): Promise<SimpleCourse[]> => {
     }
   });
 
-  const simpleCourse = await response.json();
+  const simpleCourse: SimpleCourse[] = await response.json();
+
+  return simpleCourse;
+}
+
+export const getSingleSimpleCourse = async (name: string): Promise<SimpleCourse> => {
+
+  const token = cookies().get("token")?.value ?? "";
+
+  const response = await fetch(`${BASE_COURSE_URL}/get-simple/${name}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+
+  const simpleCourse: SimpleCourse = await response.json();
 
   return simpleCourse;
 }

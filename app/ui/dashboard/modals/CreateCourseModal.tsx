@@ -2,7 +2,7 @@ import { createCourse } from "@/app/lib/actions/course.actions";
 import { useModalStore } from "@/stores";
 import Input from "../form-components/Input";
 
-export default function CreateModuleModal() {
+export default function CreateCourseModal() {
 
   const { closeModal } = useModalStore()
 

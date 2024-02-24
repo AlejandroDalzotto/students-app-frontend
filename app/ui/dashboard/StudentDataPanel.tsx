@@ -26,7 +26,7 @@ export default async function StudentDataPanel({ dni: id }: { dni?: string | num
 
         <div className="flex flex-col">
           <p className="text-3xl font-semibold text-start whitespace-nowrap">{student.name}, {student.lastName}</p>
-          <span className="text-2xl font-semibold text-blue-500 whitespace-nowrap">{getCourseStringFromNumber(student.course)}</span>
+          <span className="text-2xl font-normal text-blue-500 whitespace-nowrap">{student.course}</span>
         </div>
       </header>
       <article className="flex flex-col flex-grow w-full gap-y-6 mt-10">

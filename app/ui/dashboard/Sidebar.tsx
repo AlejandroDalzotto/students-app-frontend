@@ -22,16 +22,16 @@ const NAVBAR_LINKS = [
     route: "/dashboard/students",
     icon_id: "list"
   },
-  {
-    id: 3,
-    label: "Asistencias",
-    route: "/dashboard/assists",
-    icon_id: "assists"
-  },
+  // {
+  //   id: 3,
+  //   label: "Asistencias",
+  //   route: "/dashboard/assists",
+  //   icon_id: "assists"
+  // },
   {
     id: 4,
-    label: "Examenes finales",
-    route: "/dashboard/final-exams",
+    label: "Examenes",
+    route: "/dashboard/exams",
     icon_id: "description"
   },
   {
