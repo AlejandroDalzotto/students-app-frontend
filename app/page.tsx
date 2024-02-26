@@ -40,8 +40,8 @@ export default function HomePage() {
         </article>
       </section>
 
-      <footer className="w-full flex justify-center mt-40">
-        Hecho con ❤ por el equipo maravilla
+      <footer className="w-full flex justify-between items-center mt-40">
+        <p></p>
       </footer>
     </main>
   )

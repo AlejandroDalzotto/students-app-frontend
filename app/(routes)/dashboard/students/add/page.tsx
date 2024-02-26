@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 export default function AddStudentPage() {
 
   return (
-    <section className='w-full relative min-h-full rounded-lg flex flex-col'>
-      <header className='mb-5 py-5 px-5 rounded-lg bg-black/5 flex flex-col gap-y-4'>
+    <section className='w-full px-5 relative min-h-full rounded-lg flex flex-col'>
+      <header className='mb-5 p-5 rounded-lg bg-black/5 dark:bg-white/5 flex flex-col gap-y-4'>
         <h2 className='text-2xl font-semibold'>Agregar un nuevo alumno</h2>
         <p className='text-neutral-900 dark:text-neutral-300 text-lg'>Completa los espacios con la información correcta y al hacer clic en <strong className='text-green-600'>guardar</strong>, volverás a la lista de alumnos para ver al nuevo alumno añadido en la tabla.</p>
       </header>

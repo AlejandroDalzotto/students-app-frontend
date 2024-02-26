@@ -1,4 +1,4 @@
-import { fetchStudentById, updateStudent } from '@/app/lib/actions/student.actions'
+import { fetchStudentByDni, updateStudent } from '@/app/lib/actions/student.actions'
 import { APP_NAME } from '@/app/lib/constants'
 import Input, { InputCheckbox, InputRadio } from '@/app/ui/dashboard/form-components/Input'
 import { type Metadata } from 'next'
@@ -25,7 +25,7 @@ export default async function AddStudentPage({
     redirect("/dashboard")
   }
 
-  const student = await fetchStudentById(sid)
+  const student = await fetchStudentByDni(sid)
 
   return (
     <section className='w-full relative min-h-full rounded-lg flex flex-col'>

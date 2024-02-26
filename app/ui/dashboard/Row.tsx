@@ -44,7 +44,7 @@ export default function Row({ data }: Props) {
         {data.address}
       </td>
       <td className="whitespace-nowrap text-lg text-center px-3 py-3">
-        {data.dni}
+        {data.dni.toLocaleString()}
       </td>
       <td className={clsx(
         "whitespace-nowrap text-lg text-center px-3 py-3 capitalize",

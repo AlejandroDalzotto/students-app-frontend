@@ -1,9 +1,9 @@
 import DataPanelPlaceholder from "../skeletons/DataPanelPlaceholder"
 import Image from "next/image"
-import { calculateAge, getCourseStringFromNumber } from "@/app/lib/utils"
+import { calculateAge } from "@/app/lib/utils"
 import Divider from "./Divider"
 import StudentData, { StudentDataWithCheck } from "./StudentData"
-import { fetchStudentById } from "@/app/lib/actions/student.actions"
+import { fetchStudentByDni } from "@/app/lib/actions/student.actions"
 
 export default async function StudentDataPanel({ dni: id }: { dni?: string | number | null }) {
   if (!id) {
@@ -12,7 +12,7 @@ export default async function StudentDataPanel({ dni: id }: { dni?: string | num
     )
   }
 
-  const student = await fetchStudentById(id)
+  const student = await fetchStudentByDni(id)
 
   return (
     <section className="relative rounded-lg flex flex-col items-center gap-y-5 p-5 w-full max-w-lg h-full bg-black/5 dark:bg-black/20">
@@ -25,7 +25,7 @@ export default async function StudentDataPanel({ dni: id }: { dni?: string | num
         />
 
         <div className="flex flex-col">
-          <p className="text-3xl font-semibold text-start whitespace-nowrap">{student.name}, {student.lastName}</p>
+          <p className="text-3xl font-semibold text-start">{student.name}, {student.lastName}</p>
           <span className="text-2xl font-normal text-blue-500 whitespace-nowrap">{student.course}</span>
         </div>
       </header>

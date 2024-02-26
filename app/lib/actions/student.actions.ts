@@ -29,7 +29,7 @@ export async function fetchFilteredStudents(query: string = "", currentPage: num
   }
 }
 
-export async function fetchStudentById(dni: number | string) {
+export async function fetchStudentByDni(dni: number | string) {
 
   const token = cookies().get("token")?.value ?? ""
 
