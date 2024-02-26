@@ -1,4 +1,4 @@
-export type RowData = Pick<Student, "name" | "lastName" | "birth" | "address" | "dni" | "legajo">
+export type RowData = Pick<Student, "name" | "lastName" | "birth" | "address" | "dni" | "legajo" | "matricula">
 
 type Gender = "M" | "F" | "O"
 

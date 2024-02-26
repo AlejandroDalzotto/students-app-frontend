@@ -1,6 +1,6 @@
 export default function ListOfStudentsSkeleton() {
   return (
-    <div className="w-full max-w-[1008px] max-h-[450px] p-2 relative rounded-lg flex flex-col">
+    <div className="w-full row-span-3 flex flex-col gap-y-2 p-2 relative rounded-lg">
 
       {/* Table heads */}
       <div className="w-full">

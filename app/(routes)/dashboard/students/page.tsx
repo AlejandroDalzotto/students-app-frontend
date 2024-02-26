@@ -34,38 +34,35 @@ export default async function StudentsPage({
   const totalPages = await fetchStudentsPages(query)
 
   return (
-    <section className="w-full relative min-h-full rounded-lg flex flex-col p-4">
-      <article className="w-full flex flex-grow">
-        <div className="relative flex flex-col items-center flex-grow self-stretch">
-          <div className="flex justify-between py-8 items-center self-stretch">
-            <SearchBar placeholder="Ingresa nombre y/o apellido" label="Buscar alumno..." />
-            <div className="flex items-center gap-x-5">
-              <EditButtom active={Boolean(dniStudent)} nagivateTo={`/dashboard/students/edit?sid=${dniStudent}`} />
-              <DeleteButton />
-              <AddButton nagivateTo="/dashboard/students/add" title="Agregar un nuevo alumno al sistema" />
-            </div>
+    <section className="w-full relative max-h-full rounded-lg flex flex-col p-4">
+      <div className="relative flex flex-col h-full items-center">
+        <header className="flex w-full justify-between py-6 items-center">
+          <SearchBar placeholder="Ingresa nombre y/o apellido" label="Buscar alumno..." />
+          <div className="flex items-center gap-x-5">
+            <EditButtom active={Boolean(dniStudent)} nagivateTo={`/dashboard/students/edit?sid=${dniStudent}`} />
+            <DeleteButton />
+            <AddButton nagivateTo="/dashboard/students/add" title="Agregar un nuevo alumno al sistema" />
           </div>
+        </header>
 
-          {/* Students table */}
-          <section className="flex items-center gap-5 flex-grow self-stretch">
-            {/* Left panel */}
-            <article className="flex min-w-[64rem] flex-col justify-start items-start gap-5 flex-grow self-stretch">
-              <Suspense key={query} fallback={<ListOfStudentsSkeleton />}>
-                <Table query={query} currentPage={currentPage} />
-              </Suspense>
+        <section className="grid grid-cols-12 grid-flow-row h-full w-full relative gap-x-4">
 
-              <div className="mt-5 flex w-full justify-center">
-                <Pagination totalPages={totalPages} />
-              </div>
-            </article>
-
-            {/* Right panel */}
-            <Suspense key={query + dniStudent} fallback={<DataPanelSkeleton />}>
-              <StudentDataPanel dni={dniStudent} />
+          <article className="col-span-9 grid">
+            <Suspense key={query} fallback={<ListOfStudentsSkeleton />}>
+              <Table query={query} currentPage={currentPage} />
             </Suspense>
-          </section>
-        </div>
-      </article>
+
+            <div className="mt-5 flex w-full justify-center">
+              <Pagination totalPages={totalPages} />
+            </div>
+          </article>
+
+          <Suspense key={query + dniStudent} fallback={<DataPanelSkeleton />}>
+            <StudentDataPanel dni={dniStudent} />
+          </Suspense>
+
+        </section>
+      </div>
     </section>
   )
 }

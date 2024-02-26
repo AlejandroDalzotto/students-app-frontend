@@ -1,6 +1,6 @@
 export default function DataPanelSkeleton() {
   return (
-    <div className="relative rounded-lg flex flex-col items-center gap-y-5 p-5 w-full max-w-lg h-full bg-black/5">
+    <div className="relative rounded-lg col-span-3 flex flex-col items-center gap-y-5 p-5 h-full bg-black/5 dark:bg-black/20">
 
       <div className="flex w-full items-center justify-between">
         <div className="h-[120px] aspect-square rounded-full bg-black/5"></div>

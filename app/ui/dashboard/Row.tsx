@@ -28,26 +28,29 @@ export default function Row({ data }: Props) {
   const hasLegajo = data.legajo ? "completo" : "incompleto"
 
   return (
-    <tr
+    <div
       onClick={() => handleClick(data.dni)}
       key={data.name + data.dni + data.lastName}
-      className={clsx("w-full dark:text-neutral-300 border-b dark:border-neutral-700 py-3 text-sm last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg transition-colors hover:text-blue-800 dark:hover:text-blue-500 hover:bg-blue-100 dark:hover:bg-white/5 cursor-pointer",
+      className={clsx("cursor-pointer grid grid-cols-12 items-center py-2 px-12 w-full border bg-black/5 dark:bg-transparent dark:border-neutral-700 transition-colors dark:hover:border-neutral-400 rounded-lg",
         { "text-blue-800 dark:text-blue-500 bg-blue-100 dark:bg-white/5": isSelected })}
     >
-      <td className="whitespace-nowrap text-lg text-center px-3 py-3">
+      <p className="col-span-3">
         {data.name}, {data.lastName}
-      </td>
-      <td className="whitespace-nowrap text-lg text-center px-3 py-3">
-        {formatDateString(data.birth)}
-      </td>
-      <td className="whitespace-nowrap text-lg text-center px-3 py-3">
-        {data.address}
-      </td>
-      <td className="whitespace-nowrap text-lg text-center px-3 py-3">
+      </p>
+      <p className="col-span-2">
         {data.dni.toLocaleString()}
-      </td>
-      <td className={clsx(
-        "whitespace-nowrap text-lg text-center px-3 py-3 capitalize",
+      </p>
+      <p className="col-span-2">
+        {data.address}
+      </p>
+      <p className="col-span-2">
+        {formatDateString(data.birth)}
+      </p>
+      <p className="col-span-2">
+        {data.matricula}
+      </p>
+      <p className={clsx(
+        "capitalize col-span-1",
         {
           "text-green-600 dark:text-green-400": hasLegajo === "completo"
         },
@@ -56,7 +59,7 @@ export default function Row({ data }: Props) {
         }
       )}>
         {hasLegajo}
-      </td>
-    </tr>
+      </p>
+    </div>
   )
 }

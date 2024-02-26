@@ -1,5 +1,5 @@
 interface Props {
-  icon: string,
+  icon?: string,
   text?: string | number
   title: string
 }
@@ -18,9 +18,11 @@ export function StudentDataWithCheck({ text, icon, title }: Props) {
 export default function StudentData({ icon, text, title }: Props) {
   return (
     <div title={title} className="w-full text-start text-xl fill-black dark:fill-white flex items-center gap-5">
-      <svg role="img" className='w-8 h-8'>
-        <use xlinkHref={`/sprites.svg#${icon}`}></use>
-      </svg>
+      {
+        icon && (<svg role="img" className='w-8 h-8'>
+          <use xlinkHref={`/sprites.svg#${icon}`}></use>
+        </svg>)
+      }
       <p className="whitespace-nowrap">{text?.toString() ?? "--"}</p>
     </div>
   )
