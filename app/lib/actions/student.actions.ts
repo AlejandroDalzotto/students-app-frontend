@@ -48,12 +48,14 @@ export async function fetchStudentByDni(dni: number | string) {
   }
 }
 
-export const fetchStudentsByCourse = async (course: string): Promise<Student[]> => {
+export const fetchStudentsByCourse = async (course: string, query: string = "", currentPage: number = 1): Promise<Student[]> => {
   const token = cookies().get("token")?.value ?? ""
+
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
 
-    const student: Student[] = await fetch(`${BASE_COURSE_URL}/get/student/${course}`, {
+    const student: Student[] = await fetch(`${BASE_COURSE_URL}/get/student/${course}?query=${query}&limit=${ITEMS_PER_PAGE}&offset=${offset}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -191,6 +193,30 @@ export async function fetchStudentsPages(query: string = ""): Promise<number> {
     return totalPages;
   } catch (error) {
     console.error('Database Error:', error);
-    throw new Error('Failed to fetch total number of invoices.');
+    throw new Error('Fallo al buscar el total de alumnos en el sistema.');
+  }
+}
+
+export async function fetchStudentsByCoursePages(query: string = "", course: string): Promise<number> {
+  const token = cookies().get("token")?.value ?? ""
+
+  try {
+    const response = await fetch(`${BASE_COURSE_URL}/all/pages?query=${query}&course=${course}`,
+      {
+        cache: "no-cache",
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    )
+
+    const count = await response.json() as number
+
+    const totalPages = Math.ceil(count / ITEMS_PER_PAGE);
+
+    return totalPages;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Fallo al buscar el total de alumnos en el sistema.');
   }
 }

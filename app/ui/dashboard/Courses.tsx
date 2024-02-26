@@ -6,7 +6,7 @@ export default async function Modules() {
   const courses = await getSimpleCourses();
 
   return (
-    <article className="grid gap-5 grid-cols-1">
+    <article className="grid gap-2 grid-cols-1">
       <header className="grid items-center grid-cols-3 py-4 px-12 w-full border bg-black/5 dark:bg-white/5 dark:border-neutral-700 transition-colors dark:hover:border-neutral-400 rounded-lg">
         <p>Nombre del curso</p>
         <p>Materias registradas</p>
@@ -17,7 +17,7 @@ export default async function Modules() {
           return (
             <Link
               href={`/dashboard/courses/${course_name}`}
-              className="group/box grid items-center grid-cols-3 py-4 px-12 w-full border rounded-lg shadow dark:border-neutral-700 transition-colors dark:hover:border-neutral-400"
+              className="group/box grid items-center grid-cols-3 py-2 px-12 w-full border rounded-lg shadow dark:border-neutral-700 transition-colors dark:hover:border-neutral-400"
               key={course_name}>
               <p className="font-medium">{course_name}</p>
 

@@ -38,7 +38,7 @@ export default async function StudentsPage({
       <article className="w-full flex flex-grow">
         <div className="relative flex flex-col items-center flex-grow self-stretch">
           <div className="flex justify-between py-8 items-center self-stretch">
-            <SearchBar />
+            <SearchBar placeholder="Ingresa nombre y/o apellido" label="Buscar alumno..." />
             <div className="flex items-center gap-x-5">
               <EditButtom active={Boolean(dniStudent)} nagivateTo={`/dashboard/students/edit?sid=${dniStudent}`} />
               <DeleteButton />
