@@ -77,6 +77,26 @@ export interface Grade {
   subject: string;
 }
 
+export interface Exam {
+  key: string;
+  subject: string;
+  module: string;
+  date: string;
+}
+
+export interface ExamRecord {
+  student_name: string;
+  exam_key: string;
+  subject: string;
+  state: string;
+  attended: boolean;
+  grade: number;
+}
+
+export interface CompleteExamInfomation extends Exam {
+  records: ExamRecord[]
+}
+
 export interface DefaultError {
   message: string;
   reason?: string;

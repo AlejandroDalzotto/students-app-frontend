@@ -1,6 +1,6 @@
 import { create } from "zustand"
 
-type ModalName = "create-course" | "create-assist"
+type ModalName = "create-course" | "create-assist" | "register-to-exam"
 
 interface State {
   isOpen: boolean;

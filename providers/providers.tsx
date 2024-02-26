@@ -1,6 +1,7 @@
 "use client";
 
 import CreateCourseModal from '@/app/ui/dashboard/modals/CreateCourseModal';
+import RegisterToExamModal from '@/app/ui/dashboard/modals/RegisterToExamModal';
 import { useModalStore } from '@/stores';
 import { ThemeProvider } from 'next-themes'
 
@@ -15,6 +16,7 @@ export default function Providers({
   return (
     <ThemeProvider>
       {isOpen && modal === "create-course" && <CreateCourseModal />}
+      {isOpen && modal === "register-to-exam" && <RegisterToExamModal />}
       {children}
     </ThemeProvider>
   )
