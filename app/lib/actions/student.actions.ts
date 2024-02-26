@@ -1,9 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { BASE_STUDENT_URL, ITEMS_PER_PAGE } from "../constants";
+import { BASE_COURSE_URL, BASE_STUDENT_URL, ITEMS_PER_PAGE } from "../constants";
 import { cookies } from "next/headers";
-import { calculateAge } from "../utils";
 import { redirect } from "next/navigation";
 import type { Student } from "../definitions";
 
@@ -46,6 +45,25 @@ export async function fetchStudentByDni(dni: number | string) {
   } catch (error) {
     console.log((error as Error).message)
     throw new Error(`Error al buscar al alumno ${dni}.`)
+  }
+}
+
+export const fetchStudentsByCourse = async (course: string): Promise<Student[]> => {
+  const token = cookies().get("token")?.value ?? ""
+
+  try {
+
+    const student: Student[] = await fetch(`${BASE_COURSE_URL}/get/student/${course}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then(r => r.json())
+
+    return student
+
+  } catch (error) {
+    console.log((error as Error).message)
+    throw new Error(`Error al buscar alumnos en el curso ${course}.`)
   }
 }
 

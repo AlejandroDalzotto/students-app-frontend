@@ -1,5 +1,6 @@
 import { getSingleSimpleCourse } from "@/app/lib/actions/course.actions";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Infomación del curso | Varano",
@@ -42,10 +43,10 @@ export default async function DynamicCoursePage({ params }: { params: { course: 
           </div>
         </div>
         <div className="col-span-1 relative">
-          <article className="border-2 rounded-lg shadow dark:border-neutral-700 transition-colors dark:hover:border-neutral-400 h-full w-full grid place-content-center justify-items-center">
+          <Link href={`/dashboard/courses/${courseName}/students`} className="border-2 rounded-lg shadow dark:border-neutral-700 transition-colors dark:hover:border-neutral-400 h-full w-full grid place-content-center justify-items-center">
             <h3 className="font-extrabold text-7xl">{count_students}</h3>
             <span>{count_students === 1 ? "Alumno" : "Alumnos"} cursando</span>
-          </article>
+          </Link>
         </div>
       </article>
     </section>
