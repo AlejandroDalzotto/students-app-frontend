@@ -7,11 +7,13 @@ interface Props {
   icon: string;
   isActive: boolean;
   isSidebarOpen: boolean;
+  onClick?: () => void;
 }
 
-export default function SidebarLink({ href, text, icon, isActive, isSidebarOpen }: Props) {
+export default function SidebarLink({ href, text, icon, isActive, isSidebarOpen, onClick }: Props) {
   return (
     <Link
+      onClick={onClick}
       href={href}
       className={
         clsx(

@@ -43,11 +43,6 @@ export default async function StudentDataPanel({ dni: id }: { dni?: string | num
           <StudentData title="Teléfono fijo" icon="call" text={student.linePhone} />
           <StudentData title="Número de Celudar" icon="smartphone" text={student.cellPhone} />
         </div>
-        <Divider text="Información técnica" />
-        <div className="flex justify-between items-center w-full">
-          <StudentData title="Legajo" text={`Legajo: ${student.legajo ?? "--"}`} />
-          <StudentData title="Matricula" text={`Matricula: ${student.matricula}`} />
-        </div>
         <Divider text="Certificados y discapacidad" />
         <div className="flex justify-between items-center w-full">
           <StudentDataWithCheck title="Certificado de buena salud" icon={student.health ? "check" : "close"} text="Buena salud" />

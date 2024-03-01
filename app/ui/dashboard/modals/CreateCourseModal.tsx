@@ -10,7 +10,7 @@ export default function CreateCourseModal() {
     <div onClick={closeModal} className="inset-1 bg-black/30 flex items-center justify-center backdrop-blur-sm fixed z-30">
       <section onClick={(e) => e.stopPropagation()} className="w-[90%] p-4 max-w-2xl rounded bg-neutral-100 dark:bg-neutral-900">
         <header className="flex justify-between items-center">
-          <h3 className="text-xl dark:text-neutral-400 font-bold">Crear nuevo modulo</h3>
+          <h3 className="text-xl dark:text-neutral-400 font-bold">Crear nuevo curso</h3>
           <button
             onClick={closeModal}
             className="transition-transform hover:scale-125 active:scale-90"
@@ -26,7 +26,7 @@ export default function CreateCourseModal() {
             createCourse(d);
             closeModal();
           }}>
-            <Input name="name" type="text" placeholder="Primer año" label="Nombre del modulo" required />
+            <Input name="name" type="text" placeholder="Primer año" label="Nombre del curso" required />
 
             <button
               className="bg-green-600 text-white font-semibold text-xl transition-colors hover:bg-green-800 duration-100 py-3 px-6 rounded"

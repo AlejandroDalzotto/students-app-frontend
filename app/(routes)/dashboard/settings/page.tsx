@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function SettingsPage() {
   return (
-    <section className="w-full flex flex-col items-center justify-center">
+    <section className="w-full h-full row-[span_2/span_-1] p-6 flex flex-col items-center justify-center">
       
       <h1>Configuraciones</h1>
 

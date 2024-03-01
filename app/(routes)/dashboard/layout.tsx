@@ -1,4 +1,4 @@
-import Sidebar from "@/app/ui/dashboard/Sidebar"
+import Navbar from "@/app/ui/dashboard/Navbar"
 
 export default function DashboardLayout({
   children,
@@ -7,8 +7,8 @@ export default function DashboardLayout({
 }) {
 
   return (
-    <main className="relative min-h-screen w-full flex p-2 gap-2">
-      <Sidebar />
+    <main className="relative min-h-screen w-full grid grid-rows-[7%_minmax(0,93%)] items-start">
+      <Navbar />
       {children}
     </main>
   )

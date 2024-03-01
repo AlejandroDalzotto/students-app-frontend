@@ -23,7 +23,7 @@ export default async function StudentsByCoursePage({
   const totalPages = await fetchStudentsByCoursePages(query, courseName)
 
   return (
-    <section className="h-full w-full relative flex flex-col gap-2">
+    <section className="h-full row-[span_2/span_-1] p-6 w-full relative flex flex-col gap-2">
       <header className='py-5 px-5 rounded-lg bg-black/5 dark:bg-white/5 flex flex-col gap-y-4'>
         <h2 className='text-2xl font-semibold'>Alumnos de <span className="text-green-500">{courseName}</span></h2>
       </header>

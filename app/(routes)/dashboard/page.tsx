@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function DashboardPage() {
   return (
-    <section className="w-full bg-black/5 rounded-lg grid place-content-center">
+    <section className="w-full relative h-full row-[span_2/span_-1] p-6 flex flex-col items-center justify-center">
       <Image
         src="/dashboard-image-desktop.svg"
         alt="Ilustración del panel principal"

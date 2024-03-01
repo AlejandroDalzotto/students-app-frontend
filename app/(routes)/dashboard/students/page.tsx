@@ -34,8 +34,8 @@ export default async function StudentsPage({
   const totalPages = await fetchStudentsPages(query)
 
   return (
-    <section className="w-full relative max-h-full rounded-lg flex flex-col p-4">
-      <div className="relative flex flex-col h-full items-center">
+    <section className="w-full relative h-full row-[span_2/span_-1] p-6 flex flex-col">
+      <div className="relative">
         <header className="flex w-full justify-between py-6 items-center">
           <SearchBar placeholder="Ingresa nombre y/o apellido" label="Buscar alumno..." />
           <div className="flex items-center gap-x-5">

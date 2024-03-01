@@ -28,7 +28,7 @@ export default async function AddStudentPage({
   const student = await fetchStudentByDni(sid)
 
   return (
-    <section className='w-full relative min-h-full rounded-lg flex flex-col'>
+    <section className='w-full relative h-full row-[span_2/span_-1] p-6 rounded-lg flex flex-col'>
       <header className='mb-5 py-5 px-5 rounded-lg bg-black/5 flex flex-col gap-y-4'>
         <h2 className='text-2xl font-semibold'>Editar información de alumno</h2>
         <p className='text-neutral-900 dark:text-neutral-300 text-lg'>Completa los espacios con la información que desees eliminar y al hacer clic en <strong className='text-green-600'>guardar</strong>, volverás a la lista de alumnos para ver los cambios reflejados en la tabla.</p>

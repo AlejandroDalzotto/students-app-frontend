@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function SubjectPage() {
   return (
-    <section className='w-full px-5 relative min-h-full rounded-lg flex flex-col'>
+    <section className='w-full relative h-full row-[span_2/span_-1] p-6 rounded-lg flex flex-col'>
       <header className='mb-5 py-5 px-5 rounded-lg bg-black/5 dark:bg-white/5 flex flex-col gap-y-4'>
         <h2 className='text-2xl font-semibold'>Materias</h2>
         <p className='text-neutral-900 dark:text-neutral-300 text-lg'>Aquí está toda la información sobre las materias cargadas en el sistema.</p>
