@@ -62,8 +62,8 @@ export default function Navbar() {
       <div
         onClick={() => toggle()}
         className={clsx(
-          'cursor-pointer bg-black/50 backdrop-blur w-screen h-screen absolute z-10 top-0',
-          { "left-0": isSideMenuOpen },
+          'bg-black/50 backdrop-blur h-screen absolute z-10 top-0',
+          { "left-0 w-screen": isSideMenuOpen },
           { "-left-96 w-[100px]": !isSideMenuOpen }
         )}></div>
       <aside className={clsx(
