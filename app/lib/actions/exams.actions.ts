@@ -22,10 +22,14 @@ export const getAllExams = async (): Promise<Exam[]> => {
 export const getExamWithRecordsInformation = async (key: string): Promise<CompleteExamInfomation> => {
   const token = cookies().get("token")?.value ?? "";
 
+  // For test loading fallback...
+  // await new Promise((resolve) => setTimeout(resolve, 10000));
+
   const response = await fetch(`${BASE_EXAMS_URL}/get-with-records/${key}`, {
     headers: {
       'Authorization': `Bearer ${token}`
-    }
+    },
+    cache: "no-store"
   });
 
   const data: CompleteExamInfomation = await response.json();
