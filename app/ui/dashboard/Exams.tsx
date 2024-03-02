@@ -2,12 +2,17 @@ import { getAllExams } from "@/app/lib/actions/exams.actions"
 import { formatDateString } from "@/app/lib/utils";
 import Link from "next/link";
 
-export default async function Exams() {
+interface Props {
+  query: string;
+  currentPage: number;
+}
 
-  const exams = await getAllExams();
+export default async function Exams({ currentPage, query }: Props) {
+
+  const exams = await getAllExams(query, currentPage);
 
   return (
-    <article className="grid gap-2 grid-cols-1">
+    <article className="w-full flex flex-col gap-y-2 relative">
       <header className="grid items-center grid-cols-4 py-4 px-12 w-full border bg-black/5 dark:bg-white/5 dark:border-neutral-700 transition-colors dark:hover:border-neutral-400 rounded-lg">
         <p>Exámen</p>
         <p>Modulo</p>

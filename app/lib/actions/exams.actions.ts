@@ -1,14 +1,15 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { BASE_EXAMS_URL } from "../constants";
+import { BASE_EXAMS_URL, ITEMS_PER_PAGE } from "../constants";
 import type { CompleteExamInfomation, Exam, ExamRecord } from "../definitions";
 
-export const getAllExams = async (): Promise<Exam[]> => {
+export const getAllExams = async (query: string = "", currentPage: number = 1): Promise<Exam[]> => {
 
   const token = cookies().get("token")?.value ?? "";
+  const offset = (currentPage - 1) * 6;
 
-  const response = await fetch(`${BASE_EXAMS_URL}/all`, {
+  const response = await fetch(`${BASE_EXAMS_URL}/all-by-filter?term=${query}&limit=${6}&offset=${offset}`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
@@ -21,9 +22,6 @@ export const getAllExams = async (): Promise<Exam[]> => {
 
 export const getExamWithRecordsInformation = async (key: string): Promise<CompleteExamInfomation> => {
   const token = cookies().get("token")?.value ?? "";
-
-  // For test loading fallback...
-  // await new Promise((resolve) => setTimeout(resolve, 10000));
 
   const response = await fetch(`${BASE_EXAMS_URL}/get-with-records/${key}`, {
     headers: {
@@ -85,4 +83,32 @@ export const registerStudentToExam = async (formData: FormData): Promise<ExamRec
   const data: ExamRecord = await response.json()
 
   return data
+}
+
+// For pagination...
+
+export const fetchExamsPages = async (query: string = ""): Promise<number> => {
+
+  const token = cookies().get("token")?.value ?? ""
+
+  try {
+    const response = await fetch(`${BASE_EXAMS_URL}/all/pages?query=${query}`,
+      {
+        cache: "no-cache",
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    )
+
+    const count = await response.json() as number
+
+    const totalPages = Math.ceil(count / 6);
+
+    return totalPages;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Fallo al buscar el total de cursos.');
+  }
+
 }

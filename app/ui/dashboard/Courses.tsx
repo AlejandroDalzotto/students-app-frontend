@@ -3,7 +3,7 @@ import Link from "next/link";
 
 interface Props {
   query: string;
-  currentPage: string | number;
+  currentPage: number;
 }
 
 export default async function Modules({ currentPage, query }: Props) {

@@ -87,7 +87,7 @@ export const fetchCoursesPages = async (query: string = ""): Promise<number> => 
     const count = await response.json() as number
     console.log({ count })
 
-    const totalPages = Math.ceil(count / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(count / 6);
 
     return totalPages;
   } catch (error) {
