@@ -1,12 +1,17 @@
 import { getSimpleCourses } from "@/app/lib/actions/course.actions"
 import Link from "next/link";
 
-export default async function Modules() {
+interface Props {
+  query: string;
+  currentPage: string | number;
+}
 
-  const courses = await getSimpleCourses();
+export default async function Modules({ currentPage, query }: Props) {
+
+  const courses = await getSimpleCourses(query, currentPage);
 
   return (
-    <article className="grid gap-2 grid-cols-1">
+    <article className="w-full flex flex-col gap-y-2 relative">
       <header className="grid items-center grid-cols-3 py-4 px-12 w-full border bg-black/5 dark:bg-white/5 dark:border-neutral-700 transition-colors dark:hover:border-neutral-400 rounded-lg">
         <p>Nombre del curso</p>
         <p>Materias registradas</p>

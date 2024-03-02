@@ -201,7 +201,7 @@ export async function fetchStudentsByCoursePages(query: string = "", course: str
   const token = cookies().get("token")?.value ?? ""
 
   try {
-    const response = await fetch(`${BASE_COURSE_URL}/all/pages?query=${query}&course=${course}`,
+    const response = await fetch(`${BASE_COURSE_URL}/all/students/pages?query=${query}&course=${course}`,
       {
         cache: "no-cache",
         headers: {
