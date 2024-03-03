@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { BASE_EXAMS_URL, ITEMS_PER_PAGE } from "../constants";
 import type { CompleteExamInfomation, Exam, ExamRecord } from "../definitions";
+import { revalidatePath } from "next/cache";
 
 export const getAllExams = async (query: string = "", currentPage: number = 1): Promise<Exam[]> => {
 
@@ -56,6 +57,8 @@ export const createExam = async (formData: FormData): Promise<Exam> => {
   })
 
   const data: Exam = await response.json()
+
+  revalidatePath("/dashboard/exams")
 
   return data
 }

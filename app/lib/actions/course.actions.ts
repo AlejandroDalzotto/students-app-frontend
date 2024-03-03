@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { BASE_COURSE_URL, ITEMS_PER_PAGE } from "../constants";
+import { BASE_COURSE_URL } from "../constants";
 import type { Course, CourseRequest, SimpleCourse } from "../definitions";
 import { revalidatePath } from "next/cache";
 

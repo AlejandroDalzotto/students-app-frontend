@@ -1,5 +1,6 @@
 import { fetchExamsPages } from "@/app/lib/actions";
 import { APP_NAME } from "@/app/lib/constants";
+import CreateExamButton from "@/app/ui/buttons/create-exam-button";
 import Exams from "@/app/ui/dashboard/Exams";
 import Pagination from "@/app/ui/dashboard/Pagination";
 import SearchBar from "@/app/ui/dashboard/SearchBar";
@@ -35,7 +36,7 @@ export default async function ExamsPage({
       <section className="grid grid-rows-[9%_minmax(0,91%)] h-full w-full relative gap-y-4">
         <article className="row-span-1 w-full flex items-center justify-between">
           <SearchBar placeholder="Ingresa el nombre del examen" label="Buscar examen..." />
-          {/* <CreateExamButton /> */}
+          <CreateExamButton />
         </article>
         <article className="row-[span_2/span_-1] grid grid-rows-[80%_minmax(0,20%)]">
           <Suspense fallback={<h1>Cargando...</h1>}>
