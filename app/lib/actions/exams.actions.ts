@@ -27,8 +27,7 @@ export const getExamWithRecordsInformation = async (key: string): Promise<Comple
   const response = await fetch(`${BASE_EXAMS_URL}/get-with-records/${key}`, {
     headers: {
       'Authorization': `Bearer ${token}`
-    },
-    cache: "no-store"
+    }
   });
 
   const data: CompleteExamInfomation = await response.json();
@@ -63,12 +62,12 @@ export const createExam = async (formData: FormData): Promise<Exam> => {
   return data
 }
 
-export const registerStudentToExam = async (formData: FormData): Promise<ExamRecord> => {
+export const registerStudentToExam = async (formData: FormData, examKey: string): Promise<ExamRecord> => {
   const token = cookies().get("token")?.value ?? "";
 
   const rawInformation = {
     student_dni: formData.get("student_dni"),
-    exam_key: formData.get("exam_key"),
+    exam_key: examKey,
     grade: formData.get("grade"),
     state: formData.get("state"),
     attended: formData.get("attended") === "on" ? true : false,
@@ -84,6 +83,8 @@ export const registerStudentToExam = async (formData: FormData): Promise<ExamRec
   });
 
   const data: ExamRecord = await response.json()
+
+  revalidatePath("/dashboard/exams/[key]", "page")
 
   return data
 }

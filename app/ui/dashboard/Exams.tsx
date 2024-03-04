@@ -27,10 +27,9 @@ export default async function Exams({ currentPage, query }: Props) {
               className="group/box grid items-center grid-cols-4 py-2 px-12 w-full border rounded-lg shadow dark:border-neutral-700 transition-colors dark:hover:border-neutral-400"
               key={key + date}>
               <p className="font-medium">{key}</p>
-              <p className="">{module}</p>
-              <p className="">{subject}</p>
-              <p className="">{formatDateString(date)}</p>
-
+              <p>{module}</p>
+              <p>{subject}</p>
+              <p>{formatDateString(date)}</p>
             </Link>
           )
         })

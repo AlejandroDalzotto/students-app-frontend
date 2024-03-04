@@ -88,7 +88,7 @@ export interface ExamRecord {
   student_name: string;
   exam_key: string;
   subject: string;
-  state: string;
+  state: string | null;
   attended: boolean;
   grade: number;
 }

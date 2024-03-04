@@ -2,6 +2,7 @@ import { useId } from "react";
 
 interface DefaultProps {
   type: React.HTMLInputTypeAttribute;
+  pattern?: string;
   name: string;
   label?: string;
   placeholder?: string;
@@ -66,13 +67,14 @@ export function InputRadio({ name, value, defaultChecked, label }: RadioProps) {
   )
 }
 
-export default function Input({ name, placeholder, type, label, required, defaultValue }: DefaultProps) {
+export default function Input({ name, placeholder, type, label, required, defaultValue, pattern }: DefaultProps) {
   const id = useId()
   return (
     <div className="relative h-full w-full min-w-[200px] my-10">
       <input type={type} placeholder={placeholder}
         defaultValue={defaultValue}
         name={name}
+        pattern={pattern}
         required={required}
         id={`${id}-${name}`}
         autoComplete="off"
