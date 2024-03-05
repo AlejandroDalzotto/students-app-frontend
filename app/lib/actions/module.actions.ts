@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import type { Module } from "../definitions";
 import { BASE_MODULE_URL } from "../constants";
+import { revalidatePath } from "next/cache";
 
 export const fetchModules = async (query: string = "", currentPage: number = 1): Promise<Module[]> => {
 
@@ -35,11 +36,13 @@ export const createModule = async (formData: FormData): Promise<Module> => {
       'Authorization': `Bearer ${token}`,
       'Content-Type': "application/json"
     },
-    body: JSON.stringify(rawModule),
     method: "POST",
+    body: JSON.stringify(rawModule),
   });
 
   const data: Module = await response.json();
+
+  revalidatePath("/dashboard/modules")
 
   return data;
 }
