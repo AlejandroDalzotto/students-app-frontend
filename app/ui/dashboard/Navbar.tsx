@@ -22,12 +22,12 @@ const NAVBAR_LINKS = [
     route: "/dashboard/students",
     icon_id: "list"
   },
-  // {
-  //   id: 3,
-  //   label: "Asistencias",
-  //   route: "/dashboard/assists",
-  //   icon_id: "assists"
-  // },
+  {
+    id: 3,
+    label: "Modulos",
+    route: "/dashboard/modules",
+    icon_id: "team-dashboard"
+  },
   {
     id: 4,
     label: "Examenes",
