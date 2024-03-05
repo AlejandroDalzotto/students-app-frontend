@@ -8,6 +8,7 @@ interface DefaultProps {
   placeholder?: string;
   required?: boolean;
   defaultValue?: string | number | readonly string[] | undefined;
+  error?: string;
 }
 
 interface RadioProps extends Omit<DefaultProps, "type" | "placeholder" | "required"> {
@@ -67,10 +68,10 @@ export function InputRadio({ name, value, defaultChecked, label }: RadioProps) {
   )
 }
 
-export default function Input({ name, placeholder, type, label, required, defaultValue, pattern }: DefaultProps) {
+export default function Input({ name, placeholder, type, label, required, defaultValue, pattern, error }: DefaultProps) {
   const id = useId()
   return (
-    <div className="relative h-full w-full min-w-[200px] my-10">
+    <div className="relative h-full w-full min-w-[200px] my-16">
       <input type={type} placeholder={placeholder}
         defaultValue={defaultValue}
         name={name}
@@ -84,6 +85,7 @@ export default function Input({ name, placeholder, type, label, required, defaul
         className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-neutral-500 dark:text-neutral-300 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-neutral-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-xl peer-placeholder-shown:leading-[2.95] peer-placeholder-shown:text-neutral-700 dark:peer-placeholder-shown:text-neutral-400 peer-focus:text-[14px] peer-focus:leading-tight peer-focus:text-neutral-900 dark:peer-focus:text-neutral-600 peer-focus:after:scale-x-100 peer-focus:after:border-neutral-900 dark:peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-neutral-500">
         {label}
       </label>
+      {error && <p className="absolute top-14 left-0 text-red-400">{error}</p>}
     </div>
   )
 }

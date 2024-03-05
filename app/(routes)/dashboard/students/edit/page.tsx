@@ -40,7 +40,7 @@ export default async function AddStudentPage({
 
           revalidatePath("/dashboard/students")
           redirect("/dashboard/students")
-        }} className='flex gap-x-10 h-full relative bg-black/5 w-full items-start p-5'>
+        }} className='flex gap-x-10 h-full relative bg-black/5 w-full items-start p-2'>
           <fieldset className='w-full'>
             <legend className='font-medium text-lg text-neutral-600 dark:text-white'>Información personal</legend>
             <Input defaultValue={student.name} type="text" name="name" placeholder='Pedro' required label='Nombre' />

@@ -100,8 +100,6 @@ export interface CompleteExamInfomation extends Exam {
 export interface Module {
   name: string;
   course_name: string;
-  start: string;
-  finish: string;
 }
 
 export interface DefaultError {

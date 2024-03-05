@@ -21,15 +21,8 @@ export const fetchModules = async (query: string = "", currentPage: number = 1):
   return data;
 }
 
-export const createModule = async (formData: FormData): Promise<Module> => {
+export const createModule = async (newEntry: unknown): Promise<Module> => {
   const token = cookies().get("token")?.value ?? "";
-
-  const rawModule = {
-    name: formData.get("name"),
-    course_name: formData.get("course_name"),
-    start: formData.get("start"),
-    finish: formData.get("finish"),
-  }
 
   const response = await fetch(`${BASE_MODULE_URL}/save-module`, {
     headers: {
@@ -37,7 +30,7 @@ export const createModule = async (formData: FormData): Promise<Module> => {
       'Content-Type': "application/json"
     },
     method: "POST",
-    body: JSON.stringify(rawModule),
+    body: JSON.stringify(newEntry),
   });
 
   const data: Module = await response.json();

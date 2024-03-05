@@ -18,7 +18,7 @@ export default function AddStudentPage() {
         <p className='text-neutral-900 dark:text-neutral-300 text-lg'>Completa los espacios con la información correcta y al hacer clic en <strong className='text-green-600'>guardar</strong>, volverás a la lista de alumnos para ver al nuevo alumno añadido en la tabla.</p>
       </header>
       <section className='flex justify-start h-full'>
-        <form action={createStudent} className='flex gap-x-10 h-full relative bg-black/5 w-full items-start p-5'>
+        <form action={createStudent} className='flex gap-x-10 h-full relative bg-black/5 w-full items-start p-2'>
           <fieldset className='w-full'>
             <legend className='font-medium text-lg text-neutral-600 dark:text-white'>Información personal</legend>
             <Input type="text" name="name" placeholder='Pedro' required label='Nombre' />

@@ -3,6 +3,7 @@ import { Work_Sans as WorkSans } from 'next/font/google'
 import './globals.css'
 import { APP_NAME } from './lib/constants'
 import Providers from '@/providers/providers'
+import { Toaster } from 'sonner'
 
 const fontWorkSans = WorkSans({
   subsets: ['latin'],
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body className={`${fontWorkSans.className} antialiased bg-neutral-100 dark:bg-neutral-900`}>
+        <Toaster />
         <Providers>
           {children}
         </Providers>
