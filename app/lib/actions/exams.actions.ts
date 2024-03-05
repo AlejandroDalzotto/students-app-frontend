@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { BASE_EXAMS_URL, ITEMS_PER_PAGE } from "../constants";
+import { BASE_EXAMS_URL } from "../constants";
 import type { CompleteExamInfomation, Exam, ExamRecord } from "../definitions";
 import { revalidatePath } from "next/cache";
 
