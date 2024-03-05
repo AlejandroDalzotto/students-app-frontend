@@ -97,6 +97,13 @@ export interface CompleteExamInfomation extends Exam {
   records: ExamRecord[]
 }
 
+export interface Module {
+  name: string;
+  course_name: string;
+  start: string;
+  finish: string;
+}
+
 export interface DefaultError {
   message: string;
   reason?: string;

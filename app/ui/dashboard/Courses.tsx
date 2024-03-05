@@ -6,7 +6,7 @@ interface Props {
   currentPage: number;
 }
 
-export default async function Modules({ currentPage, query }: Props) {
+export default async function Courses({ currentPage, query }: Props) {
 
   const courses = await getSimpleCourses(query, currentPage);
 
