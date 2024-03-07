@@ -7,9 +7,10 @@ import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { redirect } from "next/navigation";
+import type { UserSignIn } from "../definitions";
 
 
-export async function login(newEntry: any) {
+export async function login(newEntry: UserSignIn) {
 
   const { username, password } = newEntry
 

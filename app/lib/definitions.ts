@@ -1,3 +1,6 @@
+import type { LoginSchema, RegisterSchema } from "@/schemas"
+import { z } from "zod"
+
 export type RowData = Pick<Student, "name" | "lastName" | "birth" | "address" | "dni" | "legajo" | "matricula">
 
 type Gender = "M" | "F" | "O"
@@ -12,16 +15,9 @@ export interface User {
   authorities: Authority[]
 }
 
-export interface UserSignIn {
-  username: string,
-  password: string
-}
+export type UserSignIn = z.infer<typeof LoginSchema>
 
-export interface UserSignUp extends UserSignIn {
-  email: string,
-  name: string,
-  lastname: string
-}
+export type UserSignUp = z.infer<typeof RegisterSchema>
 
 export interface SimpleCourse {
   course_name: string;
