@@ -17,7 +17,7 @@ export const RegisterSchema = z.object({
     message: "El apellido debe tener 3 caracteres como mínimo.",
   }),
   username: z.string().min(3, {
-    message: "El nombre debe tener 3 caracteres como mínimo.",
+    message: "El nombre de usuario debe tener 3 caracteres como mínimo.",
   }),
   email: z.string().min(1, { message: "El email es requerido" }).email({
     message: "Formato de email invalido. Ej: example@gmail.com",

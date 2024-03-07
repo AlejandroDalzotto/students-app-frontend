@@ -7,7 +7,7 @@ import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { redirect } from "next/navigation";
-import type { UserSignIn } from "../definitions";
+import type { UserSignIn, UserSignUp } from "../definitions";
 
 
 export async function login(newEntry: UserSignIn) {
@@ -16,13 +16,14 @@ export async function login(newEntry: UserSignIn) {
 
   try {
     await signIn("credentials", { username, password, redirectTo: DEFAULT_LOGIN_REDIRECT })
+
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return { error: "Credenciales incorrectas!" }
+          return { message: "Credenciales incorrectas!" }
         default:
-          return { error: "Algo a ido mal!" }
+          return { message: "Algo a ido mal!" }
       }
     }
 
@@ -39,22 +40,9 @@ export async function logout() {
   await signOut({ redirectTo: "/" });
 }
 
-export async function register(formData: FormData) {
+export async function register(newEntry: UserSignUp) {
 
-  const rawUser = {
-    name: formData.get("name"),
-    lastname: formData.get("lastname"),
-    username: formData.get("username"),
-    email: formData.get("email"),
-    password: formData.get("password"),
-  }
-
-  const validatedFields = RegisterSchema.safeParse(rawUser);
-  if (!validatedFields.success) {
-    return { error: "Algunos campos son incorrectos!" };
-  }
-
-  const { username, password, email, lastname, name } = validatedFields.data
+  const { username, password, email, lastname, name } = newEntry
 
   try {
 
@@ -64,12 +52,20 @@ export async function register(formData: FormData) {
         'Content-Type': "application/json"
       },
       body: JSON.stringify({ username, password, email, lastname, name }),
+    }).then(r => {
+
+      if (!r.ok) {
+
+        return { message: "Algo ha salido mal, por favor vuelve a intentarlo" }
+      }
+
+      redirect("/signin")
     })
+
 
   } catch (error) {
     console.error({ error })
-    throw error;
+    return { message: (error as Error).message }
   }
 
-  redirect("/signin")
 }

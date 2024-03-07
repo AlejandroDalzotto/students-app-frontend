@@ -18,7 +18,8 @@ export default function SignInForm() {
     // Reset errors
     setErrors([]);
 
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // Only for test
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // Construct new module object
     const rawUser = {
@@ -37,7 +38,7 @@ export default function SignInForm() {
 
     const response = await login(result.data);
 
-    if (response?.error) {
+    if (response?.message) {
       toast.error("Credenciales incorrectas");
       return;
     }
