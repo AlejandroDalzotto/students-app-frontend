@@ -51,12 +51,12 @@ export default function SignInForm() {
 
       <h2 className="text-3xl my-3 font-semibold tracking-tighter">Iniciar sesión</h2>
 
-      <form action={handleAction}>
+      <form action={handleAction} className="flex flex-col w-full gap-y-6">
         <input
           autoComplete="off"
           name="username"
           className={clsx(
-            "my-3 w-full py-3 px-6 placeholder:text-neutral-500 border-2 bg-neutral-200 dark:bg-white dark:text-black rounded-lg",
+            "w-full py-3 px-6 placeholder:text-neutral-500 border-2 bg-neutral-200 dark:bg-white dark:text-black rounded-lg",
             { "border-red-500": errors.find(v => v.field === "username") }
           )}
           type="text"
@@ -68,7 +68,7 @@ export default function SignInForm() {
         <input
           name="password"
           className={clsx(
-            "my-3 w-full py-3 px-6 placeholder:text-neutral-500 border-2 bg-neutral-200 dark:bg-white dark:text-black rounded-lg",
+            "w-full py-3 px-6 placeholder:text-neutral-500 border-2 bg-neutral-200 dark:bg-white dark:text-black rounded-lg",
             { "border-red-500": errors.find(v => v.field === "username") }
           )}
           type="password"
@@ -78,12 +78,16 @@ export default function SignInForm() {
         />
         {errors.find(v => v.field === "password") && <span className="text-red-500 text-sm">{errors.find(v => v.field === "password")?.message}</span>}
 
-        <SubmitButton>
-          Entrar
-        </SubmitButton>
+        <div className="grid w-full place-content-center">
+          <SubmitButton>
+            Entrar
+          </SubmitButton>
+        </div>
 
-        <Link href="/signup" className="uppercase font-medium text-neutral-500 dark:text-white text-xs mx-auto block p-4 md:p-2 w-fit hover:text-black dark:hover:text-neutral-200">crear cuenta</Link>
-        <Link href="/" className="uppercase font-medium text-neutral-500 dark:text-white text-xs mx-auto block p-4 md:p-2 w-fit hover:text-black dark:hover:text-neutral-200">volver a la pantalla principal</Link>
+        <footer>
+          <Link href="/signup" className="uppercase font-medium text-neutral-500 dark:text-white text-xs mx-auto block p-4 md:p-2 w-fit hover:text-black dark:hover:text-neutral-200">crear cuenta</Link>
+          <Link href="/" className="uppercase font-medium text-neutral-500 dark:text-white text-xs mx-auto block p-4 md:p-2 w-fit hover:text-black dark:hover:text-neutral-200">volver a la pantalla principal</Link>
+        </footer>
       </form>
     </section>
   )
