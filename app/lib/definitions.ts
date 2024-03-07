@@ -1,4 +1,4 @@
-import type { LoginSchema, RegisterSchema } from "@/schemas"
+import type { CourseSchema, LoginSchema, RegisterSchema } from "@/schemas"
 import { z } from "zod"
 
 export type RowData = Pick<Student, "name" | "lastName" | "birth" | "address" | "dni" | "legajo" | "matricula">
@@ -31,9 +31,7 @@ export interface Course {
   subjects: Subject[]
 }
 
-export interface CourseRequest {
-  name: string;
-}
+export type CourseRequest = z.infer<typeof CourseSchema>
 
 export interface SimpleSubject {
   subject_name: string;

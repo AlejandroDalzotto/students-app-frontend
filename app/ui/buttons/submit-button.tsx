@@ -1,12 +1,14 @@
 "use client";
 
+import clsx from "clsx";
 import { useFormStatus } from "react-dom";
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode,
+  color?: "blue" | "green" | "red",
 }
 
-export default function SubmitButton({ children }: Props) {
+export default function SubmitButton({ children, color = "blue" }: Props) {
 
   const { pending } = useFormStatus()
 
@@ -15,7 +17,12 @@ export default function SubmitButton({ children }: Props) {
       type="submit"
       aria-disabled={pending}
       disabled={pending}
-      className="bg-blue-500 disabled:bg-neutral-500 text-white font-semibold text-xl transition-colors hover:bg-blue-700 duration-100 mx-auto block mt-10 mb-5 py-3 px-6 rounded-lg"
+      className={clsx(
+        "disabled:bg-neutral-500 text-white font-semibold text-xl transition-colors py-3 px-6 rounded-lg",
+        { "bg-blue-500 hover:bg-blue-700": color === "blue" },
+        { "bg-green-500 hover:bg-green-700": color === "green" },
+        { "bg-red-500 hover:bg-red-700": color === "red" },
+      )}
     >
       {
         pending ? (

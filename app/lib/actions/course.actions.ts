@@ -50,13 +50,9 @@ export const getSingleSimpleCourse = async (name: string): Promise<SimpleCourse>
   return simpleCourse;
 }
 
-export const createCourse = async (formData: FormData): Promise<void> => {
+export const createCourse = async (newEntry: CourseRequest) => {
 
   const token = cookies().get("token")?.value ?? ""
-
-  const rawModule: CourseRequest = {
-    name: formData.get("name")?.toString() ?? ""
-  }
 
   const response = await fetch(`${BASE_COURSE_URL}/add`, {
     headers: {
@@ -64,10 +60,20 @@ export const createCourse = async (formData: FormData): Promise<void> => {
       'Authorization': `Bearer ${token}`
     },
     method: "POST",
-    body: JSON.stringify(rawModule)
+    body: JSON.stringify(newEntry)
   });
 
   revalidatePath("/dashboard/courses")
+
+  if (!response.ok) {
+    const apiErrorResponse = await response.json() as { message: string, success: boolean }
+    return apiErrorResponse
+  } else {
+    return {
+      message: "Curso creado correctamente",
+      success: true,
+    }
+  }
 }
 
 export const fetchCoursesPages = async (query: string = ""): Promise<number> => {

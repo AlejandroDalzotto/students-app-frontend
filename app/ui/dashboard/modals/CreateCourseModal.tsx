@@ -1,6 +1,5 @@
-import { createCourse } from "@/app/lib/actions/course.actions";
 import { useModalStore } from "@/stores";
-import Input from "../form-components/Input";
+import CourseForm from "../forms/CourseForm";
 
 export default function CreateCourseModal() {
 
@@ -22,16 +21,7 @@ export default function CreateCourseModal() {
         </header>
 
         <article>
-          <form action={(d) => {
-            createCourse(d);
-            closeModal();
-          }}>
-            <Input name="name" type="text" placeholder="Primer año" label="Nombre del curso" required />
-
-            <button
-              className="bg-green-600 text-white font-semibold text-xl transition-colors hover:bg-green-800 duration-100 py-3 px-6 rounded"
-              type="submit">Aceptar</button>
-          </form>
+          <CourseForm />
         </article>
       </section>
     </div>
