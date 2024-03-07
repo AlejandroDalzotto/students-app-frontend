@@ -1,5 +1,4 @@
 import { fetchModules } from "@/app/lib/actions";
-import { formatDateString } from "@/app/lib/utils";
 
 interface Props {
   query: string;

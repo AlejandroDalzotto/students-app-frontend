@@ -9,19 +9,9 @@ import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { redirect } from "next/navigation";
 
 
-export async function login(formData: FormData) {
+export async function login(newEntry: any) {
 
-  const rawUser = {
-    username: formData.get("username"),
-    password: formData.get("password"),
-  }
-
-  const validatedFields = LoginSchema.safeParse(rawUser);
-  if (!validatedFields.success) {
-    return { error: "Algunos campos son incorrectos!" };
-  }
-
-  const { username, password } = validatedFields.data
+  const { username, password } = newEntry
 
   try {
     await signIn("credentials", { username, password, redirectTo: DEFAULT_LOGIN_REDIRECT })
