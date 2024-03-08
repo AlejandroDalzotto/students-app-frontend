@@ -176,6 +176,9 @@ export async function fetchStudentsPages(query: string = ""): Promise<number> {
 
   const token = cookies().get("token")?.value ?? ""
 
+  // Only for testing
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
+
   try {
     const response = await fetch(`${BASE_STUDENT_URL}/all/pages?query=${query}`,
       {

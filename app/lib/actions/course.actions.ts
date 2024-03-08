@@ -24,6 +24,9 @@ export const getSimpleCourses = async (query: string = "", currentPage: number =
   const token = cookies().get("token")?.value ?? "";
   const offset = (currentPage - 1) * 6;
 
+  // Only for testing
+  // await new Promise((resolve) => setTimeout(resolve, 5000));
+
   const response = await fetch(`${BASE_COURSE_URL}/all-simple?query=${query}&limit=${6}&offset=${offset}`, {
     headers: {
       'Authorization': `Bearer ${token}`
