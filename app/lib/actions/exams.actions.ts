@@ -95,6 +95,9 @@ export const fetchExamsPages = async (query: string = ""): Promise<number> => {
 
   const token = cookies().get("token")?.value ?? ""
 
+  // Only for testing UI loading
+  // await new Promise((resolve) => setTimeout(resolve, 5000));
+
   try {
     const response = await fetch(`${BASE_EXAMS_URL}/all/pages?query=${query}`,
       {
