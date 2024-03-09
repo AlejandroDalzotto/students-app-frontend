@@ -1,4 +1,5 @@
 import { APP_NAME } from "@/app/lib/constants";
+import CreateSubjectButton from "@/app/ui/buttons/create-subject-button";
 import Subjects from "@/app/ui/dashboard/Subjects";
 import type { Metadata } from "next";
 import { Suspense } from "react";
@@ -18,7 +19,7 @@ export default function SubjectPage() {
       </header>
 
       <article className="mb-5 w-full flex items-center justify-start">
-        {/* <CreateModuleButton /> */}
+        <CreateSubjectButton />
       </article>
 
       <Suspense fallback={<h1>Cargando...</h1>}>

@@ -1,4 +1,5 @@
 import type { CourseSchema, LoginSchema, RegisterSchema } from "@/schemas"
+import { SubjectSchema } from "@/schemas/subject.schemas"
 import { z } from "zod"
 
 export type RowData = Pick<Student, "name" | "lastName" | "birth" | "address" | "dni" | "legajo" | "matricula">
@@ -43,6 +44,8 @@ export interface Subject {
   students: Student[]
   module_name: string
 }
+
+export type SubjectRequest = z.infer<typeof SubjectSchema>
 
 export interface Student {
   name: string;
@@ -110,4 +113,11 @@ export interface DefaultError {
   reason?: string;
   status: number;
   redirectTo: string;
+}
+
+export interface ApiResponse<T> {
+  status: number;
+  message: string;
+  success: boolean;
+  data: T
 }
