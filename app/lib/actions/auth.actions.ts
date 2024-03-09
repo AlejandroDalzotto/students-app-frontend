@@ -53,19 +53,16 @@ export async function register(newEntry: UserSignUp) {
       },
       body: JSON.stringify({ username, password, email, lastname, name }),
     }).then(r => {
-
       if (!r.ok) {
 
         return { message: "Algo ha salido mal, por favor vuelve a intentarlo" }
       }
-
-      redirect("/signin")
     })
-
 
   } catch (error) {
     console.error({ error })
     return { message: (error as Error).message }
   }
 
+  redirect("/signin")
 }

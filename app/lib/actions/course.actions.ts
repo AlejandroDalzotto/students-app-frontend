@@ -79,6 +79,8 @@ export const createCourse = async (newEntry: CourseRequest) => {
   }
 }
 
+// For pagination
+
 export const fetchCoursesPages = async (query: string = ""): Promise<number> => {
 
   const token = cookies().get("token")?.value ?? ""
@@ -94,7 +96,6 @@ export const fetchCoursesPages = async (query: string = ""): Promise<number> => 
     )
 
     const count = await response.json() as number
-    console.log({ count })
 
     const totalPages = Math.ceil(count / 6);
 

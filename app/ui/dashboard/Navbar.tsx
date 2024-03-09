@@ -9,7 +9,12 @@ import LogoutButton from '../buttons/logout-button'
 import Link from 'next/link'
 import { useUIStore } from '@/stores'
 
-const NAVBAR_LINKS = [
+const NAVBAR_LINKS: {
+  id: number,
+  label: string,
+  route: string,
+  icon_id: string,
+}[] = [
   {
     id: 1,
     label: "Inicio",
@@ -45,6 +50,12 @@ const NAVBAR_LINKS = [
     label: "Materias",
     route: "/dashboard/subjects",
     icon_id: "subject"
+  },
+  {
+    id: 7,
+    label: "Registros Academicos",
+    route: "/dashboard/academic-records",
+    icon_id: "school"
   }
 ]
 

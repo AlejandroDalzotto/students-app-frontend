@@ -63,6 +63,15 @@ export interface Student {
   health: boolean
 }
 
+export interface AcademicRecord {
+  student_name: string;
+  course_name: string;
+  study_year: number;
+  unique_code: string;
+  academic_state: string;
+  comment?: string | null
+}
+
 export type StudentRequest = Omit<Student, "id_student" | "age" | "active">
 
 export interface Grade {

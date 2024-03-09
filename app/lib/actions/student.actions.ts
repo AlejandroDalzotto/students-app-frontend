@@ -43,7 +43,6 @@ export async function fetchStudentByDni(dni: number | string) {
     return student
 
   } catch (error) {
-    console.log((error as Error).message)
     throw new Error(`Error al buscar al alumno ${dni}.`)
   }
 }
@@ -64,7 +63,6 @@ export const fetchStudentsByCourse = async (course: string, query: string = "", 
     return student
 
   } catch (error) {
-    console.log((error as Error).message)
     throw new Error(`Error al buscar alumnos en el curso ${course}.`)
   }
 }
