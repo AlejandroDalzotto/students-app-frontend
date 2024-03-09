@@ -1,7 +1,7 @@
 import { fetchCoursesPages } from "@/app/lib/actions";
 import { APP_NAME } from "@/app/lib/constants";
 import CreateCourseButton from "@/app/ui/buttons/create-course-button";
-import Courses from "@/app/ui/dashboard/Courses";
+import CoursesTable from "@/app/ui/dashboard/tables/CoursesTable";
 import Pagination from "@/app/ui/dashboard/Pagination";
 import SearchBar from "@/app/ui/dashboard/SearchBar";
 import type { Metadata } from "next";
@@ -40,7 +40,7 @@ export default async function CoursePage({
         </article>
         <article className="row-[span_2/span_-1] grid grid-rows-[80%_minmax(0,20%)]">
           <Suspense fallback={<h1>Cargando...</h1>}>
-            <Courses query={query} currentPage={currentPage} />
+            <CoursesTable query={query} currentPage={currentPage} />
           </Suspense>
 
           <div className="mt-5 flex w-full justify-center">

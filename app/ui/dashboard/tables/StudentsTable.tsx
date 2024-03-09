@@ -1,9 +1,16 @@
 import { fetchFilteredStudents } from "@/app/lib/actions/student.actions"
-import Row from "./Row"
+import Row from "@/app/ui/dashboard/Row"
+import WithoutNoDataOnTable from "@/app/ui/dashboard/WithoutNoDataOnTable"
 
-export default async function Table({ query, currentPage }: { query: string, currentPage: number }) {
+export default async function StudentsTable({ query, currentPage }: { query: string, currentPage: number }) {
 
   const students = await fetchFilteredStudents(query, currentPage)
+
+  if (!students.length) {
+    return (
+      <WithoutNoDataOnTable />
+    )
+  }
 
   return (
     <div className="w-full flex flex-col gap-y-2 relative">

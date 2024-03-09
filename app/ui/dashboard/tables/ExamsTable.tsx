@@ -7,7 +7,7 @@ interface Props {
   currentPage: number;
 }
 
-export default async function Exams({ currentPage, query }: Props) {
+export default async function ExamsTable({ currentPage, query }: Props) {
 
   const exams = await getAllExams(query, currentPage);
 

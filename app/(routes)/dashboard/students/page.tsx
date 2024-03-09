@@ -1,7 +1,7 @@
 import SearchBar from "@/app/ui/dashboard/SearchBar";
 import { Suspense } from "react";
 import ListOfStudentsSkeleton from "@/app/ui/skeletons/ListOfStudentsSkeleton";
-import Table from "@/app/ui/dashboard/Table";
+import StudentsTable from "@/app/ui/dashboard/tables/StudentsTable";
 import StudentDataPanel from "@/app/ui/dashboard/StudentDataPanel";
 import DataPanelSkeleton from "@/app/ui/skeletons/DataPanelSkeleton";
 import { type Metadata } from "next";
@@ -48,12 +48,14 @@ export default async function StudentsPage({
 
         <article className="col-span-9 grid grid-rows-[80%_minmax(0,20%)]">
           <Suspense key={query} fallback={<ListOfStudentsSkeleton />}>
-            <Table query={query} currentPage={currentPage} />
+            <StudentsTable query={query} currentPage={currentPage} />
           </Suspense>
 
-          <div className="mt-5 flex w-full justify-center">
-            <Pagination totalPages={totalPages} />
-          </div>
+          {totalPages >= 2 &&
+            <div className="mt-5 flex w-full justify-center">
+              <Pagination totalPages={totalPages} />
+            </div>
+          }
         </article>
 
         <Suspense key={query + dniStudent} fallback={<DataPanelSkeleton />}>

@@ -1,7 +1,7 @@
 import { fetchExamsPages } from "@/app/lib/actions";
 import { APP_NAME } from "@/app/lib/constants";
 import CreateExamButton from "@/app/ui/buttons/create-exam-button";
-import Exams from "@/app/ui/dashboard/Exams";
+import ExamsTable from "@/app/ui/dashboard/tables/ExamsTable";
 import Pagination from "@/app/ui/dashboard/Pagination";
 import SearchBar from "@/app/ui/dashboard/SearchBar";
 import type { Metadata } from "next";
@@ -40,7 +40,7 @@ export default async function ExamsPage({
         </article>
         <article className="row-[span_2/span_-1] grid grid-rows-[80%_minmax(0,20%)]">
           <Suspense fallback={<h1>Cargando...</h1>}>
-            <Exams query={query} currentPage={currentPage} />
+            <ExamsTable query={query} currentPage={currentPage} />
           </Suspense>
 
           <div className="mt-5 flex w-full justify-center">
