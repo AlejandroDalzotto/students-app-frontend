@@ -1,4 +1,5 @@
 import { getAllRecords } from "@/app/lib/actions";
+import WithoutNoDataOnTable from "../WithoutNoDataOnTable";
 
 interface Props {
   query: string;
@@ -9,15 +10,22 @@ export default async function AcademicRecords({ currentPage, query }: Props) {
 
   const records = await getAllRecords(query, currentPage);
 
+  if (!records.length) {
+    return (
+      <WithoutNoDataOnTable />
+    )
+  }
+
   return (
     <article className="w-full flex flex-col gap-y-2 relative">
-      <header className="grid items-center grid-cols-12 py-4 px-12 w-full border bg-black/5 dark:bg-white/5 dark:border-neutral-700 transition-colors dark:hover:border-neutral-400 rounded-lg">
-        <p className="col-span-2">Alumno</p>
-        <p className="col-span-2">Curso</p>
-        <p className="col-span-1">Año de cursado</p>
-        <p className="col-span-2">Estado</p>
-        <p className="col-span-5">Observaciones</p>
+      <header className="select-none grid items-center grid-cols-12 py-4 px-12 w-full border bg-black/5 dark:bg-white/5 dark:border-neutral-700 transition-colors dark:hover:border-neutral-400 rounded-lg">
+        <p className="font-semibold col-span-2">Alumno</p>
+        <p className="font-semibold col-span-2">Curso</p>
+        <p className="font-semibold col-span-1 text-center">Año de cursado</p>
+        <p className="font-semibold col-span-2 text-center">Estado</p>
+        <p className="font-semibold col-span-5">Observaciones</p>
       </header>
+
       {
         records.map(({ course_name, academic_state, student_name, study_year, comment, unique_code }) => {
           return (
@@ -26,9 +34,9 @@ export default async function AcademicRecords({ currentPage, query }: Props) {
               key={unique_code}>
               <p className="col-span-2">{student_name}</p>
               <p className="col-span-2">{course_name}</p>
-              <p className="col-span-1">{study_year}</p>
-              <p className="col-span-2">{academic_state}</p>
-              <p className="col-span-5">{comment}</p>
+              <p className="col-span-1 text-center">{study_year}</p>
+              <p className="col-span-2 text-center">{academic_state}</p>
+              {comment && <p title={comment} className="col-span-5 truncate">{comment}</p>}
             </div>
           )
         })

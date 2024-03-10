@@ -1,4 +1,5 @@
 import { fetchModules } from "@/app/lib/actions";
+import WithoutNoDataOnTable from "../WithoutNoDataOnTable";
 
 interface Props {
   query: string;
@@ -8,6 +9,12 @@ interface Props {
 export default async function Modules({ currentPage, query }: Props) {
 
   const modules = await fetchModules(query, currentPage);
+
+  if (!modules.length) {
+    return (
+      <WithoutNoDataOnTable />
+    )
+  }
 
   return (
     <article className="w-full flex flex-col gap-y-2 relative">

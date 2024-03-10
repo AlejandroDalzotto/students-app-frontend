@@ -25,7 +25,7 @@ export default async function AcademicRecordsPage({
       </header>
       <section className="grid grid-rows-[9%_minmax(0,91%)] h-full w-full relative gap-y-4">
         <article className="row-span-1 w-full flex items-center justify-between">
-          <SearchBar placeholder="Ingresa nombre alumno" label="Buscar registros..." />
+          <SearchBar disabled={totalPages <= 1} placeholder="Ingresa nombre alumno" label="Buscar registros..." />
           {/* <CreateAcademicRecordButton /> */}
         </article>
         <article className="row-[span_2/span_-1] grid grid-rows-[80%_minmax(0,20%)]">
@@ -33,9 +33,11 @@ export default async function AcademicRecordsPage({
             <AcademicRecords query={query} currentPage={currentPage} />
           </Suspense>
 
-          <div className="mt-5 flex w-full justify-center">
-            <Pagination totalPages={totalPages} />
-          </div>
+          {totalPages >= 2 &&
+            <div className="mt-5 flex w-full justify-center">
+              <Pagination totalPages={totalPages} />
+            </div>
+          }
         </article>
 
       </section>

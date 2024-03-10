@@ -43,9 +43,11 @@ export default async function CoursePage({
             <CoursesTable query={query} currentPage={currentPage} />
           </Suspense>
 
-          <div className="mt-5 flex w-full justify-center">
-            <Pagination totalPages={totalPages} />
-          </div>
+          {totalPages >= 2 &&
+            <div className="mt-5 flex w-full justify-center">
+              <Pagination totalPages={totalPages} />
+            </div>
+          }
         </article>
 
       </section>

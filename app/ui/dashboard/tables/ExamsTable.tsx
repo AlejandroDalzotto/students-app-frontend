@@ -1,6 +1,7 @@
 import { getAllExams } from "@/app/lib/actions/exams.actions"
 import { formatDateString } from "@/app/lib/utils";
 import Link from "next/link";
+import WithoutNoDataOnTable from "../WithoutNoDataOnTable";
 
 interface Props {
   query: string;
@@ -10,6 +11,12 @@ interface Props {
 export default async function ExamsTable({ currentPage, query }: Props) {
 
   const exams = await getAllExams(query, currentPage);
+
+  if (!exams.length) {
+    return (
+      <WithoutNoDataOnTable />
+    )
+  }
 
   return (
     <article className="w-full flex flex-col gap-y-2 relative">
