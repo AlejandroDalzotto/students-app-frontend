@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { BASE_COURSE_URL } from "../constants";
 import type { Course, CourseRequest, SimpleCourse } from "../definitions";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export const getCourses = async (): Promise<Course[]> => {
 
@@ -48,9 +49,15 @@ export const getSingleSimpleCourse = async (name: string): Promise<SimpleCourse>
     }
   });
 
-  const simpleCourse: SimpleCourse = await response.json();
+  const simpleCourse = await response.json();
 
-  return simpleCourse;
+  console.log(simpleCourse)
+
+  if (simpleCourse.success === false) {
+    redirect("/dashboard/")
+  }
+
+  return simpleCourse
 }
 
 export const createCourse = async (newEntry: CourseRequest) => {
