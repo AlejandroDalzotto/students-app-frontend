@@ -1,11 +1,8 @@
 import { getSimpleCourses } from '@/app/lib/actions'
-import { fetchStudentByDni, updateStudent } from '@/app/lib/actions/student.actions'
+import { fetchStudentByDni } from '@/app/lib/actions/student.actions'
 import { APP_NAME } from '@/app/lib/constants'
-import CourseSelectOptions from '@/app/ui/dashboard/form-components/CourseSelectOptions'
-import Input, { InputCheckbox, InputRadio } from '@/app/ui/dashboard/form-components/Input'
 import EditStudentForm from '@/app/ui/dashboard/forms/EditStudentForm'
 import { type Metadata } from 'next'
-import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
