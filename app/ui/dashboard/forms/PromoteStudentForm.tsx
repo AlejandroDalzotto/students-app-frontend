@@ -26,7 +26,6 @@ export default function PromoteStudentForm() {
     const rawPromoteObject = {
       student_dni: Number(sid),
       new_course: formData.get("course"),
-      study_year: Number(formData.get("year")),
       comment: formData.get("comment"),
       state: formData.get("state"),
     }
@@ -57,8 +56,7 @@ export default function PromoteStudentForm() {
   return (
     <form action={handleAction}>
       <Input error={errors.find(v => v.field === "course")?.message} name="course" type="text" placeholder="Primer año" label="Nombre del nuevo curso" required />
-      <Input error={errors.find(v => v.field === "year")?.message} name="year" type="number" placeholder="2020" label="Año en el que se completó" required />
-      <Input error={errors.find(v => v.field === "comment")?.message} name="comment" type="text" label="Observaciones (Opcional)" placeholder='Comentarios adicionales...' required />
+      <Input error={errors.find(v => v.field === "comment")?.message} name="comment" type="text" label="Observaciones (Opcional)" placeholder='Comentarios adicionales...' />
       <div className='mb-6'>
         <AcademicStateOptions />
       </div>

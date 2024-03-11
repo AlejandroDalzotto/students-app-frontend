@@ -30,7 +30,7 @@ export default async function ExamRecordsPage({ params }: { params: { key: strin
       <article className="h-full relative grid grid-cols-6 gap-5">
 
         <Suspense fallback={<h1>Cargando registros...</h1>}>
-          <ExamRecordsTable />
+          <ExamRecordsTable examKey={examKey} />
         </Suspense>
 
         <section className='col-span-1 grid grid-cols-1 gap-y-5'>

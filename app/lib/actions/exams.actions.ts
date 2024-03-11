@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { BASE_EXAMS_URL } from "../constants";
+import { BASE_EXAMS_URL, ITEMS_PER_PAGE } from "../constants";
 import type { ApiResponse, Exam, ExamRecord, ExamRecordRequest, ExamRequest } from "../definitions";
 import { revalidatePath } from "next/cache";
 
@@ -38,9 +38,9 @@ export const getExamByKey = async (key: string) => {
 export const getRecords = async (key: string = "") => {
   const token = cookies().get("token")?.value ?? "";
 
-  const response = await fetch(`${BASE_EXAMS_URL}/get-records/${key}`, {
+  const response = await fetch(`${BASE_EXAMS_URL}/get-records/${key}?limit=${ITEMS_PER_PAGE}&offset=0`, {
     headers: {
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${token}`,
     }
   });
 

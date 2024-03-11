@@ -1,13 +1,16 @@
 import { getRecords } from '@/app/lib/actions';
-import WithoutNoDataOnTable from '../WithoutNoDataOnTable';
 import clsx from 'clsx';
 
-export default async function ExamRecordsTable() {
+export default async function ExamRecordsTable({ examKey }: { examKey: string }) {
 
-  const { data } = await getRecords();
+  const { data } = await getRecords(examKey);
 
   if (!data.length) {
-    return <WithoutNoDataOnTable />
+    return (
+      <div className="rounded-lg col-span-5 bg-black/5 w-full dark:bg-black/20 grid place-content-center">
+        <span className="text-3xl dark:text-white/60 font-bold italic">No hay datos para mostrar</span>
+      </div>
+    )
   }
 
   return (

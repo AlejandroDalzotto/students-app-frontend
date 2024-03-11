@@ -101,14 +101,6 @@ export const PromoteStudentSchema = z.object({
     .max(30, {
       message: "El nombre del curso no debe contener más de 30 caracteres."
     }),
-  study_year: z
-    .number()
-    .min(1900, {
-      message: "El valor mínimo para que año de estudio es 1900"
-    })
-    .max(2025, {
-      message: "El año de estudio máximo es 2155"
-    }),
   comment: z
     .string()
     .trim()

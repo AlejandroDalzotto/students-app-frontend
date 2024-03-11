@@ -36,6 +36,7 @@ export default function RegisterStudentToExamForm({ examKey }: { examKey: string
       return;
     }
 
+
     const apiResult = await registerStudentToExam(result.data);
     if (apiResult.success) {
       toast.success(apiResult.message)
@@ -70,7 +71,7 @@ export default function RegisterStudentToExamForm({ examKey }: { examKey: string
         </div>
 
         <div className='w-full h-full grid grid-cols-1'>
-          <InputCheckbox name='state' label='El alumno se presentó' />
+          <InputCheckbox name='attended' label='El alumno se presentó' />
         </div>
       </fieldset>
 
