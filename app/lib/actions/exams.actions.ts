@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { BASE_EXAMS_URL } from "../constants";
-import type { ApiResponse, CompleteExamInfomation, Exam, ExamRecord } from "../definitions";
+import type { ApiResponse, Exam, ExamRecord } from "../definitions";
 import { revalidatePath } from "next/cache";
 
 export const getAllExams = async (query: string = "", currentPage: number = 1) => {
@@ -21,16 +21,30 @@ export const getAllExams = async (query: string = "", currentPage: number = 1) =
   return exams;
 }
 
-export const getExamWithRecordsInformation = async (key: string) => {
+export const getExamByKey = async (key: string) => {
   const token = cookies().get("token")?.value ?? "";
 
-  const response = await fetch(`${BASE_EXAMS_URL}/get-with-records/${key}`, {
+  const response = await fetch(`${BASE_EXAMS_URL}/get/${key}`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
   });
 
-  const data: ApiResponse<CompleteExamInfomation> = await response.json();
+  const data: ApiResponse<Exam> = await response.json();
+
+  return data;
+}
+
+export const getRecords = async (key: string = "") => {
+  const token = cookies().get("token")?.value ?? "";
+
+  const response = await fetch(`${BASE_EXAMS_URL}/get-records/${key}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+
+  const data: ApiResponse<ExamRecord[]> = await response.json();
 
   return data;
 }

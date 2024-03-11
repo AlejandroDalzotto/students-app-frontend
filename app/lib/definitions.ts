@@ -99,10 +99,6 @@ export interface ExamRecord {
   grade: number;
 }
 
-export interface CompleteExamInfomation extends Exam {
-  records: ExamRecord[]
-}
-
 export interface Module {
   name: string;
   course_name: string;
