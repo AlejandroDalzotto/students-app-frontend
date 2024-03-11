@@ -3,8 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { BASE_COURSE_URL, BASE_STUDENT_URL, ITEMS_PER_PAGE } from "../constants";
 import { cookies } from "next/headers";
+import type { ApiResponse, Student, StudentRequest } from "../definitions";
 import { redirect } from "next/navigation";
-import type { ApiResponse, Student } from "../definitions";
 
 export async function fetchFilteredStudents(query: string = "", currentPage: number = 1) {
 
@@ -67,86 +67,62 @@ export const fetchStudentsByCourse = async (course: string, query: string = "", 
   }
 }
 
-export async function createStudent(formData: FormData) {
+export async function createStudent(newEntry: StudentRequest) {
 
   const token = cookies().get("token")?.value ?? ""
 
-  const rawStudent = {
-    name: formData.get("name"),
-    lastName: formData.get("lastName"),
-    birth: formData.get("birth"),
-    sex: formData.get("sex"),
-    address: formData.get("address"),
-    dni: formData.get("dni"),
-    cellPhone: formData.get("cellPhone"),
-    linePhone: formData.get("linePhone"),
-    mail: formData.get("mail"),
-    legajo: formData.get("legajo"),
-    matricula: formData.get("matricula"),
-    birthCert: formData.get("birthCert") === "on" ? true : false,
-    studyCert: formData.get("studyCert") === "on" ? true : false,
-    disability: formData.get("disability") === "on" ? true : false,
-    health: formData.get("health") === "on" ? true : false,
-    course_name: formData.get("course"),
-  }
-
   try {
 
-    const data: ApiResponse<Student> = await fetch(`${BASE_STUDENT_URL}/add`, {
+    const { success, message }: ApiResponse<Student> = await fetch(`${BASE_STUDENT_URL}/add`, {
       method: "POST",
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(rawStudent)
+      body: JSON.stringify(newEntry)
+
     }).then(r => r.json())
+
+    if (success === false) {
+      return { success, message }
+    }
+
+    revalidatePath("/dashboard/students")
+    return { success, message }
 
   } catch (error) {
     console.error((error as Error).message)
     throw new Error("Error al agregar al nuevo alumno.")
   }
 
-  revalidatePath("/dashboard/students")
-  redirect("/dashboard/students")
-
 }
 
-export async function updateStudent(formData: FormData, dni: string | number) {
+export async function updateStudent(newEntry: StudentRequest, dni: string | number) {
 
   const token = cookies().get("token")?.value ?? ""
 
-  const rawStudent = {
-    name: formData.get("name"),
-    lastName: formData.get("lastName"),
-    birth: formData.get("birth"),
-    sex: formData.get("sex"),
-    address: formData.get("address"),
-    dni: formData.get("dni"),
-    cellPhone: formData.get("cellPhone"),
-    linePhone: formData.get("linePhone"),
-    mail: formData.get("mail"),
-    legajo: formData.get("legajo"),
-    matricula: formData.get("matricula"),
-    birthCert: formData.get("birthCert") === "on" ? true : false,
-    studyCert: formData.get("studyCert") === "on" ? true : false,
-    disability: formData.get("disability") === "on" ? true : false,
-    health: formData.get("health") === "on" ? true : false,
-    course_name: formData.get("course"),
-  }
-
   try {
 
-    const data: ApiResponse<Student> = await fetch(`${BASE_STUDENT_URL}/edit/${dni}`, {
+    const { success, message }: ApiResponse<Student> = await fetch(`${BASE_STUDENT_URL}/edit/${dni}`, {
       method: "PUT",
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(rawStudent)
+      body: JSON.stringify(newEntry)
     }).then(r => r.json())
+
+    if (success === false) {
+      return { success, message }
+    }
+
+    revalidatePath("/dashboard/students")
+    return { success, message }
+
+
   } catch (error) {
-    console.error((error as Error).message)
-    throw new Error(`Error al editar al alumno ${rawStudent.name + ", " + rawStudent.lastName}.`)
+    console.error({ error, redirectTo: "/dashboard" })
+    redirect("/dashboard")
   }
 }
 

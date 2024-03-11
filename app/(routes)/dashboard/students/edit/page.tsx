@@ -1,7 +1,9 @@
+import { getSimpleCourses } from '@/app/lib/actions'
 import { fetchStudentByDni, updateStudent } from '@/app/lib/actions/student.actions'
 import { APP_NAME } from '@/app/lib/constants'
 import CourseSelectOptions from '@/app/ui/dashboard/form-components/CourseSelectOptions'
 import Input, { InputCheckbox, InputRadio } from '@/app/ui/dashboard/form-components/Input'
+import EditStudentForm from '@/app/ui/dashboard/forms/EditStudentForm'
 import { type Metadata } from 'next'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
@@ -32,6 +34,8 @@ export default async function AddStudentPage({
     return redirect("/dashboard/")
   }
 
+  const { data: availableCourses } = await getSimpleCourses()
+
   return (
     <section className='w-full relative h-full row-[span_2/span_-1] p-6 rounded-lg flex flex-col'>
       <header className='mb-5 py-5 px-5 rounded-lg bg-black/5 flex flex-col gap-y-4'>
@@ -39,56 +43,7 @@ export default async function AddStudentPage({
         <p className='text-neutral-900 dark:text-neutral-300 text-lg'>Completa los espacios con la información que desees eliminar y al hacer clic en <strong className='text-green-600'>guardar</strong>, volverás a la lista de alumnos para ver los cambios reflejados en la tabla.</p>
       </header>
       <section className='flex justify-start h-full'>
-        <form action={async (formData) => {
-          "use server";
-          updateStudent(formData, sid)
-
-          revalidatePath("/dashboard/students")
-          redirect("/dashboard/students")
-        }} className='flex gap-x-10 h-full relative bg-black/5 w-full items-start p-2'>
-          <fieldset className='w-full'>
-            <legend className='font-medium text-lg text-neutral-600 dark:text-white'>Información personal</legend>
-            <Input defaultValue={student.name} type="text" name="name" placeholder='Pedro' required label='Nombre' />
-            <Input defaultValue={student.lastName} type="text" name="lastName" placeholder='Rodríguez' required label='Apellido' />
-            <Input defaultValue={student.birth} type="date" name="birth" label='Fec. de Nacimiento' />
-            <Input defaultValue={student.address} type="text" name="address" label='Dirección' placeholder='Calle 123' />
-            <Input defaultValue={student.dni} type="number" name="dni" label='Documento' placeholder='40130104' required />
-          </fieldset>
-
-          <fieldset className='w-full'>
-            <legend className='font-medium text-lg text-neutral-600 dark:text-white'>Contácto</legend>
-            <Input defaultValue={student.mail} type="email" name="mail" placeholder="pedro@gmail.com" required label='Email' />
-            <Input defaultValue={student.cellPhone ?? ""} type="number" name="cellPhone" label='Número de celular' placeholder='15-1234-5678' />
-            <Input defaultValue={student.linePhone ?? ""} type="number" name="linePhone" label='Teléfono' placeholder='(011) 1234-5678' />
-          </fieldset>
-
-          <fieldset className='w-full'>
-            <legend className='font-medium text-lg text-neutral-600 dark:text-white'>Información técnica</legend>
-            <Input defaultValue={student.legajo} type="number" name="legajo" placeholder='1234' label='Legajo' />
-            <Input defaultValue={student.matricula} type="number" name="matricula" placeholder='2023001' label='Matricula' />
-
-            <CourseSelectOptions defaultValue={student.course} />
-          </fieldset>
-
-          <div className='flex flex-col w-full'>
-            <fieldset>
-              <legend className='font-medium text-lg text-neutral-600 dark:text-white'>Certificados y discapacidad</legend>
-              <div className='w-full h-full grid grid-cols-1'>
-                <InputCheckbox checked={student.birthCert} name='birthCert' label='Partida de nacimiento' />
-                <InputCheckbox checked={student.studyCert} name='studyCert' label='Certificado de estudios' />
-                <InputCheckbox checked={student.health} name='health' label='Cerfiticado de buena salud' />
-                <InputCheckbox checked={student.disability} name='disability' label='Discapacidad' />
-              </div>
-            </fieldset>
-            <fieldset>
-              <legend className='font-medium text-lg text-neutral-600 dark:text-white'>Sexo</legend>
-              <InputRadio value='M' name='sex' defaultChecked={student.sex.toUpperCase() === 'M'} label='Masculino' />
-              <InputRadio value='F' name='sex' defaultChecked={student.sex.toUpperCase() === 'F'} label='Femenino' />
-              <InputRadio value='O' name='sex' defaultChecked={student.sex.toUpperCase() === 'O'} label='Otro' />
-            </fieldset>
-          </div>
-          <button type='submit' className='absolute bottom-5 right-5 py-3 px-5 rounded-lg text-xl font-medium bg-blue-500 text-white transition-all hover:bg-blue-700 active:shadow-inner active:scale-95'>Guardar</button>
-        </form>
+        <EditStudentForm availableCourses={availableCourses} data={student} sid={sid} />
       </section>
     </section>
   )

@@ -1,12 +1,11 @@
-import { getSimpleCourses } from "@/app/lib/actions/course.actions"
+import type { SimpleCourse } from "@/app/lib/definitions";
 
 interface Props {
   defaultValue?: string;
+  data: SimpleCourse[]
 }
 
-export default async function CourseSelectOptions({ defaultValue }: Props) {
-
-  const availavedCoursesOptions = await getSimpleCourses()
+export default function CourseSelectOptions({ defaultValue, data }: Props) {
 
   return (
     <div className="relative h-full w-full">
@@ -15,7 +14,7 @@ export default async function CourseSelectOptions({ defaultValue }: Props) {
         name="course" id='select-course'
         className="peer h-full w-full rounded-[7px] border border-neutral-300 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-lg font-normal text-neutral-900 dark:text-neutral-200 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-neutral-300 placeholder-shown:border-t-neutral-300 empty:!bg-neutral-900 dark:empty:!bg-neutral-200 focus:border-2 focus:border-neutral-900 dark:focus:border-white focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-neutral-50">
         {
-          availavedCoursesOptions.map(({ course_name }) => {
+          data.map(({ course_name }) => {
             return (
               <option className="text-neutral-900" key={course_name} value={course_name}>{course_name}</option>
             )

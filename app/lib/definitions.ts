@@ -1,4 +1,4 @@
-import type { CourseSchema, LoginSchema, RegisterSchema } from "@/schemas"
+import type { CourseSchema, LoginSchema, RegisterSchema, StudentSchema } from "@/schemas"
 import { SubjectSchema } from "@/schemas/subject.schemas"
 import { z } from "zod"
 
@@ -75,7 +75,7 @@ export interface AcademicRecord {
   comment?: string | null
 }
 
-export type StudentRequest = Omit<Student, "id_student" | "age" | "active">
+export type StudentRequest = z.infer<typeof StudentSchema>
 
 export interface Grade {
   grade: number;
