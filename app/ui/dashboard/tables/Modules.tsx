@@ -8,9 +8,9 @@ interface Props {
 
 export default async function Modules({ currentPage, query }: Props) {
 
-  const modules = await fetchModules(query, currentPage);
+  const { data } = await fetchModules(query, currentPage);
 
-  if (!modules.length) {
+  if (!data.length) {
     return (
       <WithoutNoDataOnTable />
     )
@@ -23,7 +23,7 @@ export default async function Modules({ currentPage, query }: Props) {
         <p>Curso</p>
       </header>
       {
-        modules.map(({ course_name, name }) => {
+        data.map(({ course_name, name }) => {
           return (
             <div
               className="group/box grid items-center grid-cols-2 py-2 px-12 w-full border rounded-lg shadow dark:border-neutral-700 transition-colors dark:hover:border-neutral-400"

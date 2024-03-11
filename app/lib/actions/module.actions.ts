@@ -1,11 +1,11 @@
 "use server";
 
 import { cookies } from "next/headers";
-import type { Module } from "../definitions";
+import type { ApiResponse, Module } from "../definitions";
 import { BASE_MODULE_URL } from "../constants";
 import { revalidatePath } from "next/cache";
 
-export const fetchModules = async (query: string = "", currentPage: number = 1): Promise<Module[]> => {
+export const fetchModules = async (query: string = "", currentPage: number = 1) => {
 
   const token = cookies().get("token")?.value ?? "";
   const offset = (currentPage - 1) * 6;
@@ -16,12 +16,12 @@ export const fetchModules = async (query: string = "", currentPage: number = 1):
     }
   });
 
-  const data: Module[] = await response.json();
+  const data: ApiResponse<Module[]> = await response.json();
 
   return data;
 }
 
-export const createModule = async (newEntry: unknown): Promise<Module> => {
+export const createModule = async (newEntry: unknown) => {
   const token = cookies().get("token")?.value ?? "";
 
   const response = await fetch(`${BASE_MODULE_URL}/save-module`, {
@@ -33,7 +33,7 @@ export const createModule = async (newEntry: unknown): Promise<Module> => {
     body: JSON.stringify(newEntry),
   });
 
-  const data: Module = await response.json();
+  const data: ApiResponse<Module> = await response.json();
 
   revalidatePath("/dashboard/modules")
 

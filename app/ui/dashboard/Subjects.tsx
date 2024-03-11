@@ -3,7 +3,15 @@ import Link from "next/link"
 
 export default async function Subjects() {
 
-  const data = await getCourses()
+  const { data } = await getCourses()
+
+  if (!data.length) {
+    return (
+      <div className="container flex items-center justify-center py-32 mx-auto">
+        <p className="text-3xl dark:text-white/60 font-bold italic">No hay materias en el sistema</p>
+      </div>
+    )
+  }
 
   return (
     <article className="grid gap-5 grid-cols-5">

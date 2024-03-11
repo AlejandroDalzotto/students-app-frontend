@@ -2,10 +2,10 @@
 
 import { cookies } from "next/headers";
 import { BASE_EXAMS_URL } from "../constants";
-import type { CompleteExamInfomation, Exam, ExamRecord } from "../definitions";
+import type { ApiResponse, CompleteExamInfomation, Exam, ExamRecord } from "../definitions";
 import { revalidatePath } from "next/cache";
 
-export const getAllExams = async (query: string = "", currentPage: number = 1): Promise<Exam[]> => {
+export const getAllExams = async (query: string = "", currentPage: number = 1) => {
 
   const token = cookies().get("token")?.value ?? "";
   const offset = (currentPage - 1) * 6;
@@ -16,12 +16,12 @@ export const getAllExams = async (query: string = "", currentPage: number = 1): 
     }
   });
 
-  const exams: Exam[] = await response.json();
+  const exams: ApiResponse<Exam[]> = await response.json();
 
   return exams;
 }
 
-export const getExamWithRecordsInformation = async (key: string): Promise<CompleteExamInfomation> => {
+export const getExamWithRecordsInformation = async (key: string) => {
   const token = cookies().get("token")?.value ?? "";
 
   const response = await fetch(`${BASE_EXAMS_URL}/get-with-records/${key}`, {
@@ -30,12 +30,12 @@ export const getExamWithRecordsInformation = async (key: string): Promise<Comple
     }
   });
 
-  const data: CompleteExamInfomation = await response.json();
+  const data: ApiResponse<CompleteExamInfomation> = await response.json();
 
   return data;
 }
 
-export const createExam = async (formData: FormData): Promise<Exam> => {
+export const createExam = async (formData: FormData) => {
   const token = cookies().get("token")?.value ?? "";
 
   const rawExam = {
@@ -55,14 +55,14 @@ export const createExam = async (formData: FormData): Promise<Exam> => {
     body: JSON.stringify(rawExam)
   })
 
-  const data: Exam = await response.json()
+  const data: ApiResponse<Exam> = await response.json()
 
   revalidatePath("/dashboard/exams")
 
   return data
 }
 
-export const registerStudentToExam = async (formData: FormData, examKey: string): Promise<ExamRecord> => {
+export const registerStudentToExam = async (formData: FormData, examKey: string) => {
   const token = cookies().get("token")?.value ?? "";
 
   const rawInformation = {
@@ -82,7 +82,7 @@ export const registerStudentToExam = async (formData: FormData, examKey: string)
     body: JSON.stringify(rawInformation)
   });
 
-  const data: ExamRecord = await response.json()
+  const data: ApiResponse<ExamRecord> = await response.json()
 
   revalidatePath("/dashboard/exams/[key]", "page")
 

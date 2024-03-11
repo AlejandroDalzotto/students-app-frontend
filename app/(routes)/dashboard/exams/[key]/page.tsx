@@ -3,11 +3,16 @@ import { formatDateString } from '@/app/lib/utils';
 import RegisterStudentToExam from '@/app/ui/buttons/register-student-to-exam';
 import clsx from 'clsx';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default async function ExamRecordsPage({ params }: { params: { key: string } }) {
 
   const examKey = decodeURIComponent(params.key);
-  const { subject, date, key, module, records } = await getExamWithRecordsInformation(examKey);
+  const { data: { subject, date, key, module, records }, success } = await getExamWithRecordsInformation(examKey);
+
+  if (success === false) {
+    return redirect("/dashboard/")
+  }
 
   return (
     <section className='w-full relative h-full row-[span_2/span_-1] p-6 rounded-lg flex flex-col'>

@@ -4,9 +4,9 @@ import WithoutNoDataOnTable from "@/app/ui/dashboard/WithoutNoDataOnTable"
 
 export default async function StudentsTable({ query, currentPage }: { query: string, currentPage: number }) {
 
-  const students = await fetchFilteredStudents(query, currentPage)
+  const { data } = await fetchFilteredStudents(query, currentPage)
 
-  if (!students.length) {
+  if (!data.length) {
     return (
       <WithoutNoDataOnTable />
     )
@@ -24,7 +24,7 @@ export default async function StudentsTable({ query, currentPage }: { query: str
       </header>
 
       {
-        students.map(({ name, lastName, birth, address, dni, legajo, mail, matricula }) => (
+        data.map(({ name, lastName, birth, address, dni, legajo, mail, matricula }) => (
           <Row key={mail + name + lastName} data={{
             name,
             lastName,

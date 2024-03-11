@@ -23,10 +23,14 @@ export default async function AddStudentPage({
   const { sid } = searchParams
 
   if (!sid) {
-    redirect("/dashboard")
+    redirect("/dashboard/")
   }
 
-  const student = await fetchStudentByDni(sid)
+  const { data: student, success } = await fetchStudentByDni(sid)
+
+  if (success === false) {
+    return redirect("/dashboard/")
+  }
 
   return (
     <section className='w-full relative h-full row-[span_2/span_-1] p-6 rounded-lg flex flex-col'>

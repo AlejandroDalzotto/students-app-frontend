@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { BASE_COURSE_URL, BASE_STUDENT_URL, ITEMS_PER_PAGE } from "../constants";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import type { Student } from "../definitions";
+import type { ApiResponse, Student } from "../definitions";
 
 export async function fetchFilteredStudents(query: string = "", currentPage: number = 1) {
 
@@ -13,7 +13,7 @@ export async function fetchFilteredStudents(query: string = "", currentPage: num
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
-    const students: Student[] = await fetch(`${BASE_STUDENT_URL}/all/filter?query=${query}&limit=${ITEMS_PER_PAGE}&offset=${offset}`, {
+    const students: ApiResponse<Student[]> = await fetch(`${BASE_STUDENT_URL}/all/filter?query=${query}&limit=${ITEMS_PER_PAGE}&offset=${offset}`, {
       cache: "no-store",
       headers: {
         'Authorization': `Bearer ${token}`
@@ -34,7 +34,7 @@ export async function fetchStudentByDni(dni: number | string) {
 
   try {
 
-    const student: Student = await fetch(`${BASE_STUDENT_URL}/get/dni/${dni}`, {
+    const student: ApiResponse<Student> = await fetch(`${BASE_STUDENT_URL}/get/dni/${dni}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -47,14 +47,14 @@ export async function fetchStudentByDni(dni: number | string) {
   }
 }
 
-export const fetchStudentsByCourse = async (course: string, query: string = "", currentPage: number = 1): Promise<Student[]> => {
+export const fetchStudentsByCourse = async (course: string, query: string = "", currentPage: number = 1) => {
   const token = cookies().get("token")?.value ?? ""
 
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
 
-    const student: Student[] = await fetch(`${BASE_COURSE_URL}/get/student/${course}?query=${query}&limit=${ITEMS_PER_PAGE}&offset=${offset}`, {
+    const student: ApiResponse<Student[]> = await fetch(`${BASE_COURSE_URL}/get/student/${course}?query=${query}&limit=${ITEMS_PER_PAGE}&offset=${offset}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -92,7 +92,7 @@ export async function createStudent(formData: FormData) {
 
   try {
 
-    await fetch(`${BASE_STUDENT_URL}/add`, {
+    const data: ApiResponse<Student> = await fetch(`${BASE_STUDENT_URL}/add`, {
       method: "POST",
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -100,6 +100,7 @@ export async function createStudent(formData: FormData) {
       },
       body: JSON.stringify(rawStudent)
     }).then(r => r.json())
+
   } catch (error) {
     console.error((error as Error).message)
     throw new Error("Error al agregar al nuevo alumno.")
@@ -135,7 +136,7 @@ export async function updateStudent(formData: FormData, dni: string | number) {
 
   try {
 
-    await fetch(`${BASE_STUDENT_URL}/edit/${dni}`, {
+    const data: ApiResponse<Student> = await fetch(`${BASE_STUDENT_URL}/edit/${dni}`, {
       method: "PUT",
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -154,12 +155,12 @@ export async function deleteStudent(dni: string | number) {
   const token = cookies().get("token")?.value ?? ""
 
   try {
-    await fetch(`${BASE_STUDENT_URL}/inactive/${dni}`, {
+    const data: ApiResponse<Student> = await fetch(`${BASE_STUDENT_URL}/inactive/${dni}`, {
       method: "PUT",
       headers: {
         'Authorization': `Bearer ${token}`,
       }
-    })
+    }).then(r => r.json())
   } catch (error) {
     console.error((error as Error).message)
     throw new Error(`Error al eliminar alumno con DNI: ${dni}.`)

@@ -1,5 +1,6 @@
 import { getSimpleCourses } from "@/app/lib/actions/course.actions"
 import Link from "next/link";
+import WithoutNoDataOnTable from "../WithoutNoDataOnTable";
 
 interface Props {
   query: string;
@@ -8,7 +9,13 @@ interface Props {
 
 export default async function CoursesTable({ currentPage, query }: Props) {
 
-  const courses = await getSimpleCourses(query, currentPage);
+  const { data } = await getSimpleCourses(query, currentPage);
+
+  if (!data.length) {
+    return (
+      <WithoutNoDataOnTable />
+    )
+  }
 
   return (
     <article className="w-full flex flex-col gap-y-2 relative">
@@ -18,7 +25,7 @@ export default async function CoursesTable({ currentPage, query }: Props) {
         <p>Alumnos registrados</p>
       </header>
       {
-        courses.map(({ course_name, count_subjects, count_students }) => {
+        data.map(({ course_name, count_subjects, count_students }) => {
           return (
             <Link
               href={`/dashboard/courses/${course_name}`}

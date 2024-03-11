@@ -8,9 +8,9 @@ interface Props {
 
 export default async function AcademicRecords({ currentPage, query }: Props) {
 
-  const records = await getAllRecords(query, currentPage);
+  const { data } = await getAllRecords(query, currentPage);
 
-  if (!records.length) {
+  if (!data.length) {
     return (
       <WithoutNoDataOnTable />
     )
@@ -27,7 +27,7 @@ export default async function AcademicRecords({ currentPage, query }: Props) {
       </header>
 
       {
-        records.map(({ course_name, academic_state, student_name, study_year, comment, unique_code }) => {
+        data.map(({ course_name, academic_state, student_name, study_year, comment, unique_code }) => {
           return (
             <div
               className="group/box grid items-center grid-cols-12 py-2 px-12 w-full border rounded-lg shadow dark:border-neutral-700 transition-colors dark:hover:border-neutral-400"

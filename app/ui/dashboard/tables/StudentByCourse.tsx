@@ -1,5 +1,6 @@
 import { fetchStudentsByCourse } from "@/app/lib/actions";
 import clsx from "clsx";
+import WithoutNoDataOnTable from "../WithoutNoDataOnTable";
 
 interface Props {
   course: string;
@@ -9,7 +10,13 @@ interface Props {
 
 export default async function StudentByCourse({ course, currentPage, query }: Props) {
 
-  const students = await fetchStudentsByCourse(course, query, currentPage);
+  const { data } = await fetchStudentsByCourse(course, query, currentPage);
+
+  if (!data.length) {
+    return (
+      <WithoutNoDataOnTable />
+    )
+  }
 
   return (
     <div className="col-span-8 flex flex-col gap-y-2 relative">
@@ -22,7 +29,7 @@ export default async function StudentByCourse({ course, currentPage, query }: Pr
         <p className="col-span-1 text-lg font-semibold">Legajo</p>
       </header>
       {
-        students.map((student) => {
+        data.map((student) => {
           return (
             <div className="grid items-center grid-cols-12 py-1 px-12 w-full border bg-black/5 dark:bg-transparent dark:border-neutral-700 transition-colors dark:hover:border-neutral-400 rounded-lg" key={student.address + student.legajo}>
               <p className="col-span-3">{student.name}, {student.lastName}</p>

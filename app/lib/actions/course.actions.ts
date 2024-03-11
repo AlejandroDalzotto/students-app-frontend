@@ -2,11 +2,11 @@
 
 import { cookies } from "next/headers";
 import { BASE_COURSE_URL } from "../constants";
-import type { Course, CourseRequest, SimpleCourse } from "../definitions";
+import type { ApiResponse, Course, CourseRequest, SimpleCourse } from "../definitions";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export const getCourses = async (): Promise<Course[]> => {
+export const getCourses = async () => {
 
   const token = cookies().get("token")?.value ?? ""
 
@@ -16,12 +16,12 @@ export const getCourses = async (): Promise<Course[]> => {
     }
   })
 
-  const courses: Course[] = await response.json();
+  const data: ApiResponse<Course[]> = await response.json();
 
-  return courses;
+  return data;
 }
 
-export const getSimpleCourses = async (query: string = "", currentPage: number = 1): Promise<SimpleCourse[]> => {
+export const getSimpleCourses = async (query: string = "", currentPage: number = 1) => {
   const token = cookies().get("token")?.value ?? "";
   const offset = (currentPage - 1) * 6;
 
@@ -34,12 +34,12 @@ export const getSimpleCourses = async (query: string = "", currentPage: number =
     }
   });
 
-  const simpleCourse: SimpleCourse[] = await response.json();
+  const data: ApiResponse<SimpleCourse[]> = await response.json();
 
-  return simpleCourse;
+  return data;
 }
 
-export const getSingleSimpleCourse = async (name: string): Promise<SimpleCourse> => {
+export const getSingleSimpleCourse = async (name: string) => {
 
   const token = cookies().get("token")?.value ?? "";
 
@@ -49,9 +49,7 @@ export const getSingleSimpleCourse = async (name: string): Promise<SimpleCourse>
     }
   });
 
-  const simpleCourse = await response.json();
-
-  console.log(simpleCourse)
+  const simpleCourse: ApiResponse<SimpleCourse> = await response.json();
 
   if (simpleCourse.success === false) {
     redirect("/dashboard/")

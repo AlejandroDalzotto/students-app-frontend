@@ -5,7 +5,7 @@ import { BASE_SUBJECT_URL } from "../constants";
 import type { ApiResponse, Subject, SubjectRequest } from "../definitions";
 import { revalidatePath } from "next/cache";
 
-export const getSubjects = async (): Promise<Subject[]> => {
+export const getSubjects = async () => {
 
   const token = cookies().get("token")?.value ?? ""
 
@@ -15,7 +15,7 @@ export const getSubjects = async (): Promise<Subject[]> => {
     }
   })
 
-  const data: Subject[] = await response.json()
+  const data: ApiResponse<Subject[]> = await response.json()
 
   return data
 }

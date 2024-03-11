@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { BASE_ACADEMIC_RECORDS_URL, ITEMS_PER_PAGE } from "../constants";
-import { AcademicRecord } from "../definitions";
+import { AcademicRecord, ApiResponse } from "../definitions";
 
 export const getAllRecords = async (
   query: string = "",
@@ -18,7 +18,7 @@ export const getAllRecords = async (
     }
   });
 
-  const data: AcademicRecord[] = await response.json();
+  const data: ApiResponse<AcademicRecord[]> = await response.json();
 
   return data;
 }

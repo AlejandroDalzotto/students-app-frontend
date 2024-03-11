@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default async function DynamicCoursePage({ params }: { params: { course: string } }) {
 
   const courseName = decodeURIComponent(params.course);
-  const { count_students, last_subjects_record } = await getSingleSimpleCourse(courseName);
+  const { data: { count_students, last_subjects_record } } = await getSingleSimpleCourse(courseName);
 
   return (
     <section className='w-full h-full row-[span_2/span_-1] p-6 relative rounded-lg flex flex-col'>

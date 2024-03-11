@@ -10,9 +10,9 @@ interface Props {
 
 export default async function ExamsTable({ currentPage, query }: Props) {
 
-  const exams = await getAllExams(query, currentPage);
+  const { data } = await getAllExams(query, currentPage);
 
-  if (!exams.length) {
+  if (!data.length) {
     return (
       <WithoutNoDataOnTable />
     )
@@ -27,7 +27,7 @@ export default async function ExamsTable({ currentPage, query }: Props) {
         <p>Fecha asignada</p>
       </header>
       {
-        exams.map(({ key, module, subject, date }) => {
+        data.map(({ key, module, subject, date }) => {
           return (
             <Link
               href={`/dashboard/exams/${key}`}
