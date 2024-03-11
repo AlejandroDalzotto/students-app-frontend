@@ -1,6 +1,5 @@
-import { createExam } from "@/app/lib/actions";
 import { useModalStore } from "@/stores";
-import Input from "../form-components/Input";
+import ExamForm from "../forms/ExamForm";
 
 export default function CreateExamModal() {
 
@@ -22,19 +21,7 @@ export default function CreateExamModal() {
         </header>
 
         <article>
-          <form action={(d) => {
-            createExam(d);
-            closeModal();
-          }}>
-            <Input name="key" type="text" placeholder="Examen lengua 2023..." label="Nombre del examen" required />
-            <Input name="subject" type="text" placeholder="Matemática" label="Nombre de la materia" required />
-            <Input name="module" type="text" placeholder="Primer modulo (1er año)" label="Nombre del modulo" required />
-            <Input name="date" type="date" label="Fecha del Examen" required />
-
-            <button
-              className="bg-green-600 text-white font-semibold text-xl transition-colors hover:bg-green-800 duration-100 py-3 px-6 rounded"
-              type="submit">Aceptar</button>
-          </form>
+          <ExamForm />
         </article>
       </section>
     </div>

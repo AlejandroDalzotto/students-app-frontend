@@ -1,5 +1,5 @@
 import type { CourseSchema, LoginSchema, RegisterSchema, StudentSchema } from "@/schemas"
-import { ExamRecordSchema } from "@/schemas/exam.schemas"
+import { ExamRecordSchema, ExamSchema } from "@/schemas/exam.schemas"
 import { SubjectSchema } from "@/schemas/subject.schemas"
 import { z } from "zod"
 
@@ -90,6 +90,8 @@ export interface Exam {
   module: string;
   date: string;
 }
+
+export type ExamRequest = z.infer<typeof ExamSchema>
 
 export interface ExamRecord {
   student_name: string;

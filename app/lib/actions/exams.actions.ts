@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { BASE_EXAMS_URL } from "../constants";
-import type { ApiResponse, Exam, ExamRecord, ExamRecordRequest } from "../definitions";
+import type { ApiResponse, Exam, ExamRecord, ExamRecordRequest, ExamRequest } from "../definitions";
 import { revalidatePath } from "next/cache";
 
 export const getAllExams = async (query: string = "", currentPage: number = 1) => {
@@ -49,16 +49,8 @@ export const getRecords = async (key: string = "") => {
   return data;
 }
 
-export const createExam = async (formData: FormData) => {
+export const createExam = async (newEntry: ExamRequest) => {
   const token = cookies().get("token")?.value ?? "";
-
-  const rawExam = {
-    key: formData.get("key"),
-    subject: formData.get("subject"),
-    date: formData.get("date"),
-    records: [],
-    module: formData.get("module")
-  }
 
   const response = await fetch(`${BASE_EXAMS_URL}/save-exam`, {
     headers: {
@@ -66,14 +58,17 @@ export const createExam = async (formData: FormData) => {
       'Content-Type': "application/json"
     },
     method: "POST",
-    body: JSON.stringify(rawExam)
+    body: JSON.stringify(newEntry)
   })
 
-  const data: ApiResponse<Exam> = await response.json()
+  const { message, success }: ApiResponse<Exam> = await response.json()
+
+  if (success === false) {
+    return { success, message }
+  }
 
   revalidatePath("/dashboard/exams")
-
-  return data
+  return { success, message }
 }
 
 export const registerStudentToExam = async (newEntry: ExamRecordRequest) => {

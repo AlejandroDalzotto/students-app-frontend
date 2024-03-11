@@ -46,7 +46,6 @@ export default function CourseForm() {
   return (
     <form action={handleAction}>
       <Input name="name" type="text" error={errors.find(v => v.field === "name")?.message} placeholder="Primer año" label="Nombre del curso" required />
-
       <SubmitButton color='green'>
         Aceptar
       </SubmitButton>

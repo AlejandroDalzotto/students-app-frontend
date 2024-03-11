@@ -27,3 +27,37 @@ export const ExamRecordSchema = z.object({
   grade: z
     .number()
 })
+
+
+export const ExamSchema = z.object({
+  key: z
+    .string()
+    .trim()
+    .min(3, {
+      message: "El nombre para identificar el examen debe contener entre 3 y 40 caracteres"
+    })
+    .max(40, {
+      message: "El nombre para identificar el examen debe contener entre 3 y 40 caracteres"
+    }),
+  subject: z
+    .string()
+    .trim()
+    .min(3, {
+      message: "El nombre de la materia debe contener entre 3 y 25 caracteres."
+    })
+    .max(25, {
+      message: "El nombre de la materia debe contener entre 3 y 25 caracteres."
+    }),
+  date: z
+    .string(),
+  records: z
+    .array(z.any()),
+  module: z.string()
+    .trim()
+    .min(3, {
+      message: "El nombre del modulo debe contener entre 3 y 25 caracteres."
+    })
+    .max(25, {
+      message: "El nombre del modulo debe contener entre 3 y 25 caracteres."
+    })
+})
