@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { BASE_COURSE_URL, BASE_STUDENT_URL, ITEMS_PER_PAGE } from "../constants";
 import { cookies } from "next/headers";
-import type { ApiResponse, Student, StudentRequest } from "../definitions";
+import type { ApiResponse, PromoteStudentRequest, Student, StudentRequest } from "../definitions";
 import { redirect } from "next/navigation";
 
 export async function fetchFilteredStudents(query: string = "", currentPage: number = 1) {
@@ -119,6 +119,33 @@ export async function updateStudent(newEntry: StudentRequest, dni: string | numb
     revalidatePath("/dashboard/students")
     return { success, message }
 
+
+  } catch (error) {
+    console.error({ error, redirectTo: "/dashboard" })
+    redirect("/dashboard")
+  }
+}
+
+export const promoteStudent = async (newEntry: PromoteStudentRequest) => {
+  const token = cookies().get("token")?.value ?? ""
+
+  try {
+
+    const { success, message }: ApiResponse<Student> = await fetch(`${BASE_COURSE_URL}/promote-student`, {
+      method: "POST",
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newEntry)
+    }).then(r => r.json())
+
+    if (success === false) {
+      return { success, message }
+    }
+
+    revalidatePath("/dashboard/students")
+    return { success, message }
 
   } catch (error) {
     console.error({ error, redirectTo: "/dashboard" })

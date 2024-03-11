@@ -1,4 +1,4 @@
-import type { CourseSchema, LoginSchema, RegisterSchema, StudentSchema } from "@/schemas"
+import type { CourseSchema, LoginSchema, PromoteStudentSchema, RegisterSchema, StudentSchema } from "@/schemas"
 import { ExamRecordSchema, ExamSchema } from "@/schemas/exam.schemas"
 import { SubjectSchema } from "@/schemas/subject.schemas"
 import { z } from "zod"
@@ -92,6 +92,8 @@ export interface Exam {
 }
 
 export type ExamRequest = z.infer<typeof ExamSchema>
+
+export type PromoteStudentRequest = z.infer<typeof PromoteStudentSchema>
 
 export interface ExamRecord {
   student_name: string;

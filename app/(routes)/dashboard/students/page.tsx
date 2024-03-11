@@ -11,6 +11,7 @@ import Pagination from "@/app/ui/dashboard/Pagination";
 import EditButtom from "@/app/ui/dashboard/EditButtom";
 import DeleteButton from "@/app/ui/dashboard/DeleteButton";
 import { fetchStudentsPages } from "@/app/lib/actions/student.actions";
+import PromoteStudentButton from "@/app/ui/dashboard/PromoteStudentButton";
 
 export const metadata: Metadata = {
   title: `Lista de Alumnos | ${APP_NAME}`,
@@ -38,6 +39,7 @@ export default async function StudentsPage({
       <header className="flex w-full justify-between py-6 items-center">
         <SearchBar disabled={totalPages <= 1} placeholder="Ingresa nombre y/o apellido" label="Buscar alumno..." />
         <div className="flex items-center gap-x-5">
+          <PromoteStudentButton />
           <EditButtom active={Boolean(dniStudent)} nagivateTo={`/dashboard/students/edit?sid=${dniStudent}`} />
           <DeleteButton />
           <AddButton nagivateTo="/dashboard/students/add" title="Agregar un nuevo alumno al sistema" />
